@@ -1,0 +1,93 @@
+{% extends "base.twig" %}
+
+{% set pagetitle = 'Test article' %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 col-lg-push-1">
+			<article itemscope="itemscope" itemtype="http://schema.org/Article">
+				<header>
+					<h1 itemprop="name"><span class="headline">Félreértett programnyelvek: PHP</span></h1>
+
+					<span itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+						by <a href="http://www.pasztor.at" itemprop="url"><span itemprop="name">Janos Pasztor</span></a>
+					</span>
+					‧
+					<time itemprop="datePublished" datetime="2016-08-22">
+						August 22, 2016
+					</time>
+				</header>
+
+				<div itemprop="articleBody">
+					<section>
+						<p>Talán meglepő egy ilyen cím 21 évvel a nyelv megjelenése után, de érdemes megnézni, hogy a világ harmadik
+						legnagyobb oldalát hajtó technológia hova fejlődött az elmúlt pár évben.</p>
+
+						<p>
+							Félreértés ne essék: a PHP egy öreg nyelv, és a fejlődése nem éppen mérnöki alapokon történt. Ennek
+							megfelelően rengeteg olyan dolog került a nyelvbe, ami miatt a PHP-t sokan komolytalannak
+							sorolják be. Az azonban tagadhatatlan, hogy webes fejlesztéseknél az egyik <em>legkönyebben
+								üzemeltethető</em>
+							versenyző, és az elmúlt években a közösség és a fejlesztő csapat is rengeteg energiát fektetett abba,
+							hogy a nyelv felnőjön azokhoz a modern webfejlesztés során felmerülő feladatokhoz.
+						</p>
+
+						<p>Nézzük tehát, hogy mi is az a PHP és hogyan érdemes használni?</p>
+					</section>
+
+					<section id="mukodesi-elv">
+						<h2>Működési elv</h2>
+
+						<p>A PHP elsődleges feladata weboldalak kiszolgálása. Működését tekintve a PHP program akkor indul el,
+						   amikor beérkezik egy HTTP kérés. A PHP program a futása alatt ezt az egyetlen kérést szolgálja ki,
+							majd be is fejezi a működését. Ez szöges ellentétben áll azzal, ahogy például a Java vagy a NodeJS
+							működnek, és ennek a fajta működésnek van néhány következménye:</p>
+
+						<ul>
+						<li>Mivel a PHP program minden lekérésre újraindul, minden feldolgozás (config fájl olvasástól kezdve a
+							   különböző adatok betöltéséig) hozzá tesz a válaszidőhöz. Az egyetlen megoldás a cachelés, viszont ez nem feltétlenül teszi egyszerűbbé a programot.</li>
+							<li>Ugyanakkor egy átlagos PHP programozónak csak viszonylag keveset kell a memória fogyasztással foglalkoznia, hiszen a lekérdezés végével a lefoglalt memória felszabadul.</li>
+							<li>Mivel a PHP futások egymástól nagyrészt függetlenek, és néhány egzotikus kivételtől eltekintve nincs osztott memória, így a PHP programozáskor az ezzel kapcsolatos helyzetek kezelésével sem kell foglalkozni. (Gondoljunk csak a Java synchronized blokkjaira, vagy a lockolására.)</li>
+							<li>Mivel a PHP egy no-share architektúrát valósít meg és a filerendszer kezelése streamek segítségével elfedhető, a skálázásnál általában nem a PHP futása, hanem az adatbázis jelenti a szűk keresztmetszetet.</li>
+							<li>Mivel minden kérés külön PHP szálat igényel, a PHP csak nagyon korlátozottan alkalmas hosszú futásidejű feladatok végrehajtására. (Chat, websocket, long polling, stb.)</li>
+							<li>Mivel a PHP futási időben fordul, fejlesztés közben nincs szükség hosszas buildelésre, minden módosítás azonnal látható. Éles környezetben pedig az OPcache gondoskodik a sebességről.</li>
+							<li>Éppen ez a fajta architektúra adja a PHP vonzerejét. Amíg más nyelveken egy tisztességes
+								programozónak szinte kötelező ismernie a különböző párhuzamosítással járó buktatókat, PHP-ban ezt igen könnyen meg lehet úszni meglepően hosszú ideig. Ez persze nem azt jelenti, hogy egy PHP programozónak ne kellene ismernie Andrew S. Tanenbaum könyveit, de a valóság az, hogy ez sajnos más programnyelvek fejlesztőinél is igen gyakran kimarad.</li>
+						</ul>
+
+						<p>
+							A fentiek persze nem azt jelentik, hogy a PHP csak így képes működni. Parancssorból ugyanúgy futtatható egy PHP program, sőt, még saját folyamatokat is indíthat a PCNTL modullal vagy socketeket is nyithat. Elvben tehát megvan a lehetőség arra, hogy akár webszervert is írjunk PHP-ban, azonban a gyakorlat azt mutatja, hogy a memória-hatékony programok írása PHP-ban, részben a hiányzó eszközkészlet miatt, részben pedig az ismert memleak-problémája miatt meglehetősen nehezek. Ugyan léteznek olyan kezdeményezések mint az appserver.io, de ezek megmaradtak a PHP világ peremterületein.
+						</p>
+					</section>
+
+					<section id="a-nyelv-strukturaja">
+						<h2>A nyelv struktúrája</h2>
+
+						<p>
+							A nyelv struktúráját tekintve egy keverék a Java-stílusú objektum orientáció és a klasszikusabb
+							procedurális nyelvek között. Ez azt jelenti, hogy ugyanúgy írhatunk procedurális kódot, mint objektum
+							orientáltat. A legtöbb beépített függvény (sajnos) még a klasszikus struktúrát követi, nagyon kevés
+							funkció rendelkezik objektum orientált megfelelővel.
+						</p>
+
+						<p>
+							A PHP egy gyengén típusos nyelv, ami azt jelenti, hogy maga a futtató automatikusan átkonvertálja a
+							változók tipusait egymás között. így például a következő kifejezések értelmezésre kerülnek:
+						</p>
+
+						<pre><code class="php">// Az ures string megfeleltetheto boolean hamissal
+var_dump("" == false); //true
+
+// A nem ures string megfeleltetheto a boolean igazzal
+var_dump("Hello world!" == true); //true
+
+// A 0-t tartalmazó string boolean false-nak felel meg.
+var_dump("0"  == false); //true
+var_dump("00" == true); //true
+var_dump("1"  == true); //true</code></pre>
+					</section>
+				</div>
+			</article>
+		</div>
+	</div>
+{% endblock %}

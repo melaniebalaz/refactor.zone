@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-model xlink:href="vendor/phing/phing/etc/phing-grammar.rng"
+		type="application/xml"
+		schematypens="http://relaxng.org/ns/structure/1.0" ?>
+<project name="piccolo-skel" default="devserver">
+	<target name="devserver">
+		<echo>
+			Starting the development server at http://127.0.0.1:8000.
+		</echo>
+		<exec command="php -S 127.0.0.1:8000"
+			  dir="htdocs"
+			  checkreturn="true"
+			  logoutput="true"
+		/>
+	</target>
+
+	<target name="devserver-debug">
+		<echo>
+			Starting the development server at http://127.0.0.1:8000 with xdebug remote debugging enabled.
+		</echo>
+		<exec command="php -d xdebug.remote_autostart=On -d xdebug.remote_enable=1 -d xdebug.remote_host=127.0.0.1 -S 127.0.0.1:8000"
+			  dir="htdocs"
+			  checkreturn="true"
+			  logoutput="true"
+		/>
+	</target>
+
+	<target name="frontend-install" description="Installs the frontend tools. NPM and Rubygems is required.">
+		<echo file="Gemfile" append="false">source "https://rubygems.org"
+gem "sass"</echo>
+		<copy file="package.json.dist" tofile="htdocs/package.json"/>
+		<exec command="gem install bundler -i build/rubygems -n bin" checkreturn="true" logoutput="true" />
+		<exec command="bin/bundle install --binstubs bin --path build/rubygems" checkreturn="true" logoutput="true" />
+		<exec command="npm install" dir="htdocs" logoutput="true" checkreturn="true" />
+		<echo>Frontend tools installed, now run vendor/bin/phing frontend-build</echo>
+	</target>
+
+	<target name="frontend-build-js" description="Builds the JavaScript code with uglify">
+		<exec
+				command="node_modules/.bin/uglifyjs node_modules/jquery/dist/jquery.js node_modules/bootstrap-sass/assets/javascripts/bootstrap.js node_modules/highlightjs/highlight.pack.js src/js/highlight-integration.js --output js/site.min.js --source-map=js/site.min.js.map --source-map-url=site.min.js.map --source-map-include-sources --source-map-root=../"
+				dir="htdocs"
+				logoutput="true"
+				checkreturn="true" />
+	</target>
+
+	<target name="frontend-build-css" description="Builds the CSS code with SASS">
+		<exec
+			command="../bin/sass src/sass/site.scss css/site.min.css --scss" dir="htdocs" logoutput="true" checkreturn="true" />
+	</target>
+
+	<target name="frontend-build-copy" description="Copies fonts and other files">
+		<copy todir="htdocs/fonts/opensans/">
+			<fileset dir="htdocs/node_modules/open-sans-fontface/fonts/" >
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+
+		<copy todir="htdocs/fonts/bootstrap/">
+			<fileset dir="htdocs/node_modules/bootstrap-sass/assets/fonts/" >
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+
+		<copy todir="htdocs/fonts/font-awesome/">
+			<fileset dir="htdocs/node_modules/font-awesome/fonts/" >
+				<include name="*.*" />
+			</fileset>
+		</copy>
+
+		<copy file="htdocs/node_modules/html5shiv/dist/html5shiv.min.js" todir="htdocs/js/" />
+		<copy file="htdocs/node_modules/respond.js/dest/respond.min.js" todir="htdocs/js/" />
+	</target>
+
+	<target name="frontend-build" description="Builds the frontend code with sass and uglify.">
+		<phingcall target="frontend-build-js" />
+		<phingcall target="frontend-build-css" />
+		<phingcall target="frontend-build-copy" />
+	</target>
+</project>

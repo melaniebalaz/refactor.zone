@@ -1,0 +1,32 @@
+{
+	"name": "opsbears/refactor",
+	"license": "MIT",
+	"autoload": {
+		"psr-4": {
+			"Opsbears\\Refactor\\": "./src"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Opsbears\\Refactor\\": "./tests"
+		}
+	},
+	"require": {
+		"php": "^7.0",
+
+		"opsbears/piccolo": "^1.0",
+		"opsbears/piccolo-dic-auryn": "^1.0",
+		"opsbears/piccolo-templating": "^1.0",
+		"opsbears/piccolo-templating-engine-twig": "^1.0",
+		"opsbears/piccolo-web": "^1.0",
+		"opsbears/piccolo-web-http-guzzle": "^1.0",
+		"opsbears/piccolo-web-io-standard": "^1.0",
+		"opsbears/piccolo-web-router-fastroute": "^1.0",
+		"opsbears/piccolo-web-processor-controller": "^1.0",
+		"opsbears/piccolo-web-processor-controller-view-templating": "^1.0"
+	},
+	"require-dev": {
+		"phing/phing": "^2.14"
+	},
+	"minimum-stability": "dev"
+}
