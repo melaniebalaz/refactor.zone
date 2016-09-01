@@ -2,6 +2,6 @@
 
 namespace Opsbears\Refactor\Boundary\Objects;
 
-class Category {
+class Category extends TextContent {
 
 }

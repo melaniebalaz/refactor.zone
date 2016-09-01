@@ -3,6 +3,14 @@
 
 namespace Opsbears\Refactor\Module;
 
+use Opsbears\Refactor\Boundary\ArticleProvider;
+use Opsbears\Refactor\Boundary\Markdown\ArticleConverter;
+use Opsbears\Refactor\Boundary\Markdown\ArticleIndexer;
+use Opsbears\Refactor\Boundary\Markdown\AuthorConverter;
+use Opsbears\Refactor\Boundary\Markdown\CategoryConverter;
+use Opsbears\Refactor\Boundary\Markdown\MarkdownArticleProvider;
+use Opsbears\Refactor\Boundary\Markdown\SeriesConverter;
+use Opsbears\Refactor\Boundary\Objects\Category;
 use Piccolo\DependencyInjection\DependencyInjectionContainer;
 use Piccolo\Module\AbstractModule;
 use Piccolo\Templating\Engine\Twig\TwigTemplateEngine;
@@ -15,6 +23,10 @@ use Piccolo\Web\Processor\Controller\View\Templating\TemplatingViewModule;
 use Piccolo\Web\Routing\FastRoute\FastRouteModule;
 
 class ApplicationModule extends AbstractModule {
+	public function getModuleKey() : string {
+		return 'refactor';
+	}
+
 	public function getRequiredModules() : array {
 		return [
 			/**
@@ -54,5 +66,16 @@ class ApplicationModule extends AbstractModule {
 		 */
 		$templatingViewModule = $this->getRequiredModule(TemplatingViewModule::class);
 		$templatingViewModule->addTemplateRoot($globalConfig, __DIR__ . '/../Web/Views','Opsbears\\Refactor\\Web\\');
+	}
+
+	public function configureDependencyInjection(DependencyInjectionContainer $dic,
+												 array $moduleConfig,
+												 array $globalConfig) {
+		$dic->alias(ArticleProvider::class, MarkdownArticleProvider::class);
+		$dic->setClassParameters(ArticleConverter::class,  ['datadir' => $moduleConfig['datadir']]);
+		$dic->setClassParameters(CategoryConverter::class, ['datadir' => $moduleConfig['datadir']]);
+		$dic->setClassParameters(SeriesConverter::class,   ['datadir' => $moduleConfig['datadir']]);
+		$dic->setClassParameters(AuthorConverter::class,   ['datadir' => $moduleConfig['datadir']]);
+		$dic->setClassParameters(ArticleIndexer::class,    ['datadir' => $moduleConfig['datadir']]);
 	}
 }

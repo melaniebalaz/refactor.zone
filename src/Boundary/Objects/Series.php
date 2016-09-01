@@ -2,6 +2,6 @@
 
 namespace Opsbears\Refactor\Boundary\Objects;
 
-class Series {
+class Series extends TextContent {
 
 }

@@ -22,6 +22,7 @@ $border-radius-base: 0;
 @import "dark";
 
 body {
+	background-color:#fefefe;
 	font-size: 12px;
 }
 
@@ -53,15 +54,61 @@ body {
 	color: #e00000;
 }
 
+a.text-red:hover {
+	color: #e00000;
+	opacity:0.8;
+}
+
 .text-facebook {
 	color: #3b5998;
+}
+a.text-facebook:hover {
+	color: #3b5998;
+	opacity:0.8;
 }
 
 .text-twitter {
 	color: #1da1f2;
 }
+a.text-twitter:hover {
+	color: #1da1f2;
+	opacity:0.8;
+}
+
+.text-gplus {
+	color: #d34836;
+}
+a.text-gplus:hover {
+	color: #d34836;
+	opacity:0.8;
+}
+
+.text-tumblr {
+	color:#304e6f;
+}
+a.text-tumblr:hover {
+	color: #d34836;
+	opacity:0.8;
+}
+
+.text-reddit {
+	color:#369;
+}
+a.text-reddit:hover {
+	color: #369;
+	opacity:0.8;
+}
+
+.text-linkedin {
+	color:#0077B5;
+}
+a.text-linkedin:hover {
+	color: #0077B5;
+	opacity:0.8;
+}
 
 .navbar-default {
+	background-color:#fff;
 	font-size:          ($font-size-base * 0.8);
 	.navbar-nav > li > a, .navbar-brand {
 		color:          #000000;
@@ -95,18 +142,27 @@ article {
 	}
 
 	h2 {
-		@include rhythm(0, 0, 0, 0.5, 30px);
+		@include rhythm(1, 0, 0, 0.5, 30px);
 		@include adjust-font-size-to(30px);
 	}
-
-	h3 {
-		@include rhythm(0, 0, 0, 0.5, 24px);
-		@include adjust-font-size-to(24px);
+	h2:first-child {
+		@include rhythm(0, 0, 0, 0.5, 30px);
 	}
 
 	h3 {
-		@include rhythm(0, 0, 0, 0.5, 20px);
+		@include rhythm(1, 0, 0, 0.5, 24px);
+		@include adjust-font-size-to(24px);
+	}
+	h3:first-child {
+		@include rhythm(0, 0, 0, 0.5, 24px);
+	}
+
+	h4 {
+		@include rhythm(1, 0, 0, 0.5, 20px);
 		@include adjust-font-size-to(20px);
+	}
+	h4:first-child {
+		@include rhythm(0, 0, 0, 0.5, 20px);
 	}
 
 	p, ul li {
@@ -126,13 +182,14 @@ article {
 	}
 
 	pre {
-		@include rhythm(0, 0, 0, 0);
+		@include rhythm(0, 0, 0, 1);
 		margin:     0;
 		padding:    0;
 		border:     0;
 		font-size:  inherit;
 		word-break: normal;
 		word-wrap:  normal;
+		@include adjust-font-size-to(16px);
 	}
 	pre code {
 		display:      block;
@@ -142,5 +199,32 @@ article {
 		word-break:   normal;
 		word-wrap:    normal;
 		overflow-y:   auto;
+	}
+
+	footer {
+		color:#555;
+		.author {
+			@include rhythm(0, 0, 0, 0);
+			@include leading-border(1px, 0.5);
+			border-color: #cccccc;
+			@include adjust-font-size-to(18px);
+
+			.author-image {
+				@include rhythm(0.5, 0, 0, 0);
+				@extend .img-responsive;
+				@extend .img-circle;
+			}
+		}
+		.share {
+			text-align:center;
+			@include rhythm(0, 0, 0, 0);
+			@include rhythm-borders();
+			border-color: #cccccc;
+			a {
+				margin-left:2px;
+				margin-right:2px;
+				@include adjust-font-size-to(42px);
+			}
+		}
 	}
 }

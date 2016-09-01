@@ -2,10 +2,12 @@
 
 use Opsbears\Refactor\Module\ApplicationModule;
 use Opsbears\Refactor\Web\ArticleController;
+use Opsbears\Refactor\Web\AuthorController;
 use Opsbears\Refactor\Web\CategoryController;
 use Opsbears\Refactor\Web\ErrorController;
 use Opsbears\Refactor\Web\SeriesController;
 use Opsbears\Refactor\Web\StartPageController;
+use Opsbears\Refactor\Web\TextController;
 
 $localConfig = [];
 if (\file_exists(__DIR__ . '/local.config.php')) {
@@ -21,6 +23,9 @@ return \array_merge([
 		 * Our application here. This will load the other required modules.
 		 */
 		ApplicationModule::class,
+	],
+	'refactor' => [
+		'datadir' => __DIR__ . '/../data/',
 	],
 	/**
 	 * Routing information via FastRoute. (This can be easily replaced.)
@@ -43,12 +48,18 @@ return \array_merge([
 		 */
 		'routes'        => [
 			['GET', '/', StartPageController::class, 'startPageAction'],
+			['GET', '/privacy', TextController::class, 'privacyAction'],
+			['GET', '/tos', TextController::class, 'tosAction'],
 			['GET', '/page/{page:[0-9]+}', StartPageController::class, 'pageAction'],
 			['GET', '/feed', SeriesController::class, 'feedAction'],
 			['GET', '/series', SeriesController::class, 'indexAction'],
 			['GET', '/series/{slug:[a-zA-Z\-]+}', SeriesController::class, 'seriesAction'],
 			['GET', '/series/{slug:[a-zA-Z\-]+}/page/{page:[0-9]+}', SeriesController::class, 'pageAction'],
 			['GET', '/series/{slug:[a-zA-Z\-]+}/feed', SeriesController::class, 'feedAction'],
+			['GET', '/author', AuthorController::class, 'indexAction'],
+			['GET', '/author/{slug:[a-zA-Z\-]+}', AuthorController::class, 'authorAction'],
+			['GET', '/author/{slug:[a-zA-Z\-]+}/page/{page:[0-9]+}', AuthorController::class, 'pageAction'],
+			['GET', '/author/{slug:[a-zA-Z\-]+}/feed', AuthorController::class, 'feedAction'],
 			['GET', '/category', CategoryController::class, 'indexAction'],
 			['GET', '/category/{slug:[a-zA-Z\-]+}', CategoryController::class, 'categoryAction'],
 			['GET', '/category/{slug:[a-zA-Z\-]+}/page/{page:[0-9]+}', CategoryController::class, 'pageAction'],

@@ -1,0 +1,203 @@
+{% extends "base.twig" %}
+
+{% if article.series %}
+	{% set pagetitle = article.series.name ~ ': ' ~ article.title %}
+{% else %}
+	{% set pagetitle = article.title %}
+{% endif %}
+{% set meta = {
+author: article.author.name
+} %}
+
+{% block meta %}
+	<meta property="og:type" content="article"/>
+	<meta property="og:description" content="{{ article.excerpt }}"/>
+	<meta property="article:published_time" content="{{ article.published.format('Y-m-d') }}"/>
+{% if article.author.facebookUrl %}
+	<meta property="article:author" content="{{ article.author.facebookUrl }}"/>
+{% endif %}
+	<meta property="article:publisher" content="https://www.facebook.com/refactorzone"/>
+{% for category in article.categories %}
+	<meta property="article:tag" content="{{ category.name }}"/>
+{% endfor %}
+	<meta property="og:url" content="https://refactor.zone/{{ article.slug }}" />
+
+	<meta name="twitter:card" content="summary" />
+{% if article.author.twitterUrl %}
+	<meta name="twitter:creator" content="@{{ article.author.twitterUrl|replace({'https://twitter.com/': ''}) }}" />
+{% endif %}
+	<meta name="twitter:description" content="{{ article.excerpt }}" />
+
+	<meta property="og:image" content="https://refactor.zone{{ article.socialImage }}" />
+	<link rel="apple-touch-icon-precomposed" href="https://refactor.zone{{ article.socialImage }}" />
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-xl-6 col-lg-10 col-md-12 col-sm-12 col-xs-12 col-lg-push-1 col-xl-push-3">
+			<article itemscope="itemscope" itemtype="https://schema.org/Article">
+				<header>
+					<h1 itemprop="name"><span itemprop="headline">
+							{% if article.series %}{{ article.series.name }} &mdash; {% endif %}
+							{{ article.title }}
+						</span></h1>
+					<span>
+						by
+						<a href="/author/{{ article.author.slug }}">{{ article.author.name }}</a>
+					</span>
+					‧
+					<time itemprop="datePublished" datetime="{{ article.published.format('Y-m-d') }}">
+						{{ article.published.format('F j, Y') }}
+					</time>
+
+					<span itemprop="publisher" itemscope="itemscope" itemtype="https://schema.org/Organization">
+						<meta itemprop="name" content="Refactor Zone" />
+						<meta itemprop="url" content="https://refactor.zone/" />
+						<span itemprop="logo" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
+							<meta itemprop="url" content="https://refactor.zone/images/social.png" />
+							<meta itemprop="width" content="256" />
+							<meta itemprop="height" content="256" />
+						</span>
+					</span>
+					<span itemprop="image" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
+						<meta itemprop="url" content="https://refactor.zone{{ article.socialImage }}" />
+						<meta itemprop="width" content="848" />
+						<meta itemprop="height" content="565" />
+					</span>
+					<meta itemprop="dateModified" content="{{ article.modified.format('Y-m-d') }}" />
+					<meta itemprop="mainEntityOfPage" content="https://refactor.zone/{{ article.slug }}" />
+				</header>
+
+				<div itemprop="articleBody">
+					{{ article.htmlBody|raw }}
+				</div>
+
+				<footer>
+					<div class="author" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
+						<div class="row">
+							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+								<img src="/images/janoszen.jpg" alt="" class="author-image"
+									 itemprop="image" />
+							</div>
+							<div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
+								<h2>
+									<span itemprop="name">{{ article.author.name }}</span>
+									<span class="pull-right social">
+											{% if article.author.url %}
+												<a
+														rel="author"
+														href="{{ article.author.url }}"
+														itemprop="url"
+														title="Visit {{ article.author.name }}s website"><i
+															class="fa fa-globe"></i></a>
+											{% endif %}
+										{% if article.author.facebookUrl %}
+											<a
+													rel="author"
+													href="{{ article.author.facebookUrl }}"
+													class="text-facebook" itemprop="url"
+													title="Follow {{ article.author.name }} on Facebook"><i
+														class="fa fa-facebook-square"></i></a>
+										{% endif %}
+										{% if article.author.twitterUrl %}
+											<a
+													rel="author"
+													href="{{ article.author.twitterUrl }}"
+													class="text-twitter" itemprop="url"
+													title="Follow {{ article.author.name }} on Twitter"><i
+														class="fa fa-twitter-square"></i></a>
+										{% endif %}
+										{% if article.author.gplusUrl %}
+											<a
+													rel="author"
+													href="{{ article.author.gplusUrl }}"
+													class="text-gplus" itemprop="url"
+													title="Follow {{ article.author.name }} on Google+"><i
+														class="fa fa-google-plus-square"></i></a>
+										{% endif %}
+									</span>
+								</h2>
+								<div itemprop="description">
+									{{ article.author.htmlBody|raw }}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="share">
+						<div>
+							Did you like this article? Please <em>share it with your friends</em>, it helps us a
+							lot!
+						</div>
+						<div>
+							<a title="Share on Facebook"
+								href="https://www.facebook.com/dialog/feed?link=https://refactor.zone/{{
+									article.slug|url_encode
+								}}&amp;app_id=1780998928787657&amp;display=page" class="text-facebook" rel="noopener"
+								target="_blank"><i
+									class="fa fa-facebook-square"></i><span class="sr-only">
+										Share on Facebook
+								</span></a>
+
+							<a title="Share on Twitter"
+								href="https://twitter.com/intent/tweet?source=https://refactor.zone/{{
+								article.slug|url_encode
+							}}&amp;url=https://refactor.zone/{{
+								article.slug|url_encode
+							}}&amp;via=refactorzone&text={{ pagetitle|truncate(80, true, '…')|url_encode }}{%
+								if article.author.twitterUrl
+							%}%20by%20%40{{
+									article.author.twitterUrl|replace({'https://twitter.com/':''})|url_encode
+								}}&amp;related={{
+										article.author.twitterUrl|replace({'https://twitter.com/':''})|url_encode
+									}}{% endif %}"
+								class="text-twitter" rel="noopener" target="_blank"><i
+									class="fa fa-twitter-square"></i><span class="sr-only">
+										Share on Twitter
+								</span></a>
+
+							<a title="Share on Google+"
+								href="https://plus.google.com/share?url=https://refactor.zone/{{
+								article.slug|url_encode
+							}}&amp;hl=en" class="text-gplus" rel="noopener" target="_blank"><i
+									class="fa fa-google-plus-square"></i><span class="sr-only">
+										Share on Google+
+								</span></a>
+
+							<a title="Share on Tumblr"
+								href="https://tumblr.com/widgets/share/tool?canonicalUrl=https://refactor.zone/{{
+								article.slug|url_encode
+							}}" class="text-tumblr" rel="noopener" target="_blank"><i
+										class="fa fa-tumblr-square"></i><span class="sr-only">
+										Share on Tumblr
+								</span></a>
+
+							<a title="Share on Reddit"
+								href="https://www.reddit.com/submit?url=https://refactor.zone/{{
+								article.slug|url_encode
+							}}&amp;title={{ pagetitle }}" class="text-reddit" rel="noopener" target="_blank"><i
+										class="fa fa-reddit-square"></i><span class="sr-only">
+										Share on Reddit
+								</span></a>
+
+							<a title="Share on Linkedin"
+								href="https://www.linkedin.com/shareArticle?mini=true&url=https://refactor.zone/{{
+								article.slug|url_encode
+							}}" class="text-linkedin" rel="noopener" target="_blank"><i
+										class="fa fa-linkedin-square"></i><span class="sr-only">
+										Share on Linkedin
+								</span></a>
+
+							<a title="Share on Wordpress"
+								href="http://wordpress.com/press-this.php?u=https://refactor.zone/{{
+								article.slug|url_encode
+							}}" class="text-wordpress" rel="noopener" target="_blank"><i
+										class="fa fa-wordpress"></i><span class="sr-only">
+										Share on Wordpress
+								</span></a>
+						</div>
+					</div>
+				</footer>
+			</article>
+		</div>
+	</div>
+{% endblock %}

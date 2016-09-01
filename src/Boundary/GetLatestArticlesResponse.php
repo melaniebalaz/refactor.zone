@@ -12,18 +12,18 @@ class GetLatestArticlesResponse {
 	/**
 	 * @var int
 	 */
-	private $totalPages;
+	private $totalArticles;
 
-	public function __construct(ArticleList $articles, int $totalPages) {
-		$this->articles = $articles;
-		$this->totalPages = $totalPages;
+	public function __construct(ArticleList $articles, int $totalArticles) {
+		$this->articles      = $articles;
+		$this->totalArticles = $totalArticles;
 	}
 
 	public function getArticles(): ArticleList {
 		return $this->articles;
 	}
 
-	public function getTotalPages(): int {
-		return $this->totalPages;
+	public function getTotalArticles(): int {
+		return $this->totalArticles;
 	}
 }

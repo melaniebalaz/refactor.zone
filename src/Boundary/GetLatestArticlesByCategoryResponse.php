@@ -17,12 +17,12 @@ class GetLatestArticlesByCategoryResponse {
 	/**
 	 * @var int
 	 */
-	private $totalPages;
+	private $totalArticles;
 
-	public function __construct(Category $category, ArticleList $articles, int $totalPages) {
-		$this->category = $category;
-		$this->articles = $articles;
-		$this->totalPages = $totalPages;
+	public function __construct(Category $category, ArticleList $articles, int $totalArticles) {
+		$this->category      = $category;
+		$this->articles      = $articles;
+		$this->totalArticles = $totalArticles;
 	}
 
 	/**
@@ -56,14 +56,14 @@ class GetLatestArticlesByCategoryResponse {
 	/**
 	 * @return int
 	 */
-	public function getTotalPages(): int {
-		return $this->totalPages;
+	public function getTotalArticles(): int {
+		return $this->totalArticles;
 	}
 
 	/**
-	 * @param int $totalPages
+	 * @param int $totalArticles
 	 */
-	public function setTotalPages(int $totalPages) {
-		$this->totalPages = $totalPages;
+	public function setTotalArticles(int $totalArticles) {
+		$this->totalArticles = $totalArticles;
 	}
 }

@@ -19,12 +19,12 @@ class GetLatestArticlesBySeriesResponse {
 	/**
 	 * @var int
 	 */
-	private $totalPages;
+	private $totalArticles;
 
-	public function __construct(Series $series, ArticleList $articles, int $totalPages) {
-		$this->articles = $articles;
-		$this->series = $series;
-		$this->totalPages = $totalPages;
+	public function __construct(Series $series, ArticleList $articles, int $totalArticles) {
+		$this->articles      = $articles;
+		$this->series        = $series;
+		$this->totalArticles = $totalArticles;
 	}
 
 	public function getArticles(): ArticleList {
@@ -35,7 +35,7 @@ class GetLatestArticlesBySeriesResponse {
 		return $this->series;
 	}
 
-	public function getTotalPages(): int {
-		return $this->totalPages;
+	public function getTotalArticles(): int {
+		return $this->totalArticles;
 	}
 }

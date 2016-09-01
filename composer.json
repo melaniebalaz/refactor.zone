@@ -23,7 +23,9 @@
 		"opsbears/piccolo-web-io-standard": "^1.0",
 		"opsbears/piccolo-web-router-fastroute": "^1.0",
 		"opsbears/piccolo-web-processor-controller": "^1.0",
-		"opsbears/piccolo-web-processor-controller-view-templating": "^1.0"
+		"opsbears/piccolo-web-processor-controller-view-templating": "^1.0",
+		"picas/markdown-extended": "dev-master",
+		"scrivo/highlight.php": "^9.0"
 	},
 	"require-dev": {
 		"phing/phing": "^2.14"

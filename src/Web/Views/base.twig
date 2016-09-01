@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="hu">
-<head>
+<head prefix="og: http://ogp.me/ns#">
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<title>{% if pagetitle %}{{ pagetitle }} &mdash; {% endif %}Piccolo Application</title>
+	<title>{% if pagetitle %}{{ pagetitle }} &mdash; {% endif %}Refactor Zone</title>
 
-{% if meta %}
-{% for metaName in meta|keys %}
-	<meta name="{{ metaName }}" content="{{ meta[metaName] }}" />
-{% endfor %}
-{% endif %}
-{% if metaProperties %}
-{% for metaProperty in metaProperties|keys %}
-	<meta property="{{ metaProperty }}" content="{{ metaProperties[metaProperty] }}" />
-{% endfor %}
-{% endif %}
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:site_name" content="Refactor Zone" />
+	<meta property="og:title" content="{{ pagetitle }}"/>
+	<meta property="fb:admins" content="janoszen" />
+	<meta property="fb:app_id" content="1780998928787657" />
+{% block meta %}
+	<meta property="og:image" content="https://refactor.zone/images/social.png" />
+	<link rel="apple-touch-icon-precomposed" href="https://refactor.zone/images/social.png" />
+{% endblock %}
+	<meta name="twitter:site" content="@refactorzone" />
+	<meta name="twitter:title" content="{{ pagetitle }}" />
 
-	<link rel="icon" href="/favicon.png" type="image/x-icon" />
-	<link rel="shortcut icon" href="/favicon.png" type="image/x-icon"/>
+	<link rel="icon" href="/images/social.png" type="image/x-icon" />
+	<link rel="shortcut icon" href="/images/social.png" type="image/x-icon"/>
 
 	<link href="/css/site.min.css" rel="stylesheet">
 
