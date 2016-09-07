@@ -3,20 +3,27 @@
 {% set pagetitle = '' %}
 
 {% block content %}
-	<div class="row">
-		{% set i = 0 %}
-		{% for article in articles %}
-			<div class="col-md-4">
-				<h2><a href="/{{ article.slug }}">
-					{% if article.series %}{{ article.series.name }}: {% endif %}{{ article.title }}
-				</a></h2>
-				{{ article.excerpt }}
-			</div>
-			{% set i = i+1 %}
-			{% if i%3 == 0 %}
+	<div class="articlegrid">
+		<div class="row">
+			{% set i = 0 %}
+			{% for article in articles %}
+				<div class="col-md-4">
+					<div class="articledecor">
+						<img src="{{ article.socialImage }}" />
+						<div class="annotation">
+							<h2><a href="/{{ article.slug }}">
+									{% if article.series %}{{ article.series.name }}: {% endif %}{{ article.title }}
+								</a></h2>
+							{{ article.excerpt }}
+						</div>
+					</div>
 				</div>
-				<div class="row">
-			{% endif %}
-		{% endfor %}
+				{% set i = i+1 %}
+				{% if i%3 == 0 %}
+					</div>
+					<div class="row">
+				{% endif %}
+			{% endfor %}
+		</div>
 	</div>
 {% endblock %}

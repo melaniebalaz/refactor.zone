@@ -32,12 +32,13 @@ gem "sass"</echo>
 		<exec command="gem install bundler -i build/rubygems -n bin" checkreturn="true" logoutput="true" />
 		<exec command="bin/bundle install --binstubs bin --path build/rubygems" checkreturn="true" logoutput="true" />
 		<exec command="npm install" dir="htdocs" logoutput="true" checkreturn="true" />
+		<move file="htdocs/node_modules" tofile="htdocs/modules" />
 		<echo>Frontend tools installed, now run vendor/bin/phing frontend-build</echo>
 	</target>
 
 	<target name="frontend-build-js" description="Builds the JavaScript code with uglify">
 		<exec
-				command="node_modules/.bin/uglifyjs node_modules/jquery/dist/jquery.js node_modules/bootstrap-sass/assets/javascripts/bootstrap.js --output js/site.min.js --source-map=js/site.min.js.map --source-map-url=site.min.js.map --source-map-include-sources --source-map-root=../"
+				command="modules/.bin/uglifyjs modules/jquery/dist/jquery.js modules/bootstrap-sass/assets/javascripts/bootstrap.js --output js/site.min.js --source-map=js/site.min.js.map --source-map-url=site.min.js.map --source-map-include-sources --source-map-root=../"
 				dir="htdocs"
 				logoutput="true"
 				checkreturn="true" />
@@ -50,25 +51,25 @@ gem "sass"</echo>
 
 	<target name="frontend-build-copy" description="Copies fonts and other files">
 		<copy todir="htdocs/fonts/opensans/">
-			<fileset dir="htdocs/node_modules/open-sans-fontface/fonts/" >
+			<fileset dir="htdocs/modules/open-sans-fontface/fonts/" >
 				<include name="**/*.*" />
 			</fileset>
 		</copy>
 
 		<copy todir="htdocs/fonts/bootstrap/">
-			<fileset dir="htdocs/node_modules/bootstrap-sass/assets/fonts/" >
+			<fileset dir="htdocs/modules/bootstrap-sass/assets/fonts/" >
 				<include name="**/*.*" />
 			</fileset>
 		</copy>
 
 		<copy todir="htdocs/fonts/font-awesome/">
-			<fileset dir="htdocs/node_modules/font-awesome/fonts/" >
+			<fileset dir="htdocs/modules/font-awesome/fonts/" >
 				<include name="*.*" />
 			</fileset>
 		</copy>
 
-		<copy file="htdocs/node_modules/html5shiv/dist/html5shiv.min.js" todir="htdocs/js/" />
-		<copy file="htdocs/node_modules/respond.js/dest/respond.min.js" todir="htdocs/js/" />
+		<copy file="htdocs/modules/html5shiv/dist/html5shiv.min.js" todir="htdocs/js/" />
+		<copy file="htdocs/modules/respond.js/dest/respond.min.js" todir="htdocs/js/" />
 	</target>
 
 	<target name="frontend-build" description="Builds the frontend code with sass and uglify.">

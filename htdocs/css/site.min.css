@@ -8188,22 +8188,37 @@ body {
   background-color: #fefefe;
   font-size: 12px; }
 
+ul {
+  padding-left: 10px; }
+
 @media (min-width: 480px) {
   body {
-    font-size: 14px; } }
+    font-size: 14px; }
+
+  ul {
+    padding-left: 20px; } }
 @media (min-width: 600px) {
   body {
-    font-size: 16px; } }
+    font-size: 16px; }
+
+  ul {
+    padding-left: 30px; } }
 @media (min-width: 690px) {
   body {
-    font-size: 18px; } }
+    font-size: 18px; }
+
+  ul {
+    padding-left: 40px; } }
 @media (min-width: 992px) {
   body {
-    font-size: 20px; } }
-.text-red {
+    font-size: 20px; }
+
+  ul {
+    padding-left: 40px; } }
+.text-red, footer.main .fa.text-red {
   color: #e00000; }
 
-a.text-red:hover {
+a.text-red:hover, footer.main a.fa.text-red:hover {
   color: #e00000;
   opacity: 0.8; }
 
@@ -8392,5 +8407,68 @@ article {
         margin-right: 2px;
         font-size: 2.1em;
         line-height: 1.42857em; }
+
+.articlegrid {
+  font-size: 0.8em;
+  line-height: 1.875em; }
+
+.articlegrid h2 {
+  font-size: 1em;
+  line-height: 1.5em; }
+
+footer.main {
+  margin-top: 1.5em;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  margin-bottom: 0em;
+  font-size: 0.8em;
+  line-height: 1.875em;
+  color: #b0b0b0;
+  background-color: #292929; }
+  footer.main a {
+    color: #fff; }
+  footer.main h2 {
+    margin-top: 0em;
+    padding-top: 0em;
+    padding-bottom: 1.5em;
+    margin-bottom: 0em;
+    color: #e1e1e1;
+    font-size: inherit;
+    line-height: inherit;
+    text-transform: uppercase; }
+  footer.main p {
+    margin-top: 0em;
+    padding-top: 0em;
+    padding-bottom: 0em;
+    margin-bottom: 0em; }
+  footer.main .fa {
+    color: #e1e1e1; }
+
+footer.copyright {
+  line-height: 50px;
+  height: 50px;
+  font-size: 0.7em;
+  line-height: 2.14286em;
+  color: #b0b0b0;
+  background-color: #232323; }
+  footer.copyright a {
+    color: #fff; }
+  footer.copyright p {
+    margin-top: 0em;
+    padding-top: 0.75em;
+    padding-bottom: 0em;
+    margin-bottom: 0.75em; }
+  footer.copyright a.btn {
+    padding: 0;
+    line-height: 30px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    margin-top: 10px;
+    border: 0;
+    background: #b0b0b0;
+    font-size: 12px; }
+    footer.copyright a.btn:hover {
+      color: #fff; }
 
 /*# sourceMappingURL=site.min.css.map */

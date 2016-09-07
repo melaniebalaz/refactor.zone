@@ -11,6 +11,7 @@ Gemfile.lock
 htdocs/package.json
 htdocs/Gruntfile.js
 htdocs/node_modules
+htdocs/modules
 htdocs/.sass-cache
 
 # Created by .ignore support plugin (hsz.mobi)
