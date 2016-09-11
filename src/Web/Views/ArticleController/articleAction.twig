@@ -22,7 +22,7 @@ author: article.author.name
 {% endfor %}
 	<meta property="og:url" content="https://refactor.zone/{{ article.slug }}" />
 
-	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:card" content="summary_large_image" />
 {% if article.author.twitterUrl %}
 	<meta name="twitter:creator" content="@{{ article.author.twitterUrl|replace({'https://twitter.com/': ''}) }}" />
 {% endif %}

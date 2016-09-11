@@ -77,7 +77,7 @@ class Article extends TextContent {
 		return $this->categories;
 	}
 
-	public function getSeries() : Series {
+	public function getSeries() {
 		return $this->series;
 	}
 

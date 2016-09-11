@@ -9,12 +9,16 @@
 			{% for article in articles %}
 				<div class="col-md-4">
 					<div class="articledecor">
-						<img src="{{ article.socialImage }}" />
+						<a href="/{{ article.slug }}"><img src="{{ article.socialImage }}" /></a>
 						<div class="annotation">
 							<h2><a href="/{{ article.slug }}">
 									{% if article.series %}{{ article.series.name }}: {% endif %}{{ article.title }}
 								</a></h2>
-							{{ article.excerpt }}
+							<p>{{ article.excerpt }}</p>
+							<a href="/{{ article.slug }}" class="btn btn-primary">
+								Read article
+								<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+							</a>
 						</div>
 					</div>
 				</div>

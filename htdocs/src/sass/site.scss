@@ -6,6 +6,8 @@ $font-size-base: 20px;
 $base-font-size: $font-size-base;
 $base-line-height: (1.5*$base-font-size);
 $border-radius-base: 0;
+$grid-float-breakpoint: 992px;
+$brand-primary: #63bc46;
 
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "../../node_modules/font-awesome/scss/font-awesome";
@@ -21,6 +23,7 @@ $border-radius-base: 0;
 @import "light";
 @import "dark";
 
+
 body {
 	background-color:#fefefe;
 	font-size: 12px;
@@ -28,6 +31,10 @@ body {
 
 ul {
 	padding-left:10px;
+}
+
+a {
+	cursor:pointer;
 }
 
 @media (min-width: 480px) {
@@ -123,6 +130,14 @@ a.text-linkedin:hover {
 	opacity:0.8;
 }
 
+.text-wordpress {
+	color:#21759b;
+}
+a.text-wordpress:hover {
+	color: #21759b;
+	opacity:0.8;
+}
+
 .navbar-default {
 	background-color:#fff;
 	font-size:          ($font-size-base * 0.8);
@@ -133,10 +148,6 @@ a.text-linkedin:hover {
 	.navbar-brand {
 		font-size: inherit;
 	}
-
-	-webkit-box-shadow: 0 0 40px 0 rgba(54, 54, 54, 0.3);
-	-moz-box-shadow:    0 0 40px 0 rgba(54, 54, 54, 0.3);
-	box-shadow:         0 0 40px 0 rgba(54, 54, 54, 0.3);
 }
 
 article {
@@ -166,15 +177,15 @@ article {
 	}
 
 	h3 {
-		@include rhythm(1, 0, 0, 0.5, 24px);
+		@include rhythm(1, 0, 0, 1, 24px);
 		@include adjust-font-size-to(24px);
 	}
 	h3:first-child {
-		@include rhythm(0, 0, 0, 0.5, 24px);
+		@include rhythm(0, 0, 0, 1, 24px);
 	}
 
 	h4 {
-		@include rhythm(1, 0, 0, 0.5, 20px);
+		@include rhythm(1, 0, 0, 1, 20px);
 		@include adjust-font-size-to(20px);
 	}
 	h4:first-child {
@@ -246,15 +257,42 @@ article {
 }
 
 .articlegrid {
-	@include adjust-font-size-to(16px);
-}
-.articlegrid h2 {
-	@include adjust-font-size-to(20px);
+	@include establish-baseline(16px);
+	font-size:16px;
+
+	h2 {
+		font-size:inherit;
+		line-height:inherit;
+		@include rhythm(0, 0.5, 0.5, 0);
+		margin-top:0;
+		margin-bottom:0;
+		a {
+			color:inherit;
+			font-weight:bold;
+		}
+	}
+
+	img {
+		max-width:100%;
+	}
+	p {
+		margin-top:0;
+		margin-bottom:0;
+		text-align:justify;
+	}
+
+	.btn {
+		@include rhythm(0.5, 0.5, 0.5, 0);
+		width:100%;
+		text-align:center;
+		font-size:inherit;
+	}
 }
 
 footer.main {
-	@include rhythm(1, 1, 1, 0);
-	@include adjust-font-size-to(16px);
+	@include rhythm(1, 0, 1, 0);
+	font-size:16px;
+	line-height:1.5em;
 	color:#b0b0b0;
 	background-color:#292929;
 	a {
@@ -262,11 +300,17 @@ footer.main {
 	}
 
 	h2 {
-		@include rhythm(0, 0, 1, 0);
+		text-align:center;
+		@include rhythm(1, 0, 1, 0);
 		color:#e1e1e1;
 		font-size:inherit;
 		line-height:inherit;
 		text-transform: uppercase;
+	}
+	@media (min-width: $screen-md-min) {
+		h2 {
+			text-align:left;
+		}
 	}
 	p {
 		@include rhythm(0, 0, 0, 0);
@@ -282,7 +326,7 @@ footer.main {
 	ul {
 		list-style-type: none;
 		padding:         0;
-		border-bottom:   1px solid #cccccc;
+		border-bottom:   1px solid #b0b0b0;
 
 		li {
 			padding: 0;
@@ -291,12 +335,14 @@ footer.main {
 				display:       block;
 				padding-left:  20px;
 				padding-right: 20px;
-				border-top:    1px solid #cccccc;
+				height:        rhythm(2);
+				line-height:   rhythm(2);
+				border-top:    1px solid #b0b0b0;
 				cursor:        pointer;
 
 				&:hover {
 					text-decoration:  none;
-					background-color: #555555;
+					background-color: #232323;
 				}
 			}
 		}
@@ -306,14 +352,14 @@ footer.main {
 footer.copyright {
 	line-height:50px;
 	height:50px;
-	@include adjust-font-size-to(14px);
+	font-size:14px;
 	color:#b0b0b0;
 	background-color:#232323;
 	a {
 		color:#fff;
 	}
 	p {
-		@include rhythm(0, 0.5, 0, 0.5);
+		@include rhythm(0, 0, 0, 0);
 	}
 
 	a.btn {
@@ -322,12 +368,12 @@ footer.copyright {
 		height:30px;
 		width:30px;
 		text-align:center;
-		margin-top:10px;
 		border:0;
 		background:#b0b0b0;
 		font-size:12px;
 		&:hover {
-			color:#fff;
+			color:#b0b0b0;
+			background:#e1e1e1;
 		}
 	}
 }

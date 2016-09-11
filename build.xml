@@ -26,13 +26,16 @@
 	</target>
 
 	<target name="frontend-install" description="Installs the frontend tools. NPM and Rubygems is required.">
+		<move file="htdocs/modules" tofile="htdocs/node_modules" overwrite="true" />
 		<echo file="Gemfile" append="false">source "https://rubygems.org"
 gem "sass"</echo>
 		<copy file="package.json.dist" tofile="htdocs/package.json"/>
 		<exec command="gem install bundler -i build/rubygems -n bin" checkreturn="true" logoutput="true" />
 		<exec command="bin/bundle install --binstubs bin --path build/rubygems" checkreturn="true" logoutput="true" />
 		<exec command="npm install" dir="htdocs" logoutput="true" checkreturn="true" />
-		<move file="htdocs/node_modules" tofile="htdocs/modules" />
+		<move file="htdocs/node_modules" tofile="htdocs/modules" overwrite="true" />
+		<chmod file="htdocs/modules/.bin/uglifyjs" mode="0755" />
+		<symlink link="htdocs/node_modules" target="modules" />
 		<echo>Frontend tools installed, now run vendor/bin/phing frontend-build</echo>
 	</target>
 
