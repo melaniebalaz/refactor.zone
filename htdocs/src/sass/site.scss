@@ -23,18 +23,18 @@ $brand-primary: #63bc46;
 @import "light";
 @import "dark";
 
-
 body {
-	background-color:#fefefe;
-	font-size: 12px;
+	background-color: #fefefe;
+	font-size:        12px;
 }
 
 ul {
-	padding-left:10px;
+	margin-left:  10px;
+	padding-left: 10px;
 }
 
 a {
-	cursor:pointer;
+	cursor: pointer;
 }
 
 @media (min-width: 480px) {
@@ -42,7 +42,8 @@ a {
 		font-size: 14px;
 	}
 	ul {
-		padding-left:20px;
+		margin-left:  0;
+		padding-left: 20px;
 	}
 }
 
@@ -51,7 +52,8 @@ a {
 		font-size: 16px;
 	}
 	ul {
-		padding-left:30px;
+		margin-left:  0;
+		padding-left: 30px;
 	}
 }
 
@@ -60,7 +62,8 @@ a {
 		font-size: 18px;
 	}
 	ul {
-		padding-left:40px;
+		margin-left:  0;
+		padding-left: 30px;
 	}
 }
 
@@ -69,7 +72,8 @@ a {
 		font-size: 20px;
 	}
 	ul {
-		padding-left:40px;
+		margin-left:  0;
+		padding-left: 30px;
 	}
 }
 
@@ -78,75 +82,136 @@ a {
 }
 
 a.text-red:hover {
-	color: #e00000;
-	opacity:0.8;
+	color:   #e00000;
+	opacity: 0.8;
 }
 
 .text-facebook {
 	color: #3b5998;
 }
+
 a.text-facebook:hover {
-	color: #3b5998;
-	opacity:0.8;
+	color:   #3b5998;
+	opacity: 0.8;
 }
 
 .text-twitter {
 	color: #1da1f2;
 }
+
 a.text-twitter:hover {
-	color: #1da1f2;
-	opacity:0.8;
+	color:   #1da1f2;
+	opacity: 0.8;
 }
 
 .text-gplus {
 	color: #d34836;
 }
+
 a.text-gplus:hover {
-	color: #d34836;
-	opacity:0.8;
+	color:   #d34836;
+	opacity: 0.8;
 }
 
 .text-tumblr {
-	color:#304e6f;
+	color: #304e6f;
 }
+
 a.text-tumblr:hover {
-	color: #d34836;
-	opacity:0.8;
+	color:   #d34836;
+	opacity: 0.8;
 }
 
 .text-reddit {
-	color:#369;
+	color: #336699;
 }
+
 a.text-reddit:hover {
-	color: #369;
-	opacity:0.8;
+	color:   #336699;
+	opacity: 0.8;
 }
 
 .text-linkedin {
-	color:#0077B5;
+	color: #0077b5;
 }
+
 a.text-linkedin:hover {
-	color: #0077B5;
-	opacity:0.8;
+	color:   #0077b5;
+	opacity: 0.8;
 }
 
 .text-wordpress {
-	color:#21759b;
-}
-a.text-wordpress:hover {
 	color: #21759b;
-	opacity:0.8;
+}
+
+a.text-wordpress:hover {
+	color:   #21759b;
+	opacity: 0.8;
+}
+
+.navbar-secondary {
+	margin-bottom:0;
+	background-color:#fff;
+	z-index:2;
+	border-bottom:1px solid #e5e5e5;
+	font-size:        ($font-size-base * 0.6);
+	.navbar-nav > li > a {
+		color:#777;
+		&:hover {
+			color:$brand-primary;
+		}
+	}
+	.navbar-nav > li:first-child a {
+		padding-left:0;
+	}
 }
 
 .navbar-default {
-	background-color:#fff;
-	font-size:          ($font-size-base * 0.8);
-	.navbar-nav > li > a, .navbar-brand {
-		color:          #000000;
-		text-transform: uppercase;
+	background-color: #ffffff;
+	font-size:        ($font-size-base * 0.6);
+	height:           90px;
+	line-height:      90px;
+	box-shadow:       10px 0 75px 0 rgba(0, 0, 0, 0.2);
+	border-bottom:    1px solid #e5e5e5;
+	z-index:1;
+	.navbar-nav > li > a {
+		border-left:2px solid transparent;
+		&:hover {
+			border-left:2px solid $brand-primary;
+			color:$brand-primary;
+		}
+	}
+	.navbar-collapse {
+		background-color:#fff;
+	}
+	@media (min-width: $grid-float-breakpoint) {
+		.navbar-nav > li:last-child a {
+			margin-right:0;
+		}
+		.navbar-nav > li > a {
+			height:         90px;
+			line-height:    68px;
+			vertical-align: middle;
+			margin-left:20px;
+			margin-right:20px;
+			padding-left:0;
+			padding-right:0;
+			border-left:0;
+			&:hover {
+				padding-top:9px;
+				border-left:0;
+				border-top:2px solid $brand-primary;
+			}
+		}
 	}
 	.navbar-brand {
+		color:          #000000;
 		font-size: inherit;
+		margin-right:40px;
+	}
+	.navbar-toggle {
+		margin-top:24px;
+		margin-bottom:24px;
 	}
 }
 
@@ -229,7 +294,7 @@ article {
 	}
 
 	footer {
-		color:#555;
+		color: #555555;
 		.author {
 			@include rhythm(0, 0, 0, 0);
 			@include leading-border(1px, 0.5);
@@ -243,13 +308,13 @@ article {
 			}
 		}
 		.share {
-			text-align:center;
+			text-align:   center;
 			@include rhythm(0, 0, 0, 0);
 			@include rhythm-borders();
 			border-color: #cccccc;
 			a {
-				margin-left:2px;
-				margin-right:2px;
+				margin-left:  2px;
+				margin-right: 2px;
 				@include adjust-font-size-to(42px);
 			}
 		}
@@ -258,65 +323,65 @@ article {
 
 .articlegrid {
 	@include establish-baseline(16px);
-	font-size:16px;
+	font-size: 16px;
 
 	h2 {
-		font-size:inherit;
-		line-height:inherit;
+		font-size:     inherit;
+		line-height:   inherit;
 		@include rhythm(0, 0.5, 0.5, 0);
-		margin-top:0;
-		margin-bottom:0;
+		margin-top:    0;
+		margin-bottom: 0;
 		a {
-			color:inherit;
-			font-weight:bold;
+			color:       inherit;
+			font-weight: bold;
 		}
 	}
 
 	img {
-		max-width:100%;
+		max-width: 100%;
 	}
 	p {
-		margin-top:0;
-		margin-bottom:0;
-		text-align:justify;
+		margin-top:    0;
+		margin-bottom: 0;
+		text-align:    justify;
 	}
 
 	.btn {
 		@include rhythm(0.5, 0.5, 0.5, 0);
-		width:100%;
-		text-align:center;
-		font-size:inherit;
+		width:      100%;
+		text-align: center;
+		font-size:  inherit;
 	}
 }
 
 footer.main {
 	@include rhythm(1, 0, 1, 0);
-	font-size:16px;
-	line-height:1.5em;
-	color:#b0b0b0;
-	background-color:#292929;
+	font-size:        16px;
+	line-height:      1.5em;
+	color:            #b0b0b0;
+	background-color: #292929;
 	a {
-		color:#fff;
+		color: #ffffff;
 	}
 
 	h2 {
-		text-align:center;
+		text-align:     center;
 		@include rhythm(1, 0, 1, 0);
-		color:#e1e1e1;
-		font-size:inherit;
-		line-height:inherit;
+		color:          #e1e1e1;
+		font-size:      inherit;
+		line-height:    inherit;
 		text-transform: uppercase;
 	}
 	@media (min-width: $screen-md-min) {
 		h2 {
-			text-align:left;
+			text-align: left;
 		}
 	}
 	p {
 		@include rhythm(0, 0, 0, 0);
 	}
 	.fa {
-		color:#e1e1e1;
+		color: #e1e1e1;
 	}
 
 	.fa.text-red {
@@ -350,30 +415,30 @@ footer.main {
 }
 
 footer.copyright {
-	line-height:50px;
-	height:50px;
-	font-size:14px;
-	color:#b0b0b0;
-	background-color:#232323;
+	line-height:      50px;
+	height:           50px;
+	font-size:        14px;
+	color:            #b0b0b0;
+	background-color: #232323;
 	a {
-		color:#fff;
+		color: #ffffff;
 	}
 	p {
 		@include rhythm(0, 0, 0, 0);
 	}
 
 	a.btn {
-		padding:0;
-		line-height:30px;
-		height:30px;
-		width:30px;
-		text-align:center;
-		border:0;
-		background:#b0b0b0;
-		font-size:12px;
+		padding:     0;
+		line-height: 30px;
+		height:      30px;
+		width:       30px;
+		text-align:  center;
+		border:      0;
+		background:  #b0b0b0;
+		font-size:   12px;
 		&:hover {
-			color:#b0b0b0;
-			background:#e1e1e1;
+			color:      #b0b0b0;
+			background: #e1e1e1;
 		}
 	}
 }
