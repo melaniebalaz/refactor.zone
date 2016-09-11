@@ -8185,7 +8185,7 @@ button.close {
     text-decoration: underline; }
 
 body {
-  background-color: #fefefe;
+  background-color: #f0f0f0;
   font-size: 12px; }
 
 ul {
@@ -8279,22 +8279,33 @@ a.text-wordpress:hover {
   color: #21759b;
   opacity: 0.8; }
 
+.nav > li > a:hover {
+  background-color: inherit; }
+
 .navbar-secondary {
   margin-bottom: 0;
   background-color: #fff;
   z-index: 2;
   border-bottom: 1px solid #e5e5e5;
-  font-size: 12px; }
-  .navbar-secondary .navbar-nav > li > a {
-    color: #777; }
-    .navbar-secondary .navbar-nav > li > a:hover {
-      color: #63bc46; }
-  .navbar-secondary .navbar-nav > li:first-child a {
-    padding-left: 0; }
+  font-size: 14px; }
+  @media (min-width: 992px) {
+    .navbar-secondary .navbar-nav > li:first-child a {
+      padding-left: 0; } }
+  .navbar-secondary .navbar-nav {
+    float: left;
+    margin: 0; }
+    .navbar-secondary .navbar-nav > li {
+      float: left; }
+      .navbar-secondary .navbar-nav > li > a {
+        color: #999;
+        padding-top: 11px;
+        padding-bottom: 11px; }
+        .navbar-secondary .navbar-nav > li > a:hover {
+          color: #63bc46; }
 
 .navbar-default {
   background-color: #ffffff;
-  font-size: 12px;
+  font-size: 14px;
   height: 90px;
   line-height: 90px;
   box-shadow: 10px 0 75px 0 rgba(0, 0, 0, 0.2);

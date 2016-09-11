@@ -24,7 +24,7 @@ $brand-primary: #63bc46;
 @import "dark";
 
 body {
-	background-color: #fefefe;
+	background-color: #f0f0f0;
 	font-size:        12px;
 }
 
@@ -149,26 +149,43 @@ a.text-wordpress:hover {
 	opacity: 0.8;
 }
 
+.nav > li > a:hover {
+	background-color:inherit;
+}
+
 .navbar-secondary {
 	margin-bottom:0;
 	background-color:#fff;
 	z-index:2;
 	border-bottom:1px solid #e5e5e5;
-	font-size:        ($font-size-base * 0.6);
-	.navbar-nav > li > a {
-		color:#777;
-		&:hover {
-			color:$brand-primary;
+	font-size:        ($font-size-base * 0.7);
+	@media (min-width: $grid-float-breakpoint) {
+		.navbar-nav > li:first-child a {
+			padding-left: 0;
 		}
 	}
-	.navbar-nav > li:first-child a {
-		padding-left:0;
+
+	.navbar-nav {
+		float:  left;
+		margin: 0;
+
+		> li {
+			float: left;
+			> a {
+				color:#999;
+				padding-top:    $navbar-padding-vertical;
+				padding-bottom: $navbar-padding-vertical;
+				&:hover {
+					color:$brand-primary;
+				}
+			}
+		}
 	}
 }
 
 .navbar-default {
 	background-color: #ffffff;
-	font-size:        ($font-size-base * 0.6);
+	font-size:        ($font-size-base * 0.7);
 	height:           90px;
 	line-height:      90px;
 	box-shadow:       10px 0 75px 0 rgba(0, 0, 0, 0.2);
