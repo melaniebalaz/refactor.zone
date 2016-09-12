@@ -24,7 +24,10 @@ $brand-primary: #63bc46;
 @import "dark";
 
 body {
-	background-color: #f0f0f0;
+	background-color: #fefefe;
+	@media (min-width: $screen-sm-min) {
+		background-color:#f0f0f0;
+	}
 	font-size:        12px;
 }
 
@@ -149,15 +152,15 @@ a.text-wordpress:hover {
 	opacity: 0.8;
 }
 
-.nav > li > a:hover {
-	background-color:inherit;
+.nav > li > a:hover, .nav > li > a:active {
+	background-color: inherit;
 }
 
 .navbar-secondary {
-	margin-bottom:0;
-	background-color:#fff;
-	z-index:2;
-	border-bottom:1px solid #e5e5e5;
+	margin-bottom:    0;
+	background-color: #ffffff;
+	z-index:          2;
+	border-bottom:    1px solid #e5e5e5;
 	font-size:        ($font-size-base * 0.7);
 	@media (min-width: $grid-float-breakpoint) {
 		.navbar-nav > li:first-child a {
@@ -166,17 +169,19 @@ a.text-wordpress:hover {
 	}
 
 	.navbar-nav {
-		float:  left;
+		&::before, &::after {
+			content: normal;
+			display: none;
+		}
 		margin: 0;
-
 		> li {
 			float: left;
 			> a {
-				color:#999;
+				color:          #999999;
 				padding-top:    $navbar-padding-vertical;
 				padding-bottom: $navbar-padding-vertical;
 				&:hover {
-					color:$brand-primary;
+					color: $brand-primary;
 				}
 			}
 		}
@@ -184,61 +189,63 @@ a.text-wordpress:hover {
 }
 
 .navbar-default {
+	margin-bottom:0;
 	background-color: #ffffff;
 	font-size:        ($font-size-base * 0.7);
 	height:           90px;
 	line-height:      90px;
-	box-shadow:       10px 0 75px 0 rgba(0, 0, 0, 0.2);
+	box-shadow:       0 0 10px 0 rgba(0, 0, 0, 0.1);
 	border-bottom:    1px solid #e5e5e5;
-	z-index:1;
+	z-index:          1;
 	.navbar-nav > li > a {
-		border-left:2px solid transparent;
+		border-left: 2px solid transparent;
 		&:hover {
-			border-left:2px solid $brand-primary;
-			color:$brand-primary;
+			border-left: 2px solid $brand-primary;
+			color:       $brand-primary;
 		}
 	}
 	.navbar-collapse {
-		background-color:#fff;
+		background-color: #ffffff;
 	}
 	@media (min-width: $grid-float-breakpoint) {
 		.navbar-nav > li:last-child a {
-			margin-right:0;
+			margin-right: 0;
 		}
 		.navbar-nav > li > a {
-			height:         90px;
+			height:         89px;
 			line-height:    68px;
 			vertical-align: middle;
-			margin-left:20px;
-			margin-right:20px;
-			padding-left:0;
-			padding-right:0;
-			border-left:0;
+			margin-left:    20px;
+			margin-right:   20px;
+			padding-left:   0;
+			padding-right:  0;
+			border-left:    0;
 			&:hover {
-				padding-top:9px;
-				border-left:0;
-				border-top:2px solid $brand-primary;
+				padding-top: 9px;
+				border-left: 0;
+				border-top:  2px solid $brand-primary;
 			}
 		}
 	}
 	.navbar-brand {
-		color:          #000000;
-		font-size: inherit;
-		margin-right:40px;
+		color:        #000000;
+		font-size:    inherit;
+		margin-right: 40px;
 	}
 	.navbar-toggle {
-		margin-top:24px;
-		margin-bottom:24px;
+		margin-top:    24px;
+		margin-bottom: 24px;
 	}
 }
 
 article {
-	@include establish-baseline;
-	@include rhythm(0.5, 0, 0.5, 0);
+	@include establish-baseline($font-size-base * 0.90);
+	font-size:$font-size-base * 0.90;
+	@include rhythm(0, 0, 0, 0, $font-size-base * 0.90);
 	color:       #333333;
 	hyphens:     auto;
 
-	line-height: rhythm();
+	line-height: rhythm(1, $font-size-base * 0.90);
 
 	header {
 		text-align: center;
@@ -310,29 +317,21 @@ article {
 		overflow-y:   auto;
 	}
 
+	.articleBody :last-child {
+		margin-bottom:0;
+	}
+
 	footer {
 		color: #555555;
 		.author {
 			@include rhythm(0, 0, 0, 0);
-			@include leading-border(1px, 0.5);
 			border-color: #cccccc;
 			@include adjust-font-size-to(18px);
 
 			.author-image {
-				@include rhythm(0.5, 0, 0, 0);
+				@include rhythm(0, 0, 0, 0);
 				@extend .img-responsive;
 				@extend .img-circle;
-			}
-		}
-		.share {
-			text-align:   center;
-			@include rhythm(0, 0, 0, 0);
-			@include rhythm-borders();
-			border-color: #cccccc;
-			a {
-				margin-left:  2px;
-				margin-right: 2px;
-				@include adjust-font-size-to(42px);
 			}
 		}
 	}
@@ -372,7 +371,7 @@ article {
 }
 
 footer.main {
-	@include rhythm(1, 0, 1, 0);
+	@include rhythm(0, 0, 1, 0);
 	font-size:        16px;
 	line-height:      1.5em;
 	color:            #b0b0b0;
@@ -456,6 +455,62 @@ footer.copyright {
 		&:hover {
 			color:      #b0b0b0;
 			background: #e1e1e1;
+		}
+	}
+}
+
+.card {
+	@include rhythm(0.75,0,0,0);
+	&:first-child {
+		@include trailing-border(1px, 0.5);
+	}
+	border-color:#dedede;
+	&.share {
+		text-align:   center;
+		@include rhythm-borders(1px, 0.5);
+		@include rhythm(0.75,0.75,0.75, 0.75);
+		a {
+			margin-left:  2px;
+			margin-right: 2px;
+			@include adjust-font-size-to(42px);
+		}
+	}
+
+	.author h2 {
+		line-height:1em;
+	}
+	.author p {
+		margin-bottom:0;
+	}
+
+	@media (min-width: $screen-sm-min) {
+		margin-top:20px;
+		margin-bottom:20px;
+		padding:20px;
+		background:#fff;
+		box-shadow:       0 0 10px 0 rgba(0, 0, 0, 0.1);
+		border: 1px solid #dedede;
+		&:first-child {
+			padding:20px;
+		}
+		&.share {
+			margin-top:20px;
+			margin-bottom:20px;
+		}
+	}
+
+	@media (min-width: $screen-lg-min) {
+		&.article {
+			margin-top:60px;
+			padding:60px;
+		}
+		&.meta {
+			margin-top:40px;
+			margin-bottom:40px;
+		}
+		&.share {
+			margin-top:40px;
+			margin-bottom:60px;
 		}
 	}
 }

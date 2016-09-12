@@ -68,6 +68,8 @@ So much for theory, let's jump in and take a look at some database systems.
 
 * **MySQL master-slave replication:** in MySQL you have the ability o
 
+<!--
 ## Sources
 
 * [CAP Twelve Years Later: How the "Rules" Have Changed](https://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed)
+-->
