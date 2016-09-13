@@ -146,9 +146,16 @@ a.text-linkedin:hover {
 .text-wordpress {
 	color: #21759b;
 }
-
 a.text-wordpress:hover {
 	color:   #21759b;
+	opacity: 0.8;
+}
+
+.text-globe {
+	color: #3333A0;
+}
+a.text-globe:hover {
+	color:   #3333A0;
 	opacity: 0.8;
 }
 
@@ -332,6 +339,18 @@ article {
 				@include rhythm(0, 0, 0, 0);
 				@extend .img-responsive;
 				@extend .img-circle;
+			}
+			.social {
+				margin-top:0.75em;
+				margin-bottom:0.75em;
+				display:block;
+			}
+			@media (min-width: $screen-sm-min) {
+				.social {
+					margin-top:0;
+					margin-bottom:0;
+					float: right;
+				}
 			}
 		}
 	}

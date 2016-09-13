@@ -84,11 +84,12 @@ author: article.author.name
 								<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
 									<h2>
 										<span itemprop="name">{{ article.author.name }}</span>
-										<span class="pull-right social">
+										<span class="social">
 												{% if article.author.url %}
 													<a
 															rel="author"
 															href="{{ article.author.url }}"
+															class="text-globe"
 															itemprop="url"
 															title="Visit {{ article.author.name }}s website"><i
 																class="fa fa-globe"></i></a>

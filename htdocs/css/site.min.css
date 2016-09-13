@@ -8282,6 +8282,13 @@ a.text-wordpress:hover {
   color: #21759b;
   opacity: 0.8; }
 
+.text-globe {
+  color: #3333A0; }
+
+a.text-globe:hover {
+  color: #3333A0;
+  opacity: 0.8; }
+
 .nav > li > a:hover, .nav > li > a:active {
   background-color: inherit; }
 
@@ -8464,6 +8471,15 @@ article {
         padding-top: 0em;
         padding-bottom: 0em;
         margin-bottom: 0em; }
+      article footer .author .social {
+        margin-top: 0.75em;
+        margin-bottom: 0.75em;
+        display: block; }
+      @media (min-width: 768px) {
+        article footer .author .social {
+          margin-top: 0;
+          margin-bottom: 0;
+          float: right; } }
 
 .articlegrid {
   font-size: 16px; }
