@@ -2,17 +2,6 @@
 
 {% set pagetitle = '' %}
 
-{% block meta %}
-	<meta property="og:type" content="website" />
-	<meta property="og:image" content="https://refactor.zone/images/social.png" />
-	<link rel="apple-touch-icon-precomposed" href="https://refactor.zone/images/social.png" />
-	{% set firstArticle = articles|first %}
-	{% if firstArticle %}
-		<link rel="next" href="/{{ firstArticle.slug }}" />
-	{% endif %}
-{% endblock %}
-
-
 {% block content %}
 	{{ meta.articleList(articles) }}
 {% endblock %}
