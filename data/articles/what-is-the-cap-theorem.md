@@ -2,9 +2,9 @@ Title:      What is the CAP theorem?
 Author:     janoszen
 Published:  2016-08-22
 Categories: scaling
-Excerpt:    When building larger computer systems, the database soon becomes a bottleneck. Of course we can scale it,
-            but scalability comes at a cost. The CAP theorem describes how data storage systems behave when run on 
-            multiple computers.
+Excerpt:    When building larger computer systems, the database soon becomes a bottleneck. Scaling out to more than 
+            one machine is an option, but scaling comes at a cost. And that's where the CAP theorem comes into play: 
+            it describes how data storage systems behave when run on multiple computers.
 Social:     /images/what-is-the-cap-theorem/social.jpg
 
 When building larger computer systems, the database soon becomes a bottleneck. Scaling out to more than one machine 
