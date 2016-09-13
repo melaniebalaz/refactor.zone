@@ -8053,7 +8053,7 @@ feed {
     color: #9F6000;
     background-color: #FEEFB3;
     text-align: center;
-    content: "You are viewing an RSS feed. You might want to use an RSS reader instead of opening it in your browser.";
+    content: "You are viewing an RSS feed. You might want to use an RSS reader instead.";
     position: fixed;
     top: 0;
     left: 0;
