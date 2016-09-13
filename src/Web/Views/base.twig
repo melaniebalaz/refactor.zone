@@ -1,6 +1,6 @@
 {% import "meta.twig" as meta %}
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
 <head prefix="og: http://ogp.me/ns#">
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,7 +13,9 @@
 	<meta property="og:title" content="{{ pagetitle }}"/>
 	<meta property="fb:admins" content="janoszen" />
 	<meta property="fb:app_id" content="1780998928787657" />
+	<meta property="fb:pages" content="307680759577091" />
 {% block meta %}
+	<meta property="og:type" content="website" />
 	<meta property="og:image" content="https://refactor.zone/images/social.png" />
 	<link rel="apple-touch-icon-precomposed" href="https://refactor.zone/images/social.png" />
 {% endblock %}
@@ -24,6 +26,7 @@
 	<link rel="shortcut icon" href="/images/social.png" type="image/x-icon"/>
 
 	<link href="/css/site.min.css" rel="stylesheet">
+	<link rel="alternate" type="application/rss+xml" href="/feed" />
 
 	<!--[if lt IE 9]>
 		<script src="/js/html5shiv.min.js"></script>
@@ -51,6 +54,11 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li>
 						<a href="#">Things we <i class="fa fa-heart text-red" aria-label="love"></i></a>
+					</li>
+					<li>
+						<a href="/feed">
+							<i class="fa fa-lg fa-rss-square text-rss" aria-label="RSS"></i>
+						</a>
 					</li>
 					<li>
 						<a href="https://www.facebook.com/refactorzone/">
@@ -86,14 +94,23 @@
 				</div>
 				<div id="navbar" class="navbar-right navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="#">Clean code</a></li>
-						<li><a href="#">Infrastructure</a></li>
-						<li><a href="#">Security</a></li>
+						{% for category in categories %}
+							<li><a href="/category/{{ category.slug }}">{{ category.name }}</a></li>
+						{% endfor %}
 					</ul>
 				</div>
 			</div>
 		</nav>
 	</header>
+	<ol itemscope="itemscope" itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">
+		<li itemprop="itemListElement" itemscope="itemscope"
+			itemtype="https://schema.org/ListItem">
+			<a itemprop="item" href="https://refactor.zone">
+				<span itemprop="name">Refactor Zone</span></a>
+			<meta itemprop="position" content="1" />
+		</li>
+		{% block breadcrumbs %}{% endblock %}
+	</ol>
 {% block body %}
 	<div class="container main">
 		<main role="main">

@@ -1,0 +1,25 @@
+{% extends "base.twig" %}
+
+{% set pagetitle = 'Authors' %}
+
+{% block breadcrumbs %}
+	<li itemprop="itemListElement" itemscope="itemscope"
+		itemtype="https://schema.org/ListItem">
+		<a itemprop="item" href="https://refactor.zone/author">
+			<span itemprop="name">Authors</span></a>
+		<meta itemprop="position" content="2" />
+	</li>
+{% endblock %}
+
+{% block content %}
+	{% for author in authors %}
+		<div class="row">
+			<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+				<a href="/author/{{ author.slug }}">
+					<img src="{{ author.imageUrl }}" alt="" class="author-image" />
+					<span class="author-name">{{ author.name }}</span>
+				</a>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}

@@ -70,6 +70,10 @@ class Article extends TextContent {
 		return $this->getName();
 	}
 
+	public function getFullTitle() : string {
+		return ($this->series?$this->series->getName() . ' — ':'') . $this->getTitle();
+	}
+
 	/**
 	 * @return CategoryList|Category[]
 	 */

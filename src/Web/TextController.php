@@ -2,12 +2,28 @@
 
 namespace Opsbears\Refactor\Web;
 
-class TextController {
+class TextController extends AbstractController {
 	public function tosAction() {
-		return [];
+		return [
+			'categories'    => $this->getArticleProvider()->getCategories()->getCategories(),
+		];
 	}
 
 	public function privacyAction() {
-		return [];
+		return [
+			'categories'    => $this->getArticleProvider()->getCategories()->getCategories(),
+		];
+	}
+
+	public function contactAction() {
+		return [
+			'categories'    => $this->getArticleProvider()->getCategories()->getCategories(),
+		];
+	}
+
+	public function imprintAction() {
+		return [
+			'categories'    => $this->getArticleProvider()->getCategories()->getCategories(),
+		];
 	}
 }

@@ -1,0 +1,10 @@
+{% spaceless %}
+	{% import "meta.twig" as meta %}
+	{{ meta.rss(
+		request.uri,
+		'Refactor Zone',
+		'https://refactor.zone/author/' ~ author.slug,
+		'',
+		articles
+	) }}
+{% endspaceless %}

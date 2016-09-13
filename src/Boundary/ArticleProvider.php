@@ -9,6 +9,8 @@ interface ArticleProvider {
 
 	public function getSeries() : GetSeriesResponse;
 
+	public function getAuthors() : GetAuthorsResponse;
+
 	public function getLatestArticles(
 		int $from = 0,
 		int $count = 10

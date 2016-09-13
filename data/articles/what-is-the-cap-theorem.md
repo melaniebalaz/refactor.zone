@@ -7,8 +7,9 @@ Excerpt:    When building larger computer systems, the database soon becomes a b
             multiple computers.
 Social:     /images/what-is-the-cap-theorem/social.jpg
 
-When building larger computer systems, the database soon becomes a bottleneck. Of course we can scale it, but 
-scalability comes at a cost. The CAP theorem describes how data storage systems behave when run on multiple computers.
+When building larger computer systems, the database soon becomes a bottleneck. Scaling out to more than one machine 
+is an option, but scaling comes at a cost. And that's where the CAP theorem comes into play: it describes 
+how data storage systems behave when run on multiple computers.
 
 Let's assume you have a web platform that uses some form of traditional database. This could be MySQL, PostgreSQL, 
 you name it. You have your daily backups configured, everything is running smooth. However, since your platform is 
@@ -61,12 +62,6 @@ not optional**. Why? Because if there is a network outage between your two (or m
 and that would defeat the purpose.
 
 In other words, you're stuck with *having to chose* between consistency and availability.
-
-## How does this work?
-
-So much for theory, let's jump in and take a look at some database systems.
-
-* **MySQL master-slave replication:** in MySQL you have the ability o
 
 <!--
 ## Sources

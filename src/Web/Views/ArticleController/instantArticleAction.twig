@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" prefix="op: http://media.facebook.com/op#">
+<head>
+	<meta charset="utf-8">
+	<link rel="canonical" href="https://refactor.zone/{{ article.slug }}">
+	<title>{{ article.fullTitle }}</title>
+	<meta property="fb:article_style" content="default">
+</head>
+<body>
+<article>
+	<header>
+		<!-- The cover image shown inside your article -->
+		<figure>
+			<img src="https://refactor.zone{{ article.socialImage }}"/>
+			<figcaption></figcaption>
+		</figure>
+
+		<h1> {{ article.fullTitle }}</h1>
+
+		<h3 class="op-kicker">
+			{{ article.excerpt }}
+		</h3>
+
+		<address>
+			by <a href="{{ article.author.facebookUrl }}">{{ article.author.name }}</a>
+		</address>
+
+		<time class="op-published" dateTime="{{ article.published.format('c') }}">
+			{{ article.published.format('F j, Y') }}
+		</time>
+		<time class="op-modified" dateTime="{{ article.modified.format('c') }}">
+			{{ article.modified.format('F j, Y') }}
+		</time>
+	</header>
+
+	{{ article.htmlBody|replace({'<h3': '<h2', '</h3': '</h2'})|raw }}
+
+	<footer>
+		<aside>
+
+		</aside>
+
+		<small></small>
+	</footer>
+
+
+</article>
+</body>
+</html>

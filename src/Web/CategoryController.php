@@ -12,6 +12,7 @@ class CategoryController extends AbstractController {
 	public function categoryAction(string $slug) : array {
 		$response = $this->getArticleProvider()->getLatestArticlesByCategory($slug);
 		return [
+			'categories'    => $this->getArticleProvider()->getCategories()->getCategories(),
 			'page'          => 1,
 			'category'      => $response->getCategory(),
 			'articles'      => $response->getArticles(),
@@ -22,6 +23,7 @@ class CategoryController extends AbstractController {
 	public function pageAction(string $slug, int $page) {
 		$response = $this->getArticleProvider()->getLatestArticlesByCategory($slug, ($page - 1) * 10);
 		return [
+			'categories'    => $this->getArticleProvider()->getCategories()->getCategories(),
 			'page'          => $page,
 			'category'      => $response->getCategory(),
 			'articles'      => $response->getArticles(),
@@ -32,6 +34,7 @@ class CategoryController extends AbstractController {
 	public function feedAction($slug) {
 		$response = $this->getArticleProvider()->getLatestArticlesByCategory($slug);
 		return [
+			'categories'    => $this->getArticleProvider()->getCategories()->getCategories(),
 			'page'       => 1,
 			'category'   => $response->getCategory(),
 			'articles'   => $response->getArticles(),

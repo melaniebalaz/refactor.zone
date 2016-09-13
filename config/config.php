@@ -6,6 +6,7 @@ use Opsbears\Refactor\Web\AuthorController;
 use Opsbears\Refactor\Web\CategoryController;
 use Opsbears\Refactor\Web\ErrorController;
 use Opsbears\Refactor\Web\SeriesController;
+use Opsbears\Refactor\Web\SitemapController;
 use Opsbears\Refactor\Web\StartPageController;
 use Opsbears\Refactor\Web\TextController;
 
@@ -51,7 +52,8 @@ return \array_merge([
 			['GET', '/privacy', TextController::class, 'privacyAction'],
 			['GET', '/tos', TextController::class, 'tosAction'],
 			['GET', '/page/{page:[0-9]+}', StartPageController::class, 'pageAction'],
-			['GET', '/feed', SeriesController::class, 'feedAction'],
+			['GET', '/feed', StartPageController::class, 'feedAction'],
+			['GET', '/feed/instant', StartPageController::class, 'instantFeedAction'],
 			['GET', '/series', SeriesController::class, 'indexAction'],
 			['GET', '/series/{slug:[a-zA-Z\-]+}', SeriesController::class, 'seriesAction'],
 			['GET', '/series/{slug:[a-zA-Z\-]+}/page/{page:[0-9]+}', SeriesController::class, 'pageAction'],
@@ -64,7 +66,9 @@ return \array_merge([
 			['GET', '/category/{slug:[a-zA-Z\-]+}', CategoryController::class, 'categoryAction'],
 			['GET', '/category/{slug:[a-zA-Z\-]+}/page/{page:[0-9]+}', CategoryController::class, 'pageAction'],
 			['GET', '/category/{slug:[a-zA-Z\-]+}/feed', CategoryController::class, 'feedAction'],
+			['GET', '/sitemap.xml', SitemapController::class, 'sitemapAction'],
 			['GET', '/{slug:[a-zA-Z\-]+}', ArticleController::class, 'articleAction'],
+			//['GET', '/{slug:[a-zA-Z\-]+}/instant', ArticleController::class, 'instantArticleAction'],
 		],
 	],
 	'twig'      => [

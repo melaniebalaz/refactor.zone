@@ -9,15 +9,20 @@
 			<h{{ level }}>
 				<span itemprop="name">{{ author.name }}</span>
 				<span class="social">
-												{% if author.url %}
-													<a
-															rel="author"
-															href="{{ author.url }}"
-															class="text-globe"
-															itemprop="url"
-															title="Visit {{ author.name }}s website"><i
-																class="fa fa-globe"></i></a>
-												{% endif %}
+						<a
+							href="/author/{{ author.slug }}/feed"
+							class="text-rss"
+							title="Subscribe to {{ author.name }}s RSS feed"><i
+								class="fa fa-rss"></i></a>
+					{% if author.url %}
+						<a
+								rel="author"
+								href="{{ author.url }}"
+								class="text-globe"
+								itemprop="url"
+								title="Visit {{ author.name }}s website"><i
+									class="fa fa-globe"></i></a>
+					{% endif %}
 					{% if author.facebookUrl %}
 						<a
 								rel="author"
@@ -52,17 +57,45 @@
 </div>
 {% endmacro %}
 
+{% macro publisher() %}
+<span itemprop="publisher" itemscope="itemscope" itemtype="https://schema.org/Organization">
+	<meta itemprop="name" content="Opsbears" />
+	<meta itemprop="isicV4" content="6311">
+	<span itemprop="logo" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
+		<meta itemprop="url" content="https://www.opsbears.com/v1420052371/img/logo.png" />
+		<meta itemprop="width" content="300" />
+		<meta itemprop="height" content="60" />
+	</span>
+	<span itemprop="brand" itemscope="itemscope" itemtype="https://schema.org/Brand">
+		<meta itemprop="name" content="Refactor Zone" />
+		<meta itemprop="url" content="https://refactor.zone/" />
+		<span itemprop="logo" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
+			<meta itemprop="url" content="https://refactor.zone/images/social.png" />
+			<meta itemprop="width" content="256" />
+			<meta itemprop="height" content="256" />
+		</span>
+	</span>
+</span>
+{% endmacro %}
+
 {% macro articleList(articles) %}
-<div class="articlegrid">
+<div class="articlegrid" itemscope="itemscope" itemtype="https://schema.org/ItemList">
 	<div class="row">
 		{% for article in articles %}
-			<div class="col-lg-4 col-md-4 col-sm-6">
+			<article class="col-lg-4 col-md-4 col-sm-6"
+					 itemprop="itemListElement" itemscope="itemscope"
+					 itemtype="https://schema.org/Article">
 				<div class="card">
 					<a href="/{{ article.slug }}"><img src="{{ article.socialImage }}" /></a>
 					<div class="annotation">
-						<h2><a href="/{{ article.slug }}">
+						<h2 itemprop="name"><a itemprop="url" href="/{{ article.slug }}"><span itemprop="headline">
 								{% if article.series %}{{ article.series.name }}: {% endif %}{{ article.title }}
-							</a></h2>
+							</span></a></h2>
+						<div class="author-meta" itemprop="author" itemscope="itemscope"
+							 itemtype="https://schema.org/Person">
+							by <a href="/author/{{ article.author.slug }}" itemprop="url">
+								<span itemprop="name">{{article.author.name}}</a>
+							</div>
 						<p>{{ article.excerpt }}</p>
 						<a href="/{{ article.slug }}" class="btn btn-primary">
 							Read article
@@ -70,8 +103,67 @@
 						</a>
 					</div>
 				</div>
-			</div>
+				{{ _self.publisher() }}
+				<span itemprop="image" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
+					<meta itemprop="url" content="https://refactor.zone{{ article.socialImage }}" />
+					<meta itemprop="width" content="1200" />
+					<meta itemprop="height" content="630" />
+				</span>
+				<meta itemprop="datePublished" content="{{ article.published.format('Y-m-d') }}" />
+				<meta itemprop="dateModified" content="{{ article.modified.format('Y-m-d') }}" />
+				<meta itemprop="mainEntityOfPage" content="https://refactor.zone/{{ article.slug }}" />
+			</article>
 		{% endfor %}
 	</div>
 </div>
 {% endmacro %}
+
+{% macro rss(self, title, link, description, articles) %}{% spaceless %}
+<?xml version="1.0" encoding="utf-8"?>
+	<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+		 xmlns:dc="http://purl.org/dc/elements/1.1/">
+	<channel>
+		<title>{{ title }}</title>
+		<link>{{ link }}</link>
+		<atom:link href="{{ self }}" rel="self" type="application/rss+xml" />
+		<description>{{ description }}</description>
+		{% for article in articles %}
+		<item>
+			<title>{{ article.fullTitle }}</title>
+			<dc:creator>{{ article.author.name }}</dc:creator>
+			<link>https://refactor.zone/{{ article.slug }}</link>
+			<guid>https://refactor.zone/{{ article.slug }}</guid>
+			<pubDate>{{ article.published.format('r') }}</pubDate>
+			<description>{{ article.htmlBody }}</description>
+		</item>
+		{% endfor %}
+	</channel>
+</rss>
+{% endspaceless %}{% endmacro %}
+
+
+{% macro instantrss(self, title, link, description, articles) %}{% spaceless %}
+	<?xml version="1.0" encoding="utf-8"?>
+	<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+		 xmlns:content="http://purl.org/rss/1.0/modules/content/">
+		<channel>
+			<title>{{ title }}</title>
+			<link>{{ link }}</link>
+			<atom:link href="{{ self }}" rel="self" type="application/rss+xml" />
+			<description>{{ description }}</description>
+			{% for article in articles %}
+				<item>
+					<title>{{ article.fullTitle }}</title>
+					<author>{{ article.author.name }}</author>
+					<link>https://refactor.zone/{{ article.slug }}</link>
+					<guid>https://refactor.zone/{{ article.slug }}</guid>
+					<pubDate>{{ article.published.format('r') }}</pubDate>
+					<description>{{ article.excerpt }}</description>
+					<content:encoded><![CDATA[
+						{% include "ArticleController/instantArticleAction.twig" %}
+						]]></content:encoded>
+				</item>
+			{% endfor %}
+		</channel>
+	</rss>
+{% endspaceless %}{% endmacro %}

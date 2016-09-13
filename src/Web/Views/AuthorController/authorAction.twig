@@ -1,6 +1,6 @@
 {% extends "base.twig" %}
 
-{% set pagetitle = author.name %}
+{% set pagetitle = 'Author Profile: '~ author.name %}
 
 {% block meta %}
 	<meta property="og:type" content="profile"/>
@@ -14,9 +14,29 @@
 		<meta name="twitter:creator" content="@{{ author.twitterUrl|replace({'https://twitter.com/': ''}) }}" />
 	{% endif %}
 	<meta name="twitter:description" content="{{ author.htmlBody }}" />
+	{% if author.facebookUrl %}
+		<meta name="fb:profile_id" content="{{ author.facebookUrl|replace({'https://facebook.com/': ''}) }}" />
+	{% endif %}
+
 
 	<meta property="og:image" content="https://refactor.zone{{ author.imageUrl }}" />
 	<link rel="apple-touch-icon-precomposed" href="https://refactor.zone{{ author.imageUrl }}" />
+	<link rel="alternate" type="application/rss+xml" href="/author/{{ author.slug }}/feed" />
+{% endblock %}
+
+{% block breadcrumbs %}
+	<li itemprop="itemListElement" itemscope="itemscope"
+		itemtype="https://schema.org/ListItem">
+		<a itemprop="item" href="https://refactor.zone/author">
+			<span itemprop="name">Authors</span></a>
+		<meta itemprop="position" content="2" />
+	</li>
+	<li itemprop="itemListElement" itemscope="itemscope"
+		itemtype="https://schema.org/ListItem">
+		<a itemprop="item" href="https://refactor.zone/author/{{ slug }}">
+			<span itemprop="name">{{ author.name }}</span></a>
+		<meta itemprop="position" content="3" />
+	</li>
 {% endblock %}
 
 {% block content %}

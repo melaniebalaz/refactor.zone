@@ -7,7 +7,17 @@ class ArticleController extends AbstractController {
 		$article = $this->getArticleProvider()->getArticle($slug)->getArticle();
 		$this->setLastModified($article->getModified());
 		return [
-			'article' => $article,
+			'categories' => $this->getArticleProvider()->getCategories()->getCategories(),
+			'article'    => $article,
+		];
+	}
+
+	public function instantArticleAction(string $slug) {
+		$article = $this->getArticleProvider()->getArticle($slug)->getArticle();
+		$this->setLastModified($article->getModified());
+		return [
+			'categories' => $this->getArticleProvider()->getCategories()->getCategories(),
+			'article'    => $article,
 		];
 	}
 }

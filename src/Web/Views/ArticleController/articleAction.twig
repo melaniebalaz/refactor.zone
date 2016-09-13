@@ -1,10 +1,6 @@
 {% extends "base.twig" %}
 
-{% if article.series %}
-	{% set pagetitle = article.series.name ~ ': ' ~ article.title %}
-{% else %}
-	{% set pagetitle = article.title %}
-{% endif %}
+{% set pagetitle = article.fullTitle %}
 {% set meta = {
 author: article.author.name
 } %}
@@ -32,6 +28,15 @@ author: article.author.name
 	<link rel="apple-touch-icon-precomposed" href="https://refactor.zone{{ article.socialImage }}" />
 {% endblock %}
 
+{% block breadcrumbs %}
+	<li itemprop="itemListElement" itemscope="itemscope"
+		itemtype="https://schema.org/ListItem">
+		<a itemprop="item" href="https://refactor.zone/{{ article.slug }}">
+			<span itemprop="name">{{ article.fullTitle }}</span></a>
+		<meta itemprop="position" content="2" />
+	</li>
+{% endblock %}
+
 {% block content %}
 	<div class="row">
 		<div class="col-xl-6 col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-push-1 col-md-push-1">
@@ -51,19 +56,11 @@ author: article.author.name
 							{{ article.published.format('F j, Y') }}
 						</time>
 
-						<span itemprop="publisher" itemscope="itemscope" itemtype="https://schema.org/Organization">
-							<meta itemprop="name" content="Refactor Zone" />
-							<meta itemprop="url" content="https://refactor.zone/" />
-							<span itemprop="logo" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
-								<meta itemprop="url" content="https://refactor.zone/images/social.png" />
-								<meta itemprop="width" content="256" />
-								<meta itemprop="height" content="256" />
-							</span>
-						</span>
+						{{ meta.publisher() }}
 						<span itemprop="image" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
 							<meta itemprop="url" content="https://refactor.zone{{ article.socialImage }}" />
-							<meta itemprop="width" content="848" />
-							<meta itemprop="height" content="565" />
+							<meta itemprop="width" content="1200" />
+							<meta itemprop="height" content="630" />
 						</span>
 						<meta itemprop="dateModified" content="{{ article.modified.format('Y-m-d') }}" />
 						<meta itemprop="mainEntityOfPage" content="https://refactor.zone/{{ article.slug }}" />
@@ -99,7 +96,7 @@ author: article.author.name
 					   article.slug|url_encode
 					   }}&amp;url=https://refactor.zone/{{
 					   article.slug|url_encode
-					   }}&amp;via=refactorzone&text={{ pagetitle|truncate(80, true, '…')|url_encode }}{%
+					   }}&amp;via=refactorzone&text={{ article.fullTitle|truncate(80, true, '…')|url_encode }}{%
 					   if article.author.twitterUrl
 					   %}%20by%20%40{{
 					   article.author.twitterUrl|replace({'https://twitter.com/':''})|url_encode
@@ -130,7 +127,7 @@ author: article.author.name
 					<a title="Share on Reddit"
 					   href="https://www.reddit.com/submit?url=https://refactor.zone/{{
 					   article.slug|url_encode
-					   }}&amp;title={{ pagetitle }}" class="text-reddit" rel="noopener" target="_blank"><i
+					   }}&amp;title={{ article.fullTitle }}" class="text-reddit" rel="noopener" target="_blank"><i
 								class="fa fa-reddit-square"></i><span class="sr-only">
 										Share on Reddit
 								</span></a>

@@ -159,6 +159,14 @@ a.text-globe:hover {
 	opacity: 0.8;
 }
 
+.text-rss {
+	color: #FF6600;
+}
+a.text-rss:hover {
+	color:   #FF6600;
+	opacity: 0.8;
+}
+
 .nav > li > a:hover, .nav > li > a:active {
 	background-color: inherit;
 }
@@ -198,7 +206,7 @@ a.text-globe:hover {
 .navbar-default {
 	margin-bottom:1.5em;
 	background-color: #ffffff;
-	font-size:        ($font-size-base * 0.7);
+	font-size:        ($font-size-base * 0.9);
 	height:           90px;
 	line-height:      90px;
 	box-shadow:       0 0 10px 0 rgba(0, 0, 0, 0.1);
@@ -429,7 +437,7 @@ footer.main {
 footer.copyright {
 	line-height:      50px;
 	height:           50px;
-	font-size:        14px;
+	font-size:        13px;
 	color:            #b0b0b0;
 	background-color: #232323;
 	a {
@@ -517,11 +525,6 @@ footer.copyright {
 	p {
 		margin-bottom:0;
 	}
-	.author-image {
-		@include rhythm(0, 0, 0, 0);
-		@extend .img-responsive;
-		@extend .img-circle;
-	}
 	.social {
 		margin-top:0.75em;
 		margin-bottom:0.75em;
@@ -536,3 +539,33 @@ footer.copyright {
 	}
 }
 
+.author-image {
+	@include rhythm(0, 0, 0, 0);
+	@extend .img-responsive;
+	@extend .img-circle;
+}
+
+.author-name {
+	display:block;
+	text-align:center;
+	@include rhythm(0.25, 0, 0, 0);
+	font-size:1.5em;
+	color:#777
+}
+
+.author-meta {
+	&, a {
+		color: #aaaaaa;
+	}
+	position:relative;
+	top:-0.75em;
+}
+
+a:hover .author-image, a:hover .author-name {
+	opacity:0.9;
+	text-decoration: none;
+}
+
+.breadcrumb {
+	display:none;
+}
