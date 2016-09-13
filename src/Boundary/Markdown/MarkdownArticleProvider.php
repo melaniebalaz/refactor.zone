@@ -56,7 +56,7 @@ class MarkdownArticleProvider implements ArticleProvider {
 			throw new NotFoundException();
 		}
 
-		$articles = \array_slice($foundSeries->getArticles(), $from, $count);
+		$articles = \array_slice(iterator_to_array($foundSeries->getArticles()), $from, $count);
 		return new GetLatestArticlesBySeriesResponse(
 			$foundSeries,
 			new ArticleList($articles),
@@ -78,7 +78,7 @@ class MarkdownArticleProvider implements ArticleProvider {
 			throw new NotFoundException();
 		}
 
-		$articles = \array_slice($foundCategory->getArticles(), $from, $count);
+		$articles = \array_slice(iterator_to_array($foundCategory->getArticles()), $from, $count);
 		return new GetLatestArticlesByCategoryResponse(
 			$foundCategory,
 			new ArticleList($articles),

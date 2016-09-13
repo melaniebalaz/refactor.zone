@@ -26,7 +26,7 @@ class StartPageController extends AbstractController {
 	}
 
 	public function feedAction() {
-		$this->setResponse($this->getResponse()->withHeader('Content-Type', 'application/rss+xml;charset=utf-8'));
+		$this->setResponse($this->getResponse()->withHeader('Content-Type', 'text/xml'));
 
 		$response = $this->getArticleProvider()->getLatestArticles();
 		return [
@@ -37,7 +37,7 @@ class StartPageController extends AbstractController {
 
 
 	public function instantFeedAction() {
-		$this->setResponse($this->getResponse()->withHeader('Content-Type', 'application/rss+xml;charset=utf-8'));
+		$this->setResponse($this->getResponse()->withHeader('Content-Type', 'text/xml'));
 
 		$response = $this->getArticleProvider()->getLatestArticles();
 		return [

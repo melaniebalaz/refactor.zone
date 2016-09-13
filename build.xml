@@ -49,7 +49,11 @@ gem "sass"</echo>
 
 	<target name="frontend-build-css" description="Builds the CSS code with SASS">
 		<exec
-			command="../bin/sass src/sass/site.scss css/site.min.css --scss" dir="htdocs" logoutput="true" checkreturn="true" />
+			command="../bin/sass src/sass/site.scss css/site.min.css --scss" dir="htdocs" logoutput="true"
+			checkreturn="true" />
+		<exec
+			command="../bin/sass src/sass/rss.scss css/rss.min.css --scss" dir="htdocs" logoutput="true"
+			checkreturn="true" />
 	</target>
 
 	<target name="frontend-build-copy" description="Copies fonts and other files">

@@ -1,0 +1,42 @@
+{% extends "base.twig" %}
+
+{% set pagetitle = category.name %}
+
+{% block meta %}
+	<meta property="og:description" content="{{ category.htmlBody|striptags }}"/>
+	<meta property="og:url" content="https://refactor.zone/category/{{ category.slug }}" />
+
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:description" content="{{ category.htmlBody|striptags }}" />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="https://refactor.zone/images/social.png" />
+	<link rel="apple-touch-icon-precomposed" href="https://refactor.zone/images/social.png" />
+	<link rel="alternate" type="application/rss+xml" href="/category/{{ category.slug }}/feed" />
+{% endblock %}
+
+{% block breadcrumbs %}
+	<li itemprop="itemListElement" itemscope="itemscope"
+		itemtype="https://schema.org/ListItem">
+		<a itemprop="item" href="https://refactor.zone/category">
+			<span itemprop="name">Categories</span></a>
+		<meta itemprop="position" content="2" />
+	</li>
+	<li itemprop="itemListElement" itemscope="itemscope"
+		itemtype="https://schema.org/ListItem">
+		<a itemprop="item" href="https://refactor.zone/category/{{ slug }}">
+			<span itemprop="name">{{ category.name }}</span></a>
+		<meta itemprop="position" content="3" />
+	</li>
+{% endblock %}
+
+{% block content %}
+	<div class="card">
+		<h1>
+			{{ category.name }}
+			<a href="/category/{{ category.slug }}/feed" class="text-rss pull-right"><i class="fa fa-rss"></i></a>
+		</h1>
+
+		{{ category.htmlBody|raw }}
+	</div>
+	{{ meta.articleList(articles) }}
+{% endblock %}

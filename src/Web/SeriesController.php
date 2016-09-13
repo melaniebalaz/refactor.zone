@@ -5,14 +5,16 @@ namespace Opsbears\Refactor\Web;
 class SeriesController extends AbstractController {
 	public function indexAction() : array {
 		return [
-			'categories'    => $this->getArticleProvider()->getCategories()->getCategories(),
-			'series' => $this->getArticleProvider()->getSeries(),
+			'request'    => $this->getRequest(),
+			'categories' => $this->getArticleProvider()->getCategories()->getCategories(),
+			'series'     => $this->getArticleProvider()->getSeries(),
 		];
 	}
 
 	public function seriesAction(string $slug) : array {
 		$response = $this->getArticleProvider()->getLatestArticlesBySeries($slug);
 		return [
+			'request'       => $this->getRequest(),
 			'categories'    => $this->getArticleProvider()->getCategories()->getCategories(),
 			'page'          => 1,
 			'series'        => $response->getSeries(),
@@ -24,7 +26,8 @@ class SeriesController extends AbstractController {
 	public function pageAction(string $slug, int $page) {
 		$response = $this->getArticleProvider()->getLatestArticlesBySeries($slug, ($page - 1) * 10);
 		return [
-			'categories'    => $this->getArticleProvider()->getCategories()->getCategories(),
+			'request'    => $this->getRequest(),
+			'categories' => $this->getArticleProvider()->getCategories()->getCategories(),
 			'page'       => $page,
 			'series'     => $response->getSeries(),
 			'articles'   => $response->getArticles(),
@@ -33,11 +36,13 @@ class SeriesController extends AbstractController {
 	}
 
 	public function feedAction($slug) {
+		$this->setResponse($this->getResponse()->withHeader('Content-Type', 'text/xml'));
 		$response = $this->getArticleProvider()->getLatestArticlesBySeries($slug);
 		return [
-			'categories'    => $this->getArticleProvider()->getCategories()->getCategories(),
-			'series'   => $response->getSeries(),
-			'articles' => $response->getArticles(),
+			'request'    => $this->getRequest(),
+			'categories' => $this->getArticleProvider()->getCategories()->getCategories(),
+			'series'     => $response->getSeries(),
+			'articles'   => $response->getArticles(),
 		];
 	}
 }

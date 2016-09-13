@@ -1,10 +1,8 @@
-{% spaceless %}
-	{% import "meta.twig" as meta %}
-	{{ meta.rss(
-		request.uri,
-		author.name,
-		'https://refactor.zone/author/' ~ author.slug,
-		author.htmlBody|striptags,
-		articles
-	) }}
-{% endspaceless %}
+{% import "meta.twig" as meta %}
+{{ meta.rss(
+	request.uri,
+	author.name ~ ' — Refactor Zone',
+	'https://refactor.zone/author/' ~ author.slug,
+	author.htmlBody|striptags,
+	articles
+) }}

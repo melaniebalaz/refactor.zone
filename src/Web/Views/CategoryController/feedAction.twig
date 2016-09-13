@@ -1,0 +1,8 @@
+{% import "meta.twig" as meta %}
+{{ meta.rss(
+	request.uri,
+	category.name ~ ' — Refactor Zone',
+	'https://refactor.zone/category/' ~ category.slug,
+	category.htmlBody|striptags,
+	articles
+) }}
