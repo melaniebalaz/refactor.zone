@@ -196,7 +196,7 @@ a.text-globe:hover {
 }
 
 .navbar-default {
-	margin-bottom:0;
+	margin-bottom:1.5em;
 	background-color: #ffffff;
 	font-size:        ($font-size-base * 0.7);
 	height:           90px;
@@ -330,29 +330,6 @@ article {
 
 	footer {
 		color: #555555;
-		.author {
-			@include rhythm(0, 0, 0, 0);
-			border-color: #cccccc;
-			@include adjust-font-size-to(18px);
-
-			.author-image {
-				@include rhythm(0, 0, 0, 0);
-				@extend .img-responsive;
-				@extend .img-circle;
-			}
-			.social {
-				margin-top:0.75em;
-				margin-bottom:0.75em;
-				display:block;
-			}
-			@media (min-width: $screen-sm-min) {
-				.social {
-					margin-top:0;
-					margin-bottom:0;
-					float: right;
-				}
-			}
-		}
 	}
 }
 
@@ -390,7 +367,7 @@ article {
 }
 
 footer.main {
-	@include rhythm(0, 0, 1, 0);
+	@include rhythm(1, 0, 1, 0);
 	font-size:        16px;
 	line-height:      1.5em;
 	color:            #b0b0b0;
@@ -495,13 +472,6 @@ footer.copyright {
 		}
 	}
 
-	.author h2 {
-		line-height:1em;
-	}
-	.author p {
-		margin-bottom:0;
-	}
-
 	@media (min-width: $screen-sm-min) {
 		margin-top:20px;
 		margin-bottom:20px;
@@ -533,3 +503,36 @@ footer.copyright {
 		}
 	}
 }
+
+.author {
+	@include rhythm(0, 0, 0, 0);
+	border-color: #cccccc;
+	@include adjust-font-size-to(18px);
+	h1,h2 {
+		margin-top:0;
+		margin-bottom:0.75em;
+		font-size:1.5em;
+		line-height:1em;
+	}
+	p {
+		margin-bottom:0;
+	}
+	.author-image {
+		@include rhythm(0, 0, 0, 0);
+		@extend .img-responsive;
+		@extend .img-circle;
+	}
+	.social {
+		margin-top:0.75em;
+		margin-bottom:0.75em;
+		display:block;
+	}
+	@media (min-width: $screen-sm-min) {
+		.social {
+			margin-top:0;
+			margin-bottom:0;
+			float: right;
+		}
+	}
+}
+

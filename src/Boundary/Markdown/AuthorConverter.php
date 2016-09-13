@@ -35,7 +35,8 @@ class AuthorConverter {
 			$metadata['gender'],
 			$metadata['facebook'],
 			$metadata['twitter'],
-			$metadata['googleplus']
+			$metadata['googleplus'],
+			$metadata['image']
 		);
 	}
 }

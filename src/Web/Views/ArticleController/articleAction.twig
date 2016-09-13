@@ -75,57 +75,7 @@ author: article.author.name
 				</div>
 				<div class="card meta">
 					<footer>
-						<div class="author" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
-							<div class="row">
-								<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-									<img src="/images/janoszen.jpg" alt="" class="author-image"
-										 itemprop="image" />
-								</div>
-								<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
-									<h2>
-										<span itemprop="name">{{ article.author.name }}</span>
-										<span class="social">
-												{% if article.author.url %}
-													<a
-															rel="author"
-															href="{{ article.author.url }}"
-															class="text-globe"
-															itemprop="url"
-															title="Visit {{ article.author.name }}s website"><i
-																class="fa fa-globe"></i></a>
-												{% endif %}
-											{% if article.author.facebookUrl %}
-												<a
-														rel="author"
-														href="{{ article.author.facebookUrl }}"
-														class="text-facebook" itemprop="url"
-														title="Follow {{ article.author.name }} on Facebook"><i
-															class="fa fa-facebook-square"></i></a>
-											{% endif %}
-											{% if article.author.twitterUrl %}
-												<a
-														rel="author"
-														href="{{ article.author.twitterUrl }}"
-														class="text-twitter" itemprop="url"
-														title="Follow {{ article.author.name }} on Twitter"><i
-															class="fa fa-twitter-square"></i></a>
-											{% endif %}
-											{% if article.author.gplusUrl %}
-												<a
-														rel="author"
-														href="{{ article.author.gplusUrl }}"
-														class="text-gplus" itemprop="url"
-														title="Follow {{ article.author.name }} on Google+"><i
-															class="fa fa-google-plus-square"></i></a>
-											{% endif %}
-										</span>
-									</h2>
-									<div itemprop="description">
-										{{ article.author.htmlBody|raw }}
-									</div>
-								</div>
-							</div>
-						</div>
+						{{ meta.author(article.author) }}
 					</footer>
 				</div>
 			</article>

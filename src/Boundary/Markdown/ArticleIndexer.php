@@ -107,6 +107,7 @@ class ArticleIndexer {
 					$article->getAuthor()->getFacebookUrl(),
 					$article->getAuthor()->getTwitterUrl(),
 					$article->getAuthor()->getGplusUrl(),
+					$article->getAuthor()->getImageUrl(),
 					new ArticleList()
 				);
 			}

@@ -19,6 +19,7 @@ class ArticleAwareAuthor extends Author {
 		string $facebookUrl,
 		string $twitterUrl,
 		string $gplusUrl,
+		string $imageUrl,
 		ArticleList $articles
 	) {
 		parent::__construct(
@@ -31,7 +32,8 @@ class ArticleAwareAuthor extends Author {
 			$gender,
 			$facebookUrl,
 			$twitterUrl,
-			$gplusUrl
+			$gplusUrl,
+			$imageUrl
 		);
 		$this->articles = $articles;
 	}
@@ -50,6 +52,7 @@ class ArticleAwareAuthor extends Author {
 			$this->getFacebookUrl(),
 			$this->getTwitterUrl(),
 			$this->getGplusUrl(),
+			$this->getImageUrl(),
 			new ArticleList($articles)
 		);
 	}

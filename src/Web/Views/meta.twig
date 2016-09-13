@@ -1,0 +1,77 @@
+{% macro author(author, level=2) %}
+<div class="author" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
+	<div class="row">
+		<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+			<img src="{{ author.imageUrl }}" alt="" class="author-image"
+				 itemprop="image" />
+		</div>
+		<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+			<h{{ level }}>
+				<span itemprop="name">{{ author.name }}</span>
+				<span class="social">
+												{% if author.url %}
+													<a
+															rel="author"
+															href="{{ author.url }}"
+															class="text-globe"
+															itemprop="url"
+															title="Visit {{ author.name }}s website"><i
+																class="fa fa-globe"></i></a>
+												{% endif %}
+					{% if author.facebookUrl %}
+						<a
+								rel="author"
+								href="{{ author.facebookUrl }}"
+								class="text-facebook" itemprop="url"
+								title="Follow {{ author.name }} on Facebook"><i
+									class="fa fa-facebook-square"></i></a>
+					{% endif %}
+					{% if author.twitterUrl %}
+						<a
+								rel="author"
+								href="{{ author.twitterUrl }}"
+								class="text-twitter" itemprop="url"
+								title="Follow {{ author.name }} on Twitter"><i
+									class="fa fa-twitter-square"></i></a>
+					{% endif %}
+					{% if author.gplusUrl %}
+						<a
+								rel="author"
+								href="{{ author.gplusUrl }}"
+								class="text-gplus" itemprop="url"
+								title="Follow {{ author.name }} on Google+"><i
+									class="fa fa-google-plus-square"></i></a>
+					{% endif %}
+										</span>
+			</h{{ level }}>
+			<div itemprop="description">
+				{{ author.htmlBody|raw }}
+			</div>
+		</div>
+	</div>
+</div>
+{% endmacro %}
+
+{% macro articleList(articles) %}
+<div class="articlegrid">
+	<div class="row">
+		{% for article in articles %}
+			<div class="col-lg-4 col-md-4 col-sm-6">
+				<div class="card">
+					<a href="/{{ article.slug }}"><img src="{{ article.socialImage }}" /></a>
+					<div class="annotation">
+						<h2><a href="/{{ article.slug }}">
+								{% if article.series %}{{ article.series.name }}: {% endif %}{{ article.title }}
+							</a></h2>
+						<p>{{ article.excerpt }}</p>
+						<a href="/{{ article.slug }}" class="btn btn-primary">
+							Read article
+							<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+{% endmacro %}

@@ -5,6 +5,7 @@ namespace Opsbears\Refactor\Boundary\Markdown;
 use Opsbears\Refactor\Boundary\ArticleProvider;
 use Opsbears\Refactor\Boundary\GetArticleResponse;
 use Opsbears\Refactor\Boundary\GetCategoriesResponse;
+use Opsbears\Refactor\Boundary\GetLatestArticlesByAuthorResponse;
 use Opsbears\Refactor\Boundary\GetLatestArticlesByCategoryResponse;
 use Opsbears\Refactor\Boundary\GetLatestArticlesBySeriesResponse;
 use Opsbears\Refactor\Boundary\GetLatestArticlesResponse;
@@ -95,5 +96,37 @@ class MarkdownArticleProvider implements ArticleProvider {
 		$series = $db->getSeries();
 
 		return new GetSeriesResponse(new SeriesList($series));
+	}
+
+	public function getLatestArticlesByAuthor(
+		string $slug,
+		int $from = 0,
+		int $count = 10
+	) : GetLatestArticlesByAuthorResponse {
+		$db = $this->indexer->loadArticleDatabase();
+		$authors = $db->getAuthors();
+
+		$foundAuthor = null;
+		foreach ($authors as $author) {
+			if ($author->getSlug() == $slug) {
+				$foundAuthor = $author;
+				break;
+			}
+		}
+		if (!$foundAuthor) {
+			throw new NotFoundException();
+		}
+
+		return new GetLatestArticlesByAuthorResponse(
+			$foundAuthor,
+			new ArticleList(
+				\array_slice(
+					iterator_to_array($foundAuthor->getArticles()),
+					$from,
+					$count
+				)
+			),
+			$foundAuthor->getArticles()->count()
+		);
 	}
 }

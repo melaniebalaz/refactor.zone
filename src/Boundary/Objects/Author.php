@@ -33,6 +33,11 @@ class Author extends TextContent {
 	 */
 	private $gplusUrl;
 
+	/**
+	 * @var string
+	 */
+	private $imageUrl;
+
 	public function __construct(
 		string $slug,
 		string $name,
@@ -43,7 +48,8 @@ class Author extends TextContent {
 		string $gender,
 		string $facebookUrl,
 		string $twitterUrl,
-		string $gplusUrl
+		string $gplusUrl,
+		string $imageUrl
 	) {
 		parent::__construct($slug, $name, $htmlBody);
 		$this->url         = $url;
@@ -54,6 +60,7 @@ class Author extends TextContent {
 		$this->htmlBody    = $htmlBody;
 		$this->twitterUrl  = $twitterUrl;
 		$this->gplusUrl    = $gplusUrl;
+		$this->imageUrl    = $imageUrl;
 	}
 
 	/**
@@ -103,5 +110,12 @@ class Author extends TextContent {
 	 */
 	public function getGplusUrl(): string {
 		return $this->gplusUrl;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getImageUrl(): string {
+		return $this->imageUrl;
 	}
 }

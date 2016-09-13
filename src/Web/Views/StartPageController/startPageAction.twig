@@ -3,25 +3,5 @@
 {% set pagetitle = '' %}
 
 {% block content %}
-	<div class="articlegrid">
-		<div class="row">
-			{% for article in articles %}
-				<div class="col-lg-4 col-md-4 col-sm-6">
-					<div class="card">
-						<a href="/{{ article.slug }}"><img src="{{ article.socialImage }}" /></a>
-						<div class="annotation">
-							<h2><a href="/{{ article.slug }}">
-									{% if article.series %}{{ article.series.name }}: {% endif %}{{ article.title }}
-								</a></h2>
-							<p>{{ article.excerpt }}</p>
-							<a href="/{{ article.slug }}" class="btn btn-primary">
-								Read article
-								<i class="fa fa-angle-double-right" aria-hidden="true"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
-	</div>
+	{{ meta.articleList(articles) }}
 {% endblock %}

@@ -26,7 +26,8 @@
 		"opsbears/piccolo-web-processor-controller-view-templating": "^1.0",
 		"picas/markdown-extended": "dev-master",
 		"scrivo/highlight.php": "^9.0",
-		"opsbears/piccolo-sql": "dev-master"
+		"opsbears/piccolo-sql": "dev-master",
+		"opsbears/piccolo-sql-migrations": "dev-master"
 	},
 	"require-dev": {
 		"phing/phing": "^2.14"

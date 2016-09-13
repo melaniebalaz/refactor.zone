@@ -1,0 +1,27 @@
+{% extends "base.twig" %}
+
+{% set pagetitle = author.name %}
+
+{% block meta %}
+	<meta property="og:type" content="profile"/>
+	<meta property="og:description" content="{{ author.htmlBody|striptags }}"/>
+	<meta property="profile:first_name" content="{{ author.firstName }}"/>
+	<meta property="profile:last_name" content="{{ author.lastName }}"/>
+	<meta property="og:url" content="https://refactor.zone/authors/{{ author.slug }}" />
+
+	<meta name="twitter:card" content="summary" />
+	{% if author.twitterUrl %}
+		<meta name="twitter:creator" content="@{{ author.twitterUrl|replace({'https://twitter.com/': ''}) }}" />
+	{% endif %}
+	<meta name="twitter:description" content="{{ author.htmlBody }}" />
+
+	<meta property="og:image" content="https://refactor.zone{{ author.imageUrl }}" />
+	<link rel="apple-touch-icon-precomposed" href="https://refactor.zone{{ author.imageUrl }}" />
+{% endblock %}
+
+{% block content %}
+	<div class="card">
+		{{ meta.author(author, 1) }}
+	</div>
+	{{ meta.articleList(articles) }}
+{% endblock %}

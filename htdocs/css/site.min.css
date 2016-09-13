@@ -1098,7 +1098,7 @@ figure {
 img {
   vertical-align: middle; }
 
-.img-responsive, article footer .author .author-image {
+.img-responsive, .author .author-image {
   display: block;
   max-width: 100%;
   height: auto; }
@@ -1119,7 +1119,7 @@ img {
   max-width: 100%;
   height: auto; }
 
-.img-circle, article footer .author .author-image {
+.img-circle, .author .author-image {
   border-radius: 50%; }
 
 hr {
@@ -8316,7 +8316,7 @@ a.text-globe:hover {
           color: #63bc46; }
 
 .navbar-default {
-  margin-bottom: 0;
+  margin-bottom: 1.5em;
   background-color: #ffffff;
   font-size: 14px;
   height: 90px;
@@ -8458,28 +8458,6 @@ article {
     margin-bottom: 0; }
   article footer {
     color: #555555; }
-    article footer .author {
-      margin-top: 0em;
-      padding-top: 0em;
-      padding-bottom: 0em;
-      margin-bottom: 0em;
-      border-color: #cccccc;
-      font-size: 0.9em;
-      line-height: 1.66667em; }
-      article footer .author .author-image {
-        margin-top: 0em;
-        padding-top: 0em;
-        padding-bottom: 0em;
-        margin-bottom: 0em; }
-      article footer .author .social {
-        margin-top: 0.75em;
-        margin-bottom: 0.75em;
-        display: block; }
-      @media (min-width: 768px) {
-        article footer .author .social {
-          margin-top: 0;
-          margin-bottom: 0;
-          float: right; } }
 
 .articlegrid {
   font-size: 16px; }
@@ -8516,7 +8494,7 @@ article {
     font-size: inherit; }
 
 footer.main {
-  margin-top: 0em;
+  margin-top: 1.5em;
   padding-top: 0em;
   padding-bottom: 1.5em;
   margin-bottom: 0em;
@@ -8614,10 +8592,6 @@ footer.copyright {
       margin-right: 2px;
       font-size: 2.1em;
       line-height: 1.42857em; }
-  .card .author h2 {
-    line-height: 1em; }
-  .card .author p {
-    margin-bottom: 0; }
   @media (min-width: 768px) {
     .card {
       margin-top: 20px;
@@ -8641,5 +8615,35 @@ footer.copyright {
     .card.share {
       margin-top: 40px;
       margin-bottom: 60px; } }
+
+.author {
+  margin-top: 0em;
+  padding-top: 0em;
+  padding-bottom: 0em;
+  margin-bottom: 0em;
+  border-color: #cccccc;
+  font-size: 0.9em;
+  line-height: 1.66667em; }
+  .author h1, .author h2 {
+    margin-top: 0;
+    margin-bottom: 0.75em;
+    font-size: 1.5em;
+    line-height: 1em; }
+  .author p {
+    margin-bottom: 0; }
+  .author .author-image {
+    margin-top: 0em;
+    padding-top: 0em;
+    padding-bottom: 0em;
+    margin-bottom: 0em; }
+  .author .social {
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+    display: block; }
+  @media (min-width: 768px) {
+    .author .social {
+      margin-top: 0;
+      margin-bottom: 0;
+      float: right; } }
 
 /*# sourceMappingURL=site.min.css.map */

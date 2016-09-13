@@ -25,4 +25,10 @@ interface ArticleProvider {
 		int $from = 0,
 		int $count = 10
 	) : GetLatestArticlesByCategoryResponse;
+
+	public function getLatestArticlesByAuthor(
+		string $slug,
+		int $from = 0,
+		int $count = 10
+	) : GetLatestArticlesByAuthorResponse;
 }
