@@ -60,7 +60,7 @@ strong {
 dfn {
   font-style: italic; }
 
-h1, item title {
+h1, entry title {
   font-size: 2em;
   margin: 0.67em 0; }
 
@@ -221,7 +221,7 @@ th {
   img {
     max-width: 100% !important; }
 
-  p, item creator,
+  p, entry author,
   h2,
   h3 {
     orphans: 3;
@@ -1149,15 +1149,15 @@ hr {
 [role="button"] {
   cursor: pointer; }
 
-h1, item title, h2, h3, h4, h5, h6,
+h1, entry title, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
   color: inherit; }
-  h1 small, item title small,
+  h1 small, entry title small,
   h1 .small,
-  item title .small, h2 small,
+  entry title .small, h2 small,
   h2 .small, h3 small,
   h3 .small, h4 small,
   h4 .small, h5 small,
@@ -1174,14 +1174,14 @@ h1, item title, h2, h3, h4, h5, h6,
     line-height: 1;
     color: #777777; }
 
-h1, item title, .h1,
+h1, entry title, .h1,
 h2, .h2,
 h3, .h3 {
   margin-top: 25px;
   margin-bottom: 12.5px; }
-  h1 small, item title small,
+  h1 small, entry title small,
   h1 .small,
-  item title .small, .h1 small,
+  entry title .small, .h1 small,
   .h1 .small,
   h2 small,
   h2 .small, .h2 small,
@@ -1207,7 +1207,7 @@ h6, .h6 {
   .h6 .small {
     font-size: 75%; }
 
-h1, item title, .h1 {
+h1, entry title, .h1 {
   font-size: 46px; }
 
 h2, .h2 {
@@ -1225,7 +1225,7 @@ h5, .h5 {
 h6, .h6 {
   font-size: 16px; }
 
-p, item creator {
+p, entry author {
   margin: 0 0 12.5px; }
 
 .lead {
@@ -1418,7 +1418,7 @@ blockquote {
   margin: 0 0 25px;
   font-size: 22.5px;
   border-left: 5px solid #eeeeee; }
-  blockquote p:last-child, blockquote item creator:last-child, item blockquote creator:last-child,
+  blockquote p:last-child, blockquote entry author:last-child, entry blockquote author:last-child,
   blockquote ul:last-child,
   blockquote ol:last-child {
     margin-bottom: 0; }
@@ -1511,24 +1511,24 @@ pre {
   max-height: 340px;
   overflow-y: scroll; }
 
-.container, channel {
+.container, entry {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px; }
-  .container:before, channel:before, .container:after, channel:after {
+  .container:before, entry:before, .container:after, entry:after {
     content: " ";
     display: table; }
-  .container:after, channel:after {
+  .container:after, entry:after {
     clear: both; }
   @media (min-width: 768px) {
-    .container, channel {
+    .container, entry {
       width: 750px; } }
   @media (min-width: 992px) {
-    .container, channel {
+    .container, entry {
       width: 970px; } }
   @media (min-width: 1200px) {
-    .container, channel {
+    .container, entry {
       width: 1170px; } }
 
 .container-fluid {
@@ -3739,17 +3739,17 @@ tbody.collapse.in {
     .navbar-fixed-bottom .navbar-collapse {
       max-height: 200px; } }
 
-.container > .navbar-header, channel > .navbar-header,
+.container > .navbar-header, entry > .navbar-header,
 .container > .navbar-collapse,
-channel > .navbar-collapse,
+entry > .navbar-collapse,
 .container-fluid > .navbar-header,
 .container-fluid > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px; }
   @media (min-width: 768px) {
-    .container > .navbar-header, channel > .navbar-header,
+    .container > .navbar-header, entry > .navbar-header,
     .container > .navbar-collapse,
-    channel > .navbar-collapse,
+    entry > .navbar-collapse,
     .container-fluid > .navbar-header,
     .container-fluid > .navbar-collapse {
       margin-right: 0;
@@ -3793,7 +3793,7 @@ channel > .navbar-collapse,
   .navbar-brand > img {
     display: block; }
   @media (min-width: 768px) {
-    .navbar > .container .navbar-brand, .navbar > channel .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    .navbar > .container .navbar-brand, .navbar > entry .navbar-brand, .navbar > .container-fluid .navbar-brand {
       margin-left: -15px; } }
 
 .navbar-toggle {
@@ -4300,29 +4300,29 @@ a.badge:hover, a.badge:focus {
   margin-bottom: 30px;
   color: inherit;
   background-color: #eeeeee; }
-  .jumbotron h1, .jumbotron item title, item .jumbotron title,
+  .jumbotron h1, .jumbotron entry title, entry .jumbotron title,
   .jumbotron .h1 {
     color: inherit; }
-  .jumbotron p, .jumbotron item creator, item .jumbotron creator {
+  .jumbotron p, .jumbotron entry author, entry .jumbotron author {
     margin-bottom: 15px;
     font-size: 27px;
     font-weight: 200; }
   .jumbotron > hr {
     border-top-color: #d5d5d5; }
-  .container .jumbotron, channel .jumbotron, .container-fluid .jumbotron {
+  .container .jumbotron, entry .jumbotron, .container-fluid .jumbotron {
     border-radius: 6px;
     padding-left: 15px;
     padding-right: 15px; }
-  .jumbotron .container, .jumbotron channel {
+  .jumbotron .container, .jumbotron entry {
     max-width: 100%; }
   @media screen and (min-width: 768px) {
     .jumbotron {
       padding-top: 48px;
       padding-bottom: 48px; }
-      .container .jumbotron, channel .jumbotron, .container-fluid .jumbotron {
+      .container .jumbotron, entry .jumbotron, .container-fluid .jumbotron {
         padding-left: 60px;
         padding-right: 60px; }
-      .jumbotron h1, .jumbotron item title, item .jumbotron title,
+      .jumbotron h1, .jumbotron entry title, entry .jumbotron title,
       .jumbotron .h1 {
         font-size: 81px; } }
 
@@ -4363,10 +4363,10 @@ a.thumbnail.active {
     color: inherit; }
   .alert .alert-link {
     font-weight: bold; }
-  .alert > p, item .alert > creator,
+  .alert > p, entry .alert > author,
   .alert > ul {
     margin-bottom: 0; }
-  .alert > p + p, item .alert > creator + p, item .alert > p + creator, item .alert > creator + creator {
+  .alert > p + p, entry .alert > author + p, entry .alert > p + author, entry .alert > author + author {
     margin-top: 5px; }
 
 .alert-dismissable,
@@ -8044,9 +8044,9 @@ button.close {
   font-weight: bold;
   font-style: italic; }
 /* END Bold Italic */
-rss {
+feed {
   background-color: #f0f0f0; }
-  rss::before {
+  feed::before {
     height: 50px;
     line-height: 50px;
     margin-bottom: 25px;
@@ -8061,66 +8061,68 @@ rss {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     z-index: 1; }
 
-channel, item, description, p, item creator, h1, item title, h2, h3, ul, li {
+feed, entry, content, p, entry author, h1, entry title, h2, h3, ul, li {
   display: block; }
 
-channel > title, channel > link, channel > description {
+feed > title, feed > icon, feed > link, feed > id, feed > updated {
   display: none; }
 
-channel {
+feed {
   font-family: "Open Sans", sans-serif;
   position: relative;
   padding-top: 60px;
   padding-bottom: 30px; }
 
-item {
+entry {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   padding: 40px;
   margin-top: 40px;
   margin-bottom: 40px;
   background: #fff;
   font-size: 18px; }
-  item * html {
+  entry * html {
     font-size: 112.5%; }
-  item html {
+  entry html {
     font-size: 18px;
     line-height: 1.5em; }
-  item creator::before {
+  entry author::before {
     content: " by ";
     display: inline; }
-  item creator {
+  entry author {
     text-align: center !important; }
-  item title {
-    text-align: center; }
-  item link, item guid, item pubDate {
+  entry author uri {
     display: none; }
-  item h1, item title {
+  entry title {
+    text-align: center; }
+  entry link, entry id, entry published, entry updated, entry summary, entry category {
+    display: none; }
+  entry h1, entry title {
     font-size: 2.5em;
     line-height: 1.2em;
     margin-top: 0; }
-  item h2 {
+  entry h2 {
     font-size: 1.66667em;
     line-height: 1.8em; }
-  item h3 {
+  entry h3 {
     font-size: 1.33333em;
     line-height: 2.25em; }
-  item h4 {
+  entry h4 {
     font-size: 1.11111em;
     line-height: 1.35em; }
-  item p, item creator, item ul li {
+  entry p, entry author, entry ul li {
     margin-top: 0em;
     padding-top: 0em;
     padding-bottom: 0em;
     margin-bottom: 1.5em;
     text-align: justify; }
-  item sup, item sub {
+  entry sup, entry sub {
     vertical-align: baseline;
     position: relative; }
-  item sup {
+  entry sup {
     top: -0.4em; }
-  item sub {
+  entry sub {
     top: 0.4em; }
-  item pre {
+  entry pre {
     margin-top: 0em;
     padding-top: 0em;
     padding-bottom: 0em;
@@ -8133,7 +8135,7 @@ item {
     word-wrap: normal;
     font-size: 0.88889em;
     line-height: 1.6875em; }
-  item pre code {
+  entry pre code {
     display: block;
     margin-top: 0em;
     padding-top: 0em;

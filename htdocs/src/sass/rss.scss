@@ -20,7 +20,7 @@ $brand-primary: #63bc46;
 @import "../../node_modules/open-sans-fontface/sass/BoldItalic";
 @import "../../node_modules/compass-mixins/lib/compass/typography";
 
-rss {
+feed {
 	background-color:#f0f0f0;
 	&::before {
 		height:50px;
@@ -39,23 +39,24 @@ rss {
 	}
 }
 
-channel, item, description, p, h1, h2, h3, ul, li {
+feed, entry, content, p, h1, h2, h3, ul, li {
 	display:block;
 }
 
-channel > title, channel > link, channel > description {
+feed > title, feed > icon, feed > link, feed > id, feed > updated {
 	display:none;
 }
 
-channel {
+feed {
 	font-family: "Open Sans", sans-serif;
-	@extend .container;
+
 	position:relative;
 	padding-top:60px;
 	padding-bottom:30px;
 }
 
-item {
+entry {
+	@extend .container;
 	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 	padding:40px;
 	margin-top:40px;
@@ -65,13 +66,16 @@ item {
 	font-size: $font-size-base;
 	@include establish-baseline($font-size-base);
 
-	creator::before {
+	author::before {
 		content:" by ";
 		display:inline;
 	}
-	creator {
+	author {
 		@extend p;
 		text-align:center !important;
+	}
+	author uri {
+		display:none;
 	}
 
 	title {
@@ -79,7 +83,7 @@ item {
 		text-align:center;
 	}
 
-	link, guid, pubDate {
+	link, id, published, updated, summary, category {
 		display:none;
 	}
 

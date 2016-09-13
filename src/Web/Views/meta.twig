@@ -12,7 +12,7 @@
 						<a
 							href="/author/{{ author.slug }}/feed"
 							class="text-rss"
-							title="Subscribe to {{ author.name }}s RSS feed"><i
+							title="Subscribe to {{ author.name }} using your RSS reader"><i
 								class="fa fa-rss"></i></a>
 					{% if author.url %}
 						<a
@@ -118,28 +118,49 @@
 </div>
 {% endmacro %}
 
-{% macro rss(self, title, link, description, articles) %}
+{% macro rss(self, title, alternate, description, articles) %}
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/css" href="/css/rss.min.css" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
-	 xmlns:dc="http://purl.org/dc/elements/1.1/">
-	<channel>
-		<title>{{ title }}</title>
-		<link>{{ link }}</link>
-		<atom:link href="{{ self }}" rel="self" type="application/rss+xml" />
-		<description>{{ description }}</description>
-		{% for article in articles %}
-		<item>
-			<title>{{ article.fullTitle }}</title>
-			<dc:creator>{{ article.author.name }}</dc:creator>
-			<link>https://refactor.zone/{{ article.slug }}</link>
-			<guid>https://refactor.zone/{{ article.slug }}</guid>
-			<pubDate>{{ article.published.format('r') }}</pubDate>
-			<description>{{ article.htmlBody|raw }}</description>
-		</item>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>{{ title }}</title>
+	<icon>https://refactor.zone/images/social.png</icon>
+	<link type="text/html" href="{{ alternate }}" rel="alternate"/>
+	<id>{{ self }}</id>
+{% spaceless %}
+	{% set updated = null %}
+	{% set updatedTimestamp = 0 %}
+	{% for article in articles %}
+		{% if article.modified.timestamp > updatedTimestamp %}
+			{% set updated = article.modified %}
+			{% set updatedTimestamp = article.modified.timestamp %}
+		{% endif %}
+	{% endfor %}
+{% endspaceless %}
+{% if updated %}
+	<updated>{{ updated.format('c') }}</updated>
+{% endif %}
+
+	{% for article in articles %}
+	<entry>
+		<title>{{ article.fullTitle }}</title>
+		<link href="https://refactor.zone/{{ article.slug }}"/>
+		<id>https://refactor.zone/{{ article.slug }}</id>
+		<published>{{ article.published.format('c') }}</published>
+		<updated>{{ article.modified.format('c') }}</updated>
+		<summary>{{ article.excerpt }}</summary>
+		<author>
+			<name>{{ article.author.name }}</name>
+			<uri>https://refactor.zone/author/{{ article.author.slug }}</uri>
+		</author>
+		{% for category in article.categories %}
+			<category term="{{ category.slug }}" label="{{ category.name }}" />
 		{% endfor %}
-	</channel>
-</rss>
+		<content type="html">
+			{{ article.htmlBody|replace({'<h3':'<h2', '</h3':'</h2'})|raw }}
+		</content>
+	</entry>
+	{% endfor %}
+</feed>
 {% endmacro %}
 
 
