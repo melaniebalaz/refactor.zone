@@ -37,7 +37,13 @@ abstract class AbstractController {
 		HTTPRequestResponseContainer $requestResponseContainer
 	) {
 		$this->request         = $request;
-		$this->response        = $response;
+		$this->response        = $response
+			->withAddedHeader('Link', '</css/site.min.css>; rel=prefetch')
+			->withAddedHeader('Link', '</js/site.min.js>; rel=prefetch')
+			->withAddedHeader('Link', '</images/refactor-zone-logo.png>; rel=prefetch')
+			->withAddedHeader('Link', '</fonts/opensans/Regular/OpenSans-Regular.woff?v=1.1.0>; rel=prefetch')
+			->withAddedHeader('Link', '</fonts/font-awesome/fontawesome-webfont.woff2?v=4.6.3>; rel=prefetch')
+			->withAddedHeader('Link', '</fonts/opensans/Bold/OpenSans-Bold.woff?v=1.1.0>; rel=prefetch');
 		$this->articleProvider = $articleProvider;
 		$this->requestResponseContainer = $requestResponseContainer;
 	}
