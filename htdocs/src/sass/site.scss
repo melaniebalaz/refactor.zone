@@ -80,91 +80,68 @@ a {
 	}
 }
 
-.text-red {
-	color: #e00000;
+@mixin social-color($color) {
+	color: $color;
+	&:hover, a:hover & {
+		color: $color;
+		opacity: 0.8;
+	}
+	&:active, a:active &, &:visited, a:visited & {
+		color: $color;
+		opacity: 0.9;
+	}
 }
 
-a.text-red:hover {
-	color:   #e00000;
-	opacity: 0.8;
+.text-red {
+	@include social-color(#e00000);
 }
 
 .text-facebook {
-	color: #3b5998;
+	@include social-color(#3b5998);
 }
 
-a.text-facebook:hover {
-	color:   #3b5998;
-	opacity: 0.8;
+.text-messenger {
+	@include social-color(#0084FF);
 }
 
 .text-twitter {
-	color: #1da1f2;
-}
-
-a.text-twitter:hover {
-	color:   #1da1f2;
-	opacity: 0.8;
+	@include social-color(#1da1f2);
 }
 
 .text-gplus {
-	color: #d34836;
-}
-
-a.text-gplus:hover {
-	color:   #d34836;
-	opacity: 0.8;
+	@include social-color(#d34836);
 }
 
 .text-tumblr {
-	color: #304e6f;
-}
-
-a.text-tumblr:hover {
-	color:   #d34836;
-	opacity: 0.8;
+	@include social-color(#304e6f);
 }
 
 .text-reddit {
-	color: #336699;
-}
-
-a.text-reddit:hover {
-	color:   #336699;
-	opacity: 0.8;
+	@include social-color(#336699);
 }
 
 .text-linkedin {
-	color: #0077b5;
-}
-
-a.text-linkedin:hover {
-	color:   #0077b5;
-	opacity: 0.8;
+	@include social-color(#0077b5);
 }
 
 .text-wordpress {
-	color: #21759b;
-}
-a.text-wordpress:hover {
-	color:   #21759b;
-	opacity: 0.8;
+	@include social-color(#21759b);
 }
 
 .text-globe {
-	color: #3333A0;
-}
-a.text-globe:hover {
-	color:   #3333A0;
-	opacity: 0.8;
+	@include social-color(#3333A0);
 }
 
 .text-rss {
-	color: #FF6600;
+	@include social-color(#FF6600);
 }
-a.text-rss:hover {
-	color:   #FF6600;
-	opacity: 0.8;
+
+.text-stumbleupon {
+	@include social-color(#eb4924);
+}
+
+.text-vkontakte {
+	@include social-color(#507299);
 }
 
 .nav > li > a:hover, .nav > li > a:active {
@@ -477,6 +454,13 @@ footer.copyright {
 			margin-left:  2px;
 			margin-right: 2px;
 			@include adjust-font-size-to(42px);
+
+			img {
+				height:22px;
+				width:22px;
+				position:relative;
+				top:-2px;
+			}
 		}
 	}
 
@@ -493,6 +477,11 @@ footer.copyright {
 		&.share {
 			margin-top:20px;
 			margin-bottom:20px;
+			a img {
+				top:-3px;
+				height:32px;
+				width:32px;
+			}
 		}
 	}
 
@@ -508,6 +497,11 @@ footer.copyright {
 		&.share {
 			margin-top:40px;
 			margin-bottom:60px;
+			a img {
+				top:-5px;
+				height:36px;
+				width:36px;
+			}
 		}
 	}
 

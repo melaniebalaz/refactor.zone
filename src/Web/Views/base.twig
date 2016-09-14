@@ -7,6 +7,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="HandheldFriendly" content="true" />
 	<meta name="theme-color" content="#63bc46" />
+	<meta name="msapplication-navbutton-color" content="#63bc46" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
 	<title>{% if pagetitle %}{{ pagetitle }} &mdash; {% endif %}Refactor Zone</title>
 	<link href="/css/site.min.css" rel="stylesheet" />
@@ -21,9 +25,10 @@
 	<meta property="og:type" content="website" />
 	<meta property="og:image" content="https://refactor.zone/images/social.png" />
 	<link rel="apple-touch-icon-precomposed" href="https://refactor.zone/images/social.png" />
+	<meta name="twitter:card" content="summary_large_image" />
 {% endblock %}
 	<meta name="twitter:site" content="@refactorzone" />
-	<meta name="twitter:title" content="{{ pagetitle }}" />
+	<meta name="twitter:title" content="{% if pagetitle %}{{ pagetitle }}{% else %}Refactor Zone{% endif %}" />
 
 	<link rel="icon" href="/images/social.png" type="image/x-icon" />
 	<link rel="shortcut icon" href="/images/social.png" type="image/x-icon"/>
@@ -54,9 +59,6 @@
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<a href="#">Things we <i class="fa fa-heart text-red" aria-label="love"></i></a>
-					</li>
 					<li>
 						<a href="/feed" title="Subscribe to the Refactor Zone using your RSS reader">
 							<i class="fa fa-lg fa-rss-square text-rss" aria-label="RSS"></i>

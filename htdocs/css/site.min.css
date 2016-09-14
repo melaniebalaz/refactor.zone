@@ -8228,73 +8228,120 @@ a {
     padding-left: 30px; } }
 .text-red, footer.main .fa.text-red {
   color: #e00000; }
-
-a.text-red:hover, footer.main a.fa.text-red:hover {
-  color: #e00000;
-  opacity: 0.8; }
+  .text-red:hover, footer.main .fa.text-red:hover, a:hover .text-red, a:hover footer.main .fa.text-red, footer.main a:hover .fa.text-red {
+    color: #e00000;
+    opacity: 0.8; }
+  .text-red:active, footer.main .fa.text-red:active, a:active .text-red, a:active footer.main .fa.text-red, footer.main a:active .fa.text-red, .text-red:visited, footer.main .fa.text-red:visited, a:visited .text-red, a:visited footer.main .fa.text-red, footer.main a:visited .fa.text-red {
+    color: #e00000;
+    opacity: 0.9; }
 
 .text-facebook {
   color: #3b5998; }
+  .text-facebook:hover, a:hover .text-facebook {
+    color: #3b5998;
+    opacity: 0.8; }
+  .text-facebook:active, a:active .text-facebook, .text-facebook:visited, a:visited .text-facebook {
+    color: #3b5998;
+    opacity: 0.9; }
 
-a.text-facebook:hover {
-  color: #3b5998;
-  opacity: 0.8; }
+.text-messenger {
+  color: #0084FF; }
+  .text-messenger:hover, a:hover .text-messenger {
+    color: #0084FF;
+    opacity: 0.8; }
+  .text-messenger:active, a:active .text-messenger, .text-messenger:visited, a:visited .text-messenger {
+    color: #0084FF;
+    opacity: 0.9; }
 
 .text-twitter {
   color: #1da1f2; }
-
-a.text-twitter:hover {
-  color: #1da1f2;
-  opacity: 0.8; }
+  .text-twitter:hover, a:hover .text-twitter {
+    color: #1da1f2;
+    opacity: 0.8; }
+  .text-twitter:active, a:active .text-twitter, .text-twitter:visited, a:visited .text-twitter {
+    color: #1da1f2;
+    opacity: 0.9; }
 
 .text-gplus {
   color: #d34836; }
-
-a.text-gplus:hover {
-  color: #d34836;
-  opacity: 0.8; }
+  .text-gplus:hover, a:hover .text-gplus {
+    color: #d34836;
+    opacity: 0.8; }
+  .text-gplus:active, a:active .text-gplus, .text-gplus:visited, a:visited .text-gplus {
+    color: #d34836;
+    opacity: 0.9; }
 
 .text-tumblr {
   color: #304e6f; }
-
-a.text-tumblr:hover {
-  color: #d34836;
-  opacity: 0.8; }
+  .text-tumblr:hover, a:hover .text-tumblr {
+    color: #304e6f;
+    opacity: 0.8; }
+  .text-tumblr:active, a:active .text-tumblr, .text-tumblr:visited, a:visited .text-tumblr {
+    color: #304e6f;
+    opacity: 0.9; }
 
 .text-reddit {
   color: #336699; }
-
-a.text-reddit:hover {
-  color: #336699;
-  opacity: 0.8; }
+  .text-reddit:hover, a:hover .text-reddit {
+    color: #336699;
+    opacity: 0.8; }
+  .text-reddit:active, a:active .text-reddit, .text-reddit:visited, a:visited .text-reddit {
+    color: #336699;
+    opacity: 0.9; }
 
 .text-linkedin {
   color: #0077b5; }
-
-a.text-linkedin:hover {
-  color: #0077b5;
-  opacity: 0.8; }
+  .text-linkedin:hover, a:hover .text-linkedin {
+    color: #0077b5;
+    opacity: 0.8; }
+  .text-linkedin:active, a:active .text-linkedin, .text-linkedin:visited, a:visited .text-linkedin {
+    color: #0077b5;
+    opacity: 0.9; }
 
 .text-wordpress {
   color: #21759b; }
-
-a.text-wordpress:hover {
-  color: #21759b;
-  opacity: 0.8; }
+  .text-wordpress:hover, a:hover .text-wordpress {
+    color: #21759b;
+    opacity: 0.8; }
+  .text-wordpress:active, a:active .text-wordpress, .text-wordpress:visited, a:visited .text-wordpress {
+    color: #21759b;
+    opacity: 0.9; }
 
 .text-globe {
   color: #3333A0; }
-
-a.text-globe:hover {
-  color: #3333A0;
-  opacity: 0.8; }
+  .text-globe:hover, a:hover .text-globe {
+    color: #3333A0;
+    opacity: 0.8; }
+  .text-globe:active, a:active .text-globe, .text-globe:visited, a:visited .text-globe {
+    color: #3333A0;
+    opacity: 0.9; }
 
 .text-rss {
   color: #FF6600; }
+  .text-rss:hover, a:hover .text-rss {
+    color: #FF6600;
+    opacity: 0.8; }
+  .text-rss:active, a:active .text-rss, .text-rss:visited, a:visited .text-rss {
+    color: #FF6600;
+    opacity: 0.9; }
 
-a.text-rss:hover {
-  color: #FF6600;
-  opacity: 0.8; }
+.text-stumbleupon {
+  color: #eb4924; }
+  .text-stumbleupon:hover, a:hover .text-stumbleupon {
+    color: #eb4924;
+    opacity: 0.8; }
+  .text-stumbleupon:active, a:active .text-stumbleupon, .text-stumbleupon:visited, a:visited .text-stumbleupon {
+    color: #eb4924;
+    opacity: 0.9; }
+
+.text-vkontakte {
+  color: #507299; }
+  .text-vkontakte:hover, a:hover .text-vkontakte {
+    color: #507299;
+    opacity: 0.8; }
+  .text-vkontakte:active, a:active .text-vkontakte, .text-vkontakte:visited, a:visited .text-vkontakte {
+    color: #507299;
+    opacity: 0.9; }
 
 .nav > li > a:hover, .nav > li > a:active {
   background-color: inherit; }
@@ -8599,6 +8646,11 @@ footer.copyright {
       margin-right: 2px;
       font-size: 2.1em;
       line-height: 1.42857em; }
+      .card.share a img {
+        height: 22px;
+        width: 22px;
+        position: relative;
+        top: -2px; }
   @media (min-width: 768px) {
     .card {
       margin-top: 20px;
@@ -8611,7 +8663,11 @@ footer.copyright {
         padding: 20px; }
       .card.share {
         margin-top: 20px;
-        margin-bottom: 20px; } }
+        margin-bottom: 20px; }
+        .card.share a img {
+          top: -3px;
+          height: 32px;
+          width: 32px; } }
   @media (min-width: 1200px) {
     .card.article {
       margin-top: 60px;
@@ -8621,7 +8677,11 @@ footer.copyright {
       margin-bottom: 40px; }
     .card.share {
       margin-top: 40px;
-      margin-bottom: 60px; } }
+      margin-bottom: 60px; }
+      .card.share a img {
+        top: -5px;
+        height: 36px;
+        width: 36px; } }
   .card h1:first-child {
     margin-top: 0em;
     padding-top: 0em;

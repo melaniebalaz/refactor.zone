@@ -82,15 +82,25 @@ author: article.author.name
 					lot!
 				</div>
 				<div>
+					{% spaceless %}
 					<a title="Share on Facebook"
-					   href="https://www.facebook.com/dialog/feed?link=https://refactor.zone/{{
+					   href="https://www.facebook.com/dialog/share?link=https://refactor.zone/{{
 					   article.slug|url_encode
-					   }}&amp;app_id=1780998928787657&amp;display=page" class="text-facebook" rel="noopener"
+					   }}&amp;app_id=1780998928787657&amp;display=page&amp;redirect_uri=https://refactor.zone/"
+					   class="text-facebook" rel="noopener"
 					   target="_blank"><i
 								class="fa fa-facebook-square"></i><span class="sr-only">
 										Share on Facebook
 								</span></a>
-
+					<a title="Share on Facebook"
+					   href="https://www.facebook.com/dialog/send?link=https://refactor.zone/{{
+					   article.slug|url_encode
+					   }}&amp;app_id=1780998928787657&amp;redirect_uri=https://refactor.zone/" class="text-messenger"
+					   rel="noopener" target="_blank">
+						<img src="/images/facebook-messenger.svg" height="36" width="36" />
+						<span class="sr-only">
+										Send with Messenger
+								</span></a>
 					<a title="Share on Twitter"
 					   href="https://twitter.com/intent/tweet?source=https://refactor.zone/{{
 					   article.slug|url_encode
@@ -140,13 +150,28 @@ author: article.author.name
 										Share on Linkedin
 								</span></a>
 
+					<a title="Submit to Stumbleupon"
+					   href="http://www.stumbleupon.com/submit?url=https://refactor.zone/{{
+					   article.slug|url_encode
+					   }}" class="text-stumbleupon" rel="noopener" target="_blank"><i
+								class="fa fa-stumbleupon-circle"></i><span class="sr-only">
+									Submit to Stumbleupon
+								</span></a>
+					<a title="Share on VKontakte"
+					   href="http://vk.com/share.php?url=https://refactor.zone/{{
+					   article.slug|url_encode
+					   }}&amp;title={{ article.fullTitle }}" class="text-vkontakte" rel="noopener" target="_blank"><i
+								class="fa fa-vk"></i><span class="sr-only">
+									Share on VKontakte
+								</span></a>
 					<a title="Share on Wordpress"
 					   href="http://wordpress.com/press-this.php?u=https://refactor.zone/{{
 					   article.slug|url_encode
-					   }}" class="text-wordpress" rel="noopener" target="_blank"><i
+					   }}&amp;title={{ article.fullTitle }}" class="text-wordpress" rel="noopener" target="_blank"><i
 								class="fa fa-wordpress"></i><span class="sr-only">
 										Share on Wordpress
 								</span></a>
+					{% endspaceless %}
 				</div>
 			</div>
 		</div>
