@@ -1,5 +1,5 @@
 $fa-font-path: "../fonts/font-awesome" !default;
-$icon-font-path: "../fonts/bootstrap";
+$icon-font-path: "../fonts/bootstrap/";
 $OpenSansPath: "../fonts/opensans";
 $font-family-sans-serif: "Open Sans";
 $font-size-base: 20px;
@@ -42,7 +42,7 @@ a {
 
 @media (min-width: 480px) {
 	body {
-		font-size: 14px;
+		font-size: 12px;
 	}
 	ul {
 		margin-left:  0;
@@ -52,7 +52,7 @@ a {
 
 @media (min-width: 600px) {
 	body {
-		font-size: 16px;
+		font-size: 14px;
 	}
 	ul {
 		margin-left:  0;
@@ -62,7 +62,7 @@ a {
 
 @media (min-width: 690px) {
 	body {
-		font-size: 18px;
+		font-size: 16px;
 	}
 	ul {
 		margin-left:  0;
@@ -140,6 +140,10 @@ a {
 	@include social-color(#eb4924);
 }
 
+.text-getpocket {
+	@include social-color(#ef4056);
+}
+
 .text-vkontakte {
 	@include social-color(#507299);
 }
@@ -154,9 +158,13 @@ a {
 	z-index:          2;
 	border-bottom:    1px solid #e5e5e5;
 	font-size:        ($font-size-base * 0.7);
+
 	@media (min-width: $grid-float-breakpoint) {
 		.navbar-nav > li:first-child a {
 			padding-left: 0;
+		}
+		.navbar-nav > li:last-child a {
+			padding-right: 0;
 		}
 	}
 
@@ -177,6 +185,10 @@ a {
 				}
 			}
 		}
+	}
+
+	.navbar-social {
+		font-size:        ($font-size-base);
 	}
 }
 
@@ -232,7 +244,6 @@ a {
 
 article {
 	@include establish-baseline($font-size-base * 0.90);
-	font-size:$font-size-base * 0.90;
 	@include rhythm(0, 0, 0, 0, $font-size-base * 0.90);
 	color:       #333333;
 	hyphens:     auto;
@@ -258,23 +269,21 @@ article {
 	}
 
 	h3 {
-		@include rhythm(1, 0, 0, 1, 24px);
-		@include adjust-font-size-to(24px);
+		@include rhythm(1, 0, 0, 0.5, 20px);
+		@include adjust-font-size-to(20px);
+		font-weight:bold;
 	}
 	h3:first-child {
-		@include rhythm(0, 0, 0, 1, 24px);
-	}
-
-	h4 {
-		@include rhythm(1, 0, 0, 1, 20px);
-		@include adjust-font-size-to(20px);
-	}
-	h4:first-child {
 		@include rhythm(0, 0, 0, 0.5, 20px);
 	}
 
-	p, ul li {
+	p {
 		@include rhythm(0, 0, 0, 1);
+		text-align: justify;
+	}
+
+	ul li {
+		@include rhythm(0, 0, 0, 0);
 		text-align: justify;
 	}
 
@@ -512,6 +521,9 @@ footer.copyright {
 
 	p {
 		text-align:justify;
+		&.text-center {
+			text-align:center;
+		}
 	}
 }
 

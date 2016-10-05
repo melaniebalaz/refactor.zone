@@ -84,7 +84,7 @@ author: article.author.name
 				<div>
 					{% spaceless %}
 					<a title="Share on Facebook"
-					   href="https://www.facebook.com/dialog/share?link=https://refactor.zone/{{
+					   href="https://www.facebook.com/dialog/share?href=https://refactor.zone/{{
 					   article.slug|url_encode
 					   }}&amp;app_id=1780998928787657&amp;display=page&amp;redirect_uri=https://refactor.zone/"
 					   class="text-facebook" rel="noopener"
@@ -93,7 +93,7 @@ author: article.author.name
 										Share on Facebook
 								</span></a>
 					<a title="Share on Facebook"
-					   href="https://www.facebook.com/dialog/send?link=https://refactor.zone/{{
+					   href="https://www.facebook.com/dialog/send?href=https://refactor.zone/{{
 					   article.slug|url_encode
 					   }}&amp;app_id=1780998928787657&amp;redirect_uri=https://refactor.zone/" class="text-messenger"
 					   rel="noopener" target="_blank">
@@ -156,6 +156,13 @@ author: article.author.name
 					   }}" class="text-stumbleupon" rel="noopener" target="_blank"><i
 								class="fa fa-stumbleupon-circle"></i><span class="sr-only">
 									Submit to Stumbleupon
+								</span></a>
+						<a title="Save on GetPocket"
+						   href="https://getpocket.com/edit?url=https://refactor.zone/{{
+						   article.slug|url_encode
+						   }}" class="text-getpocket" rel="noopener" target="_blank"><i
+									class="fa fa-get-pocket"></i><span class="sr-only">
+									Save on GetPocket
 								</span></a>
 					<a title="Share on VKontakte"
 					   href="http://vk.com/share.php?url=https://refactor.zone/{{

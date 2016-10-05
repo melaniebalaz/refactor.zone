@@ -1,0 +1,45 @@
+{% import "meta.twig" as meta %}
+<!DOCTYPE html>
+<html amp lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>{% if pagetitle %}{{ pagetitle }} &mdash; {% endif %}Refactor Zone</title>
+	<link rel="canonical" href="../" />
+	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
+
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+		  rel="stylesheet"  />
+	<style amp-custom>
+		{{ stylesheet }}
+	</style>
+
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:site_name" content="Refactor Zone" />
+	<meta property="og:title" content="{{ pagetitle }}"/>
+	<meta property="fb:admins" content="janoszen" />
+	<meta property="fb:app_id" content="1780998928787657" />
+	<meta property="fb:pages" content="307680759577091" />
+	{% block meta %}
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="https://refactor.zone/images/social.png" />
+		<link rel="apple-touch-icon-precomposed" href="https://refactor.zone/images/social.png" />
+		<meta name="twitter:card" content="summary_large_image" />
+	{% endblock %}
+	<meta name="twitter:site" content="@refactorzone" />
+	<meta name="twitter:title" content="{% if pagetitle %}{{ pagetitle }}{% else %}Refactor Zone{% endif %}" />
+
+	<link rel="icon" href="/images/social.png" type="image/x-icon" />
+	<link rel="shortcut icon" href="/images/social.png" type="image/x-icon"/>
+
+	<link rel="alternate" type="application/rss+xml" title="Latest Articles &mdash; Refactor Zone" href="/feed" />
+
+	<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+	<script async src="https://cdn.ampproject.org/v0.js"></script>
+</head>
+<body>
+{% block body %}
+	{% block content %}
+	{% endblock %}
+{% endblock %}
+</body>
+</html>

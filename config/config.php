@@ -50,7 +50,9 @@ return \array_merge([
 		'routes'        => [
 			['GET', '/', StartPageController::class, 'startPageAction'],
 			['GET', '/privacy', TextController::class, 'privacyAction'],
-			['GET', '/tos', TextController::class, 'tosAction'],
+			['GET', '/terms', TextController::class, 'tosAction'],
+			['GET', '/imprint', TextController::class, 'imprintAction'],
+			['GET', '/contact', TextController::class, 'contactAction'],
 			['GET', '/page/{page:[0-9]+}', StartPageController::class, 'pageAction'],
 			['GET', '/feed', StartPageController::class, 'feedAction'],
 			['GET', '/feed/instant', StartPageController::class, 'instantFeedAction'],
@@ -68,6 +70,7 @@ return \array_merge([
 			['GET', '/category/{slug:[a-zA-Z\-]+}/feed', CategoryController::class, 'feedAction'],
 			['GET', '/sitemap.xml', SitemapController::class, 'sitemapAction'],
 			['GET', '/{slug:[a-zA-Z\-]+}', ArticleController::class, 'articleAction'],
+			['GET', '/{slug:[a-zA-Z\-]+}/amp', ArticleController::class, 'ampArticleAction'],
 			//['GET', '/{slug:[a-zA-Z\-]+}/instant', ArticleController::class, 'instantArticleAction'],
 		],
 	],

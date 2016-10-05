@@ -31,6 +31,14 @@ class Article extends TextContent {
 	 * @var string
 	 */
 	private $socialImage;
+	/**
+	 * @var string
+	 */
+	private $decor;
+	/**
+	 * @var string
+	 */
+	private $decor2x;
 
 	public function __construct(
 		string $slug,
@@ -41,6 +49,8 @@ class Article extends TextContent {
 		string $excerpt,
 		string $htmlBody,
 		string $socialImage,
+		string $decor,
+		string $decor2x,
 		CategoryList $categories,
 		Series $series = null
 	) {
@@ -52,6 +62,8 @@ class Article extends TextContent {
 		$this->excerpt    = $excerpt;
 		$this->modified = $modified;
 		$this->socialImage = $socialImage;
+		$this->decor = $decor;
+		$this->decor2x = $decor2x;
 	}
 
 	public function getPublished(): \DateTime {
@@ -91,5 +103,19 @@ class Article extends TextContent {
 
 	public function getSocialImage(): string {
 		return $this->socialImage;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getDecor(): string {
+		return $this->decor;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getDecor2x(): string {
+		return $this->decor2x;
 	}
 }

@@ -1,9 +1,14 @@
-{% macro author(author, level=2) %}
+{% macro author(author, level=2, amp=false) %}
 <div class="author" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
 	<div class="row">
 		<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-			<img src="{{ author.imageUrl }}" alt="" class="author-image"
-				 itemprop="image" />
+			{% if amp %}
+				<amp-img src="{{ author.imageUrl }}" alt="" class="author-image"
+					 itemprop="image"></amp-img>
+			{% else %}
+				<img src="{{ author.imageUrl }}" alt="" class="author-image"
+					 itemprop="image" />
+				{% endif %}
 		</div>
 		<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
 			<h{{ level }}>
@@ -86,7 +91,8 @@
 					 itemprop="itemListElement" itemscope="itemscope"
 					 itemtype="https://schema.org/TechArticle">
 				<div class="card">
-					<a href="/{{ article.slug }}"><img src="{{ article.socialImage }}" /></a>
+					<a href="/{{ article.slug }}"><img src="{{ article.decor }}"
+													   srcset="{{ article.decor }} 1x, {{ article.decor2x }} 2x" /></a>
 					<div class="annotation">
 						<h2 itemprop="name"><a itemprop="url" href="/{{ article.slug }}"><span itemprop="headline">
 								{% if article.series %}{{ article.series.name }}: {% endif %}{{ article.title }}

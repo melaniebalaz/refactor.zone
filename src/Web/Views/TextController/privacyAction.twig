@@ -1,0 +1,72 @@
+{% extends "base.twig" %}
+
+{% set pagetitle = 'Privacy policy' %}
+
+{% block breadcrumbs %}
+	<li itemprop="itemListElement" itemscope="itemscope"
+		itemtype="https://schema.org/ListItem">
+		<a itemprop="item" href="https://refactor.zone/terms">
+			<span itemprop="name">Privacy policy</span></a>
+		<meta itemprop="position" content="2" />
+	</li>
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-xl-6 col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-push-1 col-md-push-1">
+			<article>
+				<div class="card article">
+					<header>
+						<h1><span itemprop="headline">
+								Privacy policy
+							</span></h1>
+					</header>
+
+					<div class="articleBody">
+						<h2>
+							General provisions
+						</h2>
+
+						<p>
+							The Refactor Zone respects your privacy. We aim to keep your information as private as
+							possible, so we do not use any third party tracking tools of any sort and only basic
+							server logs for maintenance purposes and anonymized usage data to better understand our
+							visitors needs.
+						</p>
+
+						<p>
+							You can disable usage tracking by blocking the domain <code>track.opsbears.com</code>,
+							disabling JavaScript or setting the Do-Not-Track functionality in your browser. Server
+							logs, however, cannot be disabled as they are required by server maintenance.
+						</p>
+
+						<h2>Use of cookies</h2>
+
+						<p>
+							Our usage tracking software uses cookies to identify users. These cookies can be blocked
+							by using a privacy addon, such as Ghostery, setting the Do-Not-Track functionality in
+							your browser, disabling JavaScript or by blocking the <code>track.opsbears.com</code>
+							domain in your browser.
+						</p>
+
+						<h2>Custodian of Data</h2>
+
+						<p>
+							All data is being handled by the site owner, Opsbears e.U., 47/6 Graf-Starhemberg-Gasse,
+							1040 Vienna, Austria.
+						</p>
+
+						<h2>Updates to this policy</h2>
+
+						<p>
+							This policy may change at any time. However, for larger changes changes will be announced
+							14 days ahead of time on this page.
+						</p>
+
+						<p>This policy was last updated 6th of October, 2016</p>
+					</div>
+				</div>
+			</article>
+		</div>
+	</div>
+{% endblock %}

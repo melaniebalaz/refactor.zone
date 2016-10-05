@@ -75,6 +75,8 @@ class ArticleConverter {
 			$metadata['excerpt'],
 			$textContent->getHtmlBody(),
 			$metadata['social'],
+			$metadata['decor'],
+			$metadata['decor2x'],
 			new CategoryList($categories),
 			$series);
 	}

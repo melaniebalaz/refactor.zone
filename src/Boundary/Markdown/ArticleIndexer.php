@@ -123,6 +123,8 @@ class ArticleIndexer {
 				$article->getExcerpt(),
 				$article->getHtmlBody(),
 				$article->getSocialImage(),
+				$article->getDecor(),
+				$article->getDecor2x(),
 				new CategoryList($newCategoryList),
 				($article->getSeries()?$series[$article->getSeries()->getSlug()]:null)
 			);
