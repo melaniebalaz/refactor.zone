@@ -20,13 +20,41 @@ class ArticleIndexer {
 	 * @var string
 	 */
 	private $datadir;
+	/**
+	 * @var string
+	 */
+	private $cachedir;
+	/**
+	 * @var bool
+	 */
+	private $production;
 
-	public function __construct(ArticleConverter $converter, string $datadir) {
+	public function __construct(ArticleConverter $converter, string $datadir, string $cachedir, $production = true) {
 		$this->converter = $converter;
 		$this->datadir = $datadir;
+		$this->cachedir = $cachedir;
+		$this->production = $production;
 	}
 
 	public function loadArticleDatabase() : ArticleDatabase {
+		if ($this->production) {
+			$cacheFile = $this->cachedir . '/db.serialized';
+			if (\file_exists($cacheFile)) {
+				$cacheValid = true;
+				/*$cacheLastUpdated  = \filemtime($cacheFile);
+				$articlesDirectory = \scandir($this->datadir . '/articles/');
+				foreach ($articlesDirectory as $article) {
+					if (\filemtime($this->datadir . '/articles/' . $article) > $cacheLastUpdated) {
+						$cacheValid = false;
+						break;
+					}
+				}*/
+				if ($cacheValid) {
+					return \unserialize(\file_get_contents($cacheFile));
+				}
+			}
+		}
+
 		$articlesDirectory = \scandir($this->datadir . '/articles/');
 
 		/**
@@ -130,6 +158,8 @@ class ArticleIndexer {
 			);
 		}
 
-		return new ArticleDatabase($authors, $categories, $series, $articles);
+		$result = new ArticleDatabase($authors, $categories, $series, $articles);
+		\file_put_contents($this->cachedir . '/db.serialized', \serialize($result));
+		return $result;
 	}
 }

@@ -1,6 +1,6 @@
 {% extends "base.twig" %}
 
-{% set pagetitle = 'Authors' %}
+{% set pagetitle = 'Categories' %}
 
 {% block breadcrumbs %}
 	<li itemprop="itemListElement" itemscope="itemscope"
@@ -15,8 +15,11 @@
 	<div class="row">
 	{% for category in categories %}
 			<div class="col-md-6 col-lg-6">
-				<h2><a href="/category/{{ category.slug }}">{{ category.name }}</a></h2>
-				{{ category.htmlBody|raw }}
+				<div class="card">
+					<h2>{{ category.name }}</h2>
+					{{ category.htmlBody|raw }}
+					<a href="/category/{{ category.slug }}" class="btn btn-success btn-block">Learn more &rarr;</a>
+				</div>
 			</div>
 	{% endfor %}
 	</div>

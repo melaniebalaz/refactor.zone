@@ -2,6 +2,8 @@
 
 namespace Opsbears\Refactor\Web;
 
+use Opsbears\Refactor\Boundary\Objects\Article;
+
 class ArticleController extends AbstractController {
 	public function articleAction(string $slug) {
 		$article = $this->getArticleProvider()->getArticle($slug)->getArticle();
@@ -25,9 +27,23 @@ class ArticleController extends AbstractController {
 	public function instantArticleAction(string $slug) {
 		$article = $this->getArticleProvider()->getArticle($slug)->getArticle();
 		$this->setLastModified($article->getModified());
+
+		/**
+		 * @var Article[] $recommendedArticles
+		 */
+		$recommendedArticles = $this->getArticleProvider()->getLatestArticlesByAuthor($article->getAuthor()->getSlug(), 0, 5)->getArticles();
+		foreach ($recommendedArticles as $key => $recommendedArticle) {
+			if ($recommendedArticle->getSlug() == $article->getSlug()) {
+				unset($recommendedArticles[$key]);
+			}
+		}
+		if (count($recommendedArticles) == 5) {
+			array_pop($recommendedArticles);
+		}
 		return [
 			'categories' => $this->getArticleProvider()->getCategories()->getCategories(),
 			'article'    => $article,
+			'recommendedArticles' => $recommendedArticles
 		];
 	}
 }

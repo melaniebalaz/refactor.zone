@@ -12,33 +12,61 @@ use Opsbears\Refactor\Boundary\GetLatestArticlesBySeriesResponse;
 use Opsbears\Refactor\Boundary\GetLatestArticlesResponse;
 use Opsbears\Refactor\Boundary\GetSeriesResponse;
 use Opsbears\Refactor\Boundary\NotFoundException;
+use Opsbears\Refactor\Boundary\Objects\Article;
 use Opsbears\Refactor\Boundary\Objects\ArticleList;
 use Opsbears\Refactor\Boundary\Objects\AuthorList;
 use Opsbears\Refactor\Boundary\Objects\CategoryList;
 use Opsbears\Refactor\Boundary\Objects\SeriesList;
 
 class MarkdownArticleProvider implements ArticleProvider {
-	/**
-	 * @var ArticleConverter
-	 */
-	private $articleConverter;
+
 	/**
 	 * @var ArticleIndexer
 	 */
 	private $indexer;
 
-	public function __construct(ArticleConverter $articleConverter, ArticleIndexer $indexer) {
-		$this->articleConverter = $articleConverter;
+	public function __construct(ArticleIndexer $indexer) {
 		$this->indexer = $indexer;
 	}
 
+	/**
+	 * @param Article[] $articles
+	 *
+	 * @return Article[]
+	 */
+	private function sortArticles(array $articles) {
+		foreach ($articles as $key => $article) {
+			if ($article->getPublished()->getTimestamp() < 0) {
+				unset($articles[$key]);
+			}
+		}
+		\usort($articles, function (Article $a, Article $b) {
+			if ($a->getPublished() < $b->getPublished()) {
+				return 1;
+			} else if ($a->getPublished() > $b->getPublished()) {
+				return -1;
+			} else {
+				return 0;
+			}
+		});
+		return $articles;
+	}
+
 	public function getArticle(string $slug) : GetArticleResponse {
-		return new GetArticleResponse($this->articleConverter->convert($slug));
+		$db = $this->indexer->loadArticleDatabase();
+		foreach ($db->getArticles() as $article) {
+			if ($article->getSlug() == $slug) {
+				return new GetArticleResponse($article);
+			}
+		}
+
+		throw new \Exception('Article not found', 404);
 	}
 
 	public function getLatestArticles(int $from = 0, int $count = 10) : GetLatestArticlesResponse {
 		$db = $this->indexer->loadArticleDatabase();
-		$articles = \array_slice($db->getArticles(), $from, $count);
+		$articles = $this->sortArticles($db->getArticles());
+		$articles = \array_slice($articles, $from, $count);
 		return new GetLatestArticlesResponse(new ArticleList($articles), \count($db->getArticles()));
 	}
 
@@ -56,7 +84,7 @@ class MarkdownArticleProvider implements ArticleProvider {
 			throw new NotFoundException();
 		}
 
-		$articles = \array_slice(iterator_to_array($foundSeries->getArticles()), $from, $count);
+		$articles = \array_slice($this->sortArticles(iterator_to_array($foundSeries->getArticles())), $from, $count);
 		return new GetLatestArticlesBySeriesResponse(
 			$foundSeries,
 			new ArticleList($articles),
@@ -78,7 +106,7 @@ class MarkdownArticleProvider implements ArticleProvider {
 			throw new NotFoundException();
 		}
 
-		$articles = \array_slice(iterator_to_array($foundCategory->getArticles()), $from, $count);
+		$articles = \array_slice($this->sortArticles(iterator_to_array($foundCategory->getArticles())), $from, $count);
 		return new GetLatestArticlesByCategoryResponse(
 			$foundCategory,
 			new ArticleList($articles),
@@ -123,7 +151,7 @@ class MarkdownArticleProvider implements ArticleProvider {
 			$foundAuthor,
 			new ArticleList(
 				\array_slice(
-					iterator_to_array($foundAuthor->getArticles()),
+					$this->sortArticles(iterator_to_array($foundAuthor->getArticles())),
 					$from,
 					$count
 				)

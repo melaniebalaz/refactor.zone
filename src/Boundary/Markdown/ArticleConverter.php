@@ -43,7 +43,7 @@ class ArticleConverter {
 
 	public function convert($slug) : Article {
 		$file = $this->datadir . '/articles/' . $slug . '.md';
-		if (!\preg_match('/^[a-zA-Z0-9\-]+\Z/', $slug) || !file_exists($file)) {
+		if (!\preg_match('/^[a-zA-Z0-9\-]+\Z/', $slug) || !\file_exists($file)) {
 			throw new \Exception('', 404);
 		}
 		$modified = new \DateTime();

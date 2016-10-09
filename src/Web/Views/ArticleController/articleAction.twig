@@ -51,10 +51,12 @@ author: article.author.name
 							by
 							<a href="/author/{{ article.author.slug }}">{{ article.author.name }}</a>
 						</span>
+						{% if article.published.timestamp > 0 %}
 						‧
 						<time itemprop="datePublished" datetime="{{ article.published.format('Y-m-d') }}">
 							{{ article.published.format('F j, Y') }}
 						</time>
+						{% endif %}
 
 						{{ meta.publisher() }}
 						<span itemprop="image" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
@@ -67,7 +69,9 @@ author: article.author.name
 					</header>
 
 					<div itemprop="articleBody" class="articleBody">
-						{{ article.htmlBody|raw }}
+						{{ article.htmlBody
+						|regexp_replace('/<image src="(.*?)" \\/><\\/svg>/s','</svg>')
+						|raw }}
 					</div>
 				</div>
 				<div class="card meta">
@@ -84,24 +88,25 @@ author: article.author.name
 				<div>
 					{% spaceless %}
 					<a title="Share on Facebook"
+					   target="_blank" rel="noopener noreferrer"
 					   href="https://www.facebook.com/dialog/share?href=https://refactor.zone/{{
 					   article.slug|url_encode
 					   }}&amp;app_id=1780998928787657&amp;display=page&amp;redirect_uri=https://refactor.zone/"
-					   class="text-facebook" rel="noopener"
-					   target="_blank"><i
+					   class="text-facebook"><i
 								class="fa fa-facebook-square"></i><span class="sr-only">
 										Share on Facebook
 								</span></a>
 					<a title="Share on Facebook"
-					   href="https://www.facebook.com/dialog/send?href=https://refactor.zone/{{
+					   target="_blank" rel="noopener noreferrer"
+					   href="https://www.facebook.com/dialog/send?link=https://refactor.zone/{{
 					   article.slug|url_encode
-					   }}&amp;app_id=1780998928787657&amp;redirect_uri=https://refactor.zone/" class="text-messenger"
-					   rel="noopener" target="_blank">
-						<img src="/images/facebook-messenger.svg" height="36" width="36" />
+					   }}&amp;app_id=1780998928787657&amp;redirect_uri=https://refactor.zone/" class="text-messenger">
+						<img src="{{ staticUrl('/images/facebook-messenger.svg') }}" height="36" width="36" />
 						<span class="sr-only">
 										Send with Messenger
 								</span></a>
 					<a title="Share on Twitter"
+					   target="_blank" rel="noopener noreferrer"
 					   href="https://twitter.com/intent/tweet?source=https://refactor.zone/{{
 					   article.slug|url_encode
 					   }}&amp;url=https://refactor.zone/{{
@@ -113,68 +118,76 @@ author: article.author.name
 					   }}&amp;related={{
 					   article.author.twitterUrl|replace({'https://twitter.com/':''})|url_encode
 					   }}{% endif %}"
-					   class="text-twitter" rel="noopener" target="_blank"><i
+					   class="text-twitter"><i
 								class="fa fa-twitter-square"></i><span class="sr-only">
 										Share on Twitter
 								</span></a>
 
 					<a title="Share on Google+"
+					   target="_blank" rel="noopener noreferrer"
 					   href="https://plus.google.com/share?url=https://refactor.zone/{{
 					   article.slug|url_encode
-					   }}&amp;hl=en" class="text-gplus" rel="noopener" target="_blank"><i
+					   }}&amp;hl=en" class="text-gplus"><i
 								class="fa fa-google-plus-square"></i><span class="sr-only">
 										Share on Google+
 								</span></a>
 
 					<a title="Share on Tumblr"
+					   target="_blank" rel="noopener noreferrer"
 					   href="https://tumblr.com/widgets/share/tool?canonicalUrl=https://refactor.zone/{{
 					   article.slug|url_encode
-					   }}" class="text-tumblr" rel="noopener" target="_blank"><i
+					   }}" class="text-tumblr"><i
 								class="fa fa-tumblr-square"></i><span class="sr-only">
 										Share on Tumblr
 								</span></a>
 
 					<a title="Share on Reddit"
+					   target="_blank" rel="noopener noreferrer"
 					   href="https://www.reddit.com/submit?url=https://refactor.zone/{{
 					   article.slug|url_encode
-					   }}&amp;title={{ article.fullTitle }}" class="text-reddit" rel="noopener" target="_blank"><i
+					   }}&amp;title={{ article.fullTitle }}" class="text-reddit"><i
 								class="fa fa-reddit-square"></i><span class="sr-only">
 										Share on Reddit
 								</span></a>
 
 					<a title="Share on Linkedin"
+					   target="_blank" rel="noopener noreferrer"
 					   href="https://www.linkedin.com/shareArticle?mini=true&url=https://refactor.zone/{{
 					   article.slug|url_encode
-					   }}" class="text-linkedin" rel="noopener" target="_blank"><i
+					   }}" class="text-linkedin"><i
 								class="fa fa-linkedin-square"></i><span class="sr-only">
 										Share on Linkedin
 								</span></a>
 
 					<a title="Submit to Stumbleupon"
+					   target="_blank" rel="noopener noreferrer"
 					   href="http://www.stumbleupon.com/submit?url=https://refactor.zone/{{
 					   article.slug|url_encode
-					   }}" class="text-stumbleupon" rel="noopener" target="_blank"><i
+					   }}" class="text-stumbleupon"><i
 								class="fa fa-stumbleupon-circle"></i><span class="sr-only">
 									Submit to Stumbleupon
 								</span></a>
 						<a title="Save on GetPocket"
+						   target="_blank" rel="noopener noreferrer"
 						   href="https://getpocket.com/edit?url=https://refactor.zone/{{
 						   article.slug|url_encode
-						   }}" class="text-getpocket" rel="noopener" target="_blank"><i
+						   }}" class="text-getpocket"><i
 									class="fa fa-get-pocket"></i><span class="sr-only">
 									Save on GetPocket
 								</span></a>
 					<a title="Share on VKontakte"
+					   target="_blank" rel="noopener noreferrer"
 					   href="http://vk.com/share.php?url=https://refactor.zone/{{
 					   article.slug|url_encode
-					   }}&amp;title={{ article.fullTitle }}" class="text-vkontakte" rel="noopener" target="_blank"><i
+					   }}&amp;title={{ article.fullTitle }}" class="text-vkontakte"><i
 								class="fa fa-vk"></i><span class="sr-only">
 									Share on VKontakte
 								</span></a>
 					<a title="Share on Wordpress"
+					   target="_blank" rel="noopener noreferrer"
 					   href="http://wordpress.com/press-this.php?u=https://refactor.zone/{{
 					   article.slug|url_encode
-					   }}&amp;title={{ article.fullTitle }}" class="text-wordpress" rel="noopener" target="_blank"><i
+					   }}&amp;title={{ article.fullTitle }}" class="text-wordpress"><i
 								class="fa fa-wordpress"></i><span class="sr-only">
 										Share on Wordpress
 								</span></a>

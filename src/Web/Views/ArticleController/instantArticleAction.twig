@@ -9,17 +9,11 @@
 <body>
 <article>
 	<header>
-		<!-- The cover image shown inside your article -->
 		<figure>
-			<img src="https://refactor.zone{{ article.socialImage }}"/>
-			<figcaption></figcaption>
+			<img src="{{ staticUrl(article.decor2x) }}"/>
 		</figure>
 
 		<h1> {{ article.fullTitle }}</h1>
-
-		<h3 class="op-kicker">
-			{{ article.excerpt }}
-		</h3>
 
 		<address>
 			by <a href="{{ article.author.facebookUrl }}">{{ article.author.name }}</a>
@@ -33,17 +27,56 @@
 		</time>
 	</header>
 
-	{{ article.htmlBody|replace({'<h3': '<h2', '</h3': '</h2'})|raw }}
+	{{ article.htmlBody|replace({
+			'<h3': '<h2',
+			'</h3': '</h2',
+			'<pre>':'<figure class="op-interactive"><iframe class="column-width"><pre style="padding-left:1em;padding-right:1em;">',
+			'</pre>':'</pre></iframe></figure>'
+		})
+	|regexp_replace('/<svg(.*?)<image src="(.*?)" \\/><\\/svg>/s','<figure><img src="$2" /></figure>')
+	|regexp_replace('/<h2 id="sources">.*/s','')
+	|raw }}
 
 	<footer>
 		<aside>
-
+			<p>
+				<strong><a href="{{ article.author.facebookUrl }}">{{ article.author.name }}</a></strong>
+				{{ article.author.htmlBody|replace({'<p>':'','</p>':''})|raw }}
+			</p>
+			{% if (article.htmlBody|regexp_replace('/<h2 id="sources">(.*)<\\/h2>/s', '$1') != article.htmlBody) %}
+				{% set sources = article.htmlBody|regexp_replace('/.*<h2 id="sources">.*<\\/h2>/s', '') %}
+				{% set sources = sources|replace({'<ul>':'', '</ul>':'','<li>':''})|split('</li>') %}
+				<p><strong>Sources:</strong>
+					{{ sources|join(', ')|trim(', ')|raw }}</p>
+			{% endif %}
 		</aside>
-
-		<small></small>
+		{% if recommendedArticles is not empty %}
+			<ul class="op-related-articles">
+				{% for recommendedArticle in recommendedArticles %}
+					<li><a href="https://refactor.zone/{{ recommendedArticle.slug }}">{{ recommendedArticle.title }}</a></li>
+				{% endfor %}
+			</ul>
+		{% endif %}
 	</footer>
 
-
+	<figure class="op-tracker">
+		<iframe>
+			<script type="text/javascript">
+				var _paq = _paq || [];
+				_paq.push(["setDomains", ["*.refactor.zone"]]);
+				_paq.push(['trackPageView']);
+				_paq.push(['enableLinkTracking']);
+				(function() {
+					var u="//track.opsbears.com/";
+					_paq.push(['setTrackerUrl', u+'piwik.php']);
+					_paq.push(['setSiteId', '3']);
+					var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+					g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+				})();
+			</script>
+			<noscript><p><img src="//track.opsbears.com/piwik.php?idsite=3" style="border:0;" alt="" /></p></noscript>
+		</iframe>
+	</figure>
 </article>
 </body>
 </html>

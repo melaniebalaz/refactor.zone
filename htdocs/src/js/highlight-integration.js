@@ -1,2 +1,0 @@
-//noinspection JSUnresolvedVariable
-hljs.initHighlightingOnLoad();

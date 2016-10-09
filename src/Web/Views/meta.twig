@@ -3,10 +3,10 @@
 	<div class="row">
 		<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
 			{% if amp %}
-				<amp-img src="{{ author.imageUrl }}" alt="" class="author-image"
+				<amp-img src="{{ staticUrl(author.imageUrl) }}" alt="" class="author-image"
 					 itemprop="image"></amp-img>
 			{% else %}
-				<img src="{{ author.imageUrl }}" alt="" class="author-image"
+				<img src="{{ staticUrl(author.imageUrl) }}" alt="" class="author-image"
 					 itemprop="image" />
 				{% endif %}
 		</div>
@@ -15,12 +15,14 @@
 				<span itemprop="name">{{ author.name }}</span>
 				<span class="social">
 						<a
+							target="_blank" rel="noopener noreferrer"
 							href="/author/{{ author.slug }}/feed"
 							class="text-rss"
 							title="Subscribe to {{ author.name }} using your RSS reader"><i
 								class="fa fa-rss"></i></a>
 					{% if author.url %}
 						<a
+								target="_blank" rel="noopener noreferrer"
 								rel="author"
 								href="{{ author.url }}"
 								class="text-globe"
@@ -30,6 +32,7 @@
 					{% endif %}
 					{% if author.facebookUrl %}
 						<a
+								target="_blank" rel="noopener noreferrer"
 								rel="author"
 								href="{{ author.facebookUrl }}"
 								class="text-facebook" itemprop="url"
@@ -38,6 +41,7 @@
 					{% endif %}
 					{% if author.twitterUrl %}
 						<a
+								target="_blank" rel="noopener noreferrer"
 								rel="author"
 								href="{{ author.twitterUrl }}"
 								class="text-twitter" itemprop="url"
@@ -46,6 +50,7 @@
 					{% endif %}
 					{% if author.gplusUrl %}
 						<a
+								target="_blank" rel="noopener noreferrer"
 								rel="author"
 								href="{{ author.gplusUrl }}"
 								class="text-gplus" itemprop="url"
@@ -91,8 +96,9 @@
 					 itemprop="itemListElement" itemscope="itemscope"
 					 itemtype="https://schema.org/TechArticle">
 				<div class="card">
-					<a href="/{{ article.slug }}"><img src="{{ article.decor }}"
-													   srcset="{{ article.decor }} 1x, {{ article.decor2x }} 2x" /></a>
+					<a href="/{{ article.slug }}">
+						<img src="{{ staticUrl(article.decor) }}"
+						     srcset="{{ staticUrl(article.decor) }} 1x, {{ staticUrl(article.decor2x) }} 2x" /></a>
 					<div class="annotation">
 						<h2 itemprop="name"><a itemprop="url" href="/{{ article.slug }}"><span itemprop="headline">
 								{% if article.series %}{{ article.series.name }}: {% endif %}{{ article.title }}
@@ -170,7 +176,7 @@
 {% endmacro %}
 
 
-{% macro instantrss(self, title, link, description, articles) %}{% spaceless %}
+{% macro instantrss(self, title, link, description, articles, articleRecommendedArticles) %}{% spaceless %}
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
 	 xmlns:content="http://purl.org/rss/1.0/modules/content/">
@@ -180,6 +186,7 @@
 		<atom:link href="{{ self }}" rel="self" type="application/rss+xml" />
 		<description>{{ description }}</description>
 		{% for article in articles %}
+			{% set recommendedArticles = articleRecommendedArticles[article.slug] %}
 			<item>
 				<title>{{ article.fullTitle }}</title>
 				<author>{{ article.author.name }}</author>

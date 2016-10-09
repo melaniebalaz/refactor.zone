@@ -41,7 +41,7 @@ gem "sass"</echo>
 
 	<target name="frontend-build-js" description="Builds the JavaScript code with uglify">
 		<exec
-				command="modules/.bin/uglifyjs modules/jquery/dist/jquery.js modules/bootstrap-sass/assets/javascripts/bootstrap.js --output js/site.min.js --source-map=js/site.min.js.map --source-map-url=site.min.js.map --source-map-include-sources --source-map-root=../"
+				command="modules/.bin/uglifyjs modules/jquery/dist/jquery.js modules/bootstrap-sass/assets/javascripts/bootstrap.js src/js/piwik-integration.js src/js/cookie-integration.js --output js/site.min.js --source-map=js/site.min.js.map --source-map-url=site.min.js.map --source-map-include-sources --source-map-root=../"
 				dir="htdocs"
 				logoutput="true"
 				checkreturn="true" />

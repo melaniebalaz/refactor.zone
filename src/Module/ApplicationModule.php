@@ -11,6 +11,7 @@ use Opsbears\Refactor\Boundary\Markdown\CategoryConverter;
 use Opsbears\Refactor\Boundary\Markdown\MarkdownArticleProvider;
 use Opsbears\Refactor\Boundary\Markdown\SeriesConverter;
 use Opsbears\Refactor\Boundary\Objects\Category;
+use Opsbears\Refactor\Templating\StaticUrlFunction;
 use Piccolo\DependencyInjection\DependencyInjectionContainer;
 use Piccolo\Module\AbstractModule;
 use Piccolo\Templating\Engine\Twig\TwigTemplateEngine;
@@ -76,6 +77,14 @@ class ApplicationModule extends AbstractModule {
 		$dic->setClassParameters(CategoryConverter::class, ['datadir' => $moduleConfig['datadir']]);
 		$dic->setClassParameters(SeriesConverter::class,   ['datadir' => $moduleConfig['datadir']]);
 		$dic->setClassParameters(AuthorConverter::class,   ['datadir' => $moduleConfig['datadir']]);
-		$dic->setClassParameters(ArticleIndexer::class,    ['datadir' => $moduleConfig['datadir']]);
+		$dic->setClassParameters(ArticleIndexer::class,    [
+			'datadir' => $moduleConfig['datadir'],
+			'cachedir' => $moduleConfig['cachedir'],
+			'production' => $moduleConfig['production'],
+		]);
+		$dic->setClassParameters(StaticUrlFunction::class,   [
+			'staticRoot' => __DIR__ . '/../../htdocs/',
+			'staticUrl' => 'https://refactor.zone'
+		]);
 	}
 }

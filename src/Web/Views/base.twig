@@ -5,15 +5,9 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="HandheldFriendly" content="true" />
-	<meta name="theme-color" content="#63bc46" />
-	<meta name="msapplication-navbutton-color" content="#63bc46" />
-	<meta name="format-detection" content="telephone=no" />
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
 	<title>{% if pagetitle %}{{ pagetitle }} &mdash; {% endif %}Refactor Zone</title>
-	<link href="/css/site.min.css" rel="stylesheet" />
+	<link href="{{ staticUrl('/css/site.min.css') }}" rel="stylesheet" />
 
 	<meta property="og:locale" content="en_US" />
 	<meta property="og:site_name" content="Refactor Zone" />
@@ -23,24 +17,38 @@
 	<meta property="fb:pages" content="307680759577091" />
 {% block meta %}
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="https://refactor.zone/images/social.png" />
-	<link rel="apple-touch-icon-precomposed" href="https://refactor.zone/images/social.png" />
+	<meta property="og:image" content="{{ staticUrl('/images/social.png') }}" />
+	<link rel="apple-touch-icon-precomposed" href="{{ staticUrl('/images/social.png') }}" />
 	<meta name="twitter:card" content="summary_large_image" />
 {% endblock %}
 	<meta name="twitter:site" content="@refactorzone" />
 	<meta name="twitter:title" content="{% if pagetitle %}{{ pagetitle }}{% else %}Refactor Zone{% endif %}" />
 
-	<link rel="icon" href="/images/social.png" type="image/x-icon" />
-	<link rel="shortcut icon" href="/images/social.png" type="image/x-icon"/>
+	<link rel="icon" href="{{ staticUrl('/images/social.png') }}" type="image/x-icon" />
+	<link rel="shortcut icon" href="{{ staticUrl('/images/social.png') }}" type="image/x-icon"/>
 
 	<link rel="alternate" type="application/rss+xml" title="Latest Articles &mdash; Refactor Zone" href="/feed" />
 
-	<link rel="alternate amphtml" href="./amp" />
-
 	<!--[if lt IE 9]>
-		<script src="/js/html5shiv.min.js"></script>
-		<script src="/js/respond.min.js"></script>
+		<script src="{{ staticUrl('/js/html5shiv.min.js') }}"></script>
+		<script src="{{ staticUrl('/js/respond.min.js') }}"></script>
 	<![endif]-->
+
+	<link rel="copyright" href="https://refactor.zone/terms" />
+
+	<meta http-equiv="cleartype" content="on" />
+	<meta name="skype_toolbar" content="skype_toolbar_parser_compatible" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="application-name" content="Refactor Zone" />
+	<meta name="msapplication-starturl" content="/" />
+	<meta name="HandheldFriendly" content="true" />
+	<meta name="theme-color" content="#63bc46" />
+	<meta name="msapplication-navbutton-color" content="#63bc46" />
+	<meta name="msapplication-TileColor" content="#63bc46" />
+	<meta name="msapplication-TileImage" content="{{ staticUrl('/images/social.png') }}" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 </head>
 <body class="light">
 	<header>
@@ -62,17 +70,20 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right navbar-social">
 					<li>
-						<a href="/feed" title="Subscribe to the Refactor Zone using your RSS reader">
+						<a href="/feed" title="Subscribe to the Refactor Zone using your RSS reader"
+						   target="_blank" rel="noopener noreferrer">
 							<i class="fa fa-lg fa-rss-square text-rss" aria-label="RSS"></i>
 						</a>
 					</li>
 					<li>
-						<a href="https://www.facebook.com/refactorzone/" title="Like us on Facebook">
+						<a href="https://www.facebook.com/refactorzone/" title="Like us on Facebook"
+						   target="_blank" rel="noopener noreferrer">
 							<i class="fa fa-lg fa-facebook-square text-facebook" aria-label="Facebook"></i>
 						</a>
 					</li>
 					<li>
-						<a href="https://twitter.com/refactorzone/" title="Follow us on Twitter">
+						<a href="https://twitter.com/refactorzone/" title="Follow us on Twitter"
+						   target="_blank" rel="noopener noreferrer">
 							<i class="fa fa-lg fa-twitter-square text-twitter" aria-label="Twitter"></i>
 						</a>
 					</li>
@@ -90,8 +101,8 @@
 					</button>
 					<a class="navbar-brand" href="/">
 						<img
-								src="/images/refactor-zone-logo.png"
-								srcset="/images/refactor-zone-logo-2x.png 2x"
+								src="{{ staticUrl('/images/refactor-zone-logo.png') }}"
+								srcset="{{ staticUrl('/images/refactor-zone-logo-2x.png') }} 2x"
 								alt="Refactor Zone"
 								height="60"
 								width="216"
@@ -201,6 +212,14 @@
 			</div>
 		</div>
 	</footer>
-	<script src="/js/site.min.js"></script>
+	<footer class="cookieConsent">
+		<div class="container">
+			<button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="text-muted">Guess what, this site is using cookies to learn something about our visitors. You
+				can set your browsers Do-Not-Track function to disable this.
+				<a href="/privacy">Read our privacy policy for details.</a></div>
+		</div>
+	</footer>
+	<script async="async" src="{{ staticUrl('/js/site.min.js') }}"></script>
 </body>
 </html>

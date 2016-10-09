@@ -4,10 +4,10 @@
 
 {% block meta %}
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="https://refactor.zone/images/social.png" />
+	<meta property="og:image" content="{{ staticUrl('/images/social.png') }}" />
 	<meta property="og:url" content="https://refactor.zone/" />
 	<meta property="og:description" content="Refactor Zone! Online magazine about all things IT!" />
-	<link rel="apple-touch-icon-precomposed" href="https://refactor.zone/images/social.png" />
+	<link rel="apple-touch-icon-precomposed" href="{{ staticUrl('/images/social.png') }}" />
 	<meta name="twitter:card" content="summary_large_image" />
 {% endblock %}
 

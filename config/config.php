@@ -1,6 +1,8 @@
 <?php
 
 use Opsbears\Refactor\Module\ApplicationModule;
+use Opsbears\Refactor\Templating\RegexReplaceFilter;
+use Opsbears\Refactor\Templating\StaticUrlFunction;
 use Opsbears\Refactor\Web\ArticleController;
 use Opsbears\Refactor\Web\AuthorController;
 use Opsbears\Refactor\Web\CategoryController;
@@ -9,6 +11,7 @@ use Opsbears\Refactor\Web\SeriesController;
 use Opsbears\Refactor\Web\SitemapController;
 use Opsbears\Refactor\Web\StartPageController;
 use Opsbears\Refactor\Web\TextController;
+use Piccolo\Templating\TemplatingModule;
 
 $localConfig = [];
 if (\file_exists(__DIR__ . '/local.config.php')) {
@@ -27,6 +30,8 @@ return \array_merge([
 	],
 	'refactor' => [
 		'datadir' => __DIR__ . '/../data/',
+		'cachedir' => __DIR__ . '/../cache/',
+		'production' => true
 	],
 	/**
 	 * Routing information via FastRoute. (This can be easily replaced.)
@@ -71,7 +76,15 @@ return \array_merge([
 			['GET', '/sitemap.xml', SitemapController::class, 'sitemapAction'],
 			['GET', '/{slug:[a-zA-Z\-]+}', ArticleController::class, 'articleAction'],
 			['GET', '/{slug:[a-zA-Z\-]+}/amp', ArticleController::class, 'ampArticleAction'],
-			//['GET', '/{slug:[a-zA-Z\-]+}/instant', ArticleController::class, 'instantArticleAction'],
+			['GET', '/{slug:[a-zA-Z\-]+}/instant', ArticleController::class, 'instantArticleAction'],
+		],
+	],
+	'templating' => [
+		TemplatingModule::CONFIG_FUNCTIONS => [
+			StaticUrlFunction::class
+		],
+		TemplatingModule::CONFIG_FILTERS => [
+			RegexReplaceFilter::class
 		],
 	],
 	'twig'      => [

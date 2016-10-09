@@ -6,6 +6,7 @@ bin/sass-convert
 bin/scss
 .bundle/
 config/local.config.php
+cache/*
 Gemfile
 Gemfile.lock
 htdocs/package.json

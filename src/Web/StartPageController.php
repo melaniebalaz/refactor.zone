@@ -2,6 +2,8 @@
 
 namespace Opsbears\Refactor\Web;
 
+use Opsbears\Refactor\Boundary\Objects\Article;
+
 class StartPageController extends AbstractController {
 	public function startPageAction() : array {
 		$response = $this->getArticleProvider()->getLatestArticles(0, 9);
@@ -40,9 +42,32 @@ class StartPageController extends AbstractController {
 		$this->setResponse($this->getResponse()->withHeader('Content-Type', 'text/xml'));
 
 		$response = $this->getArticleProvider()->getLatestArticles();
+
+		$articles = $response->getArticles();
+		$recommendedArticles = [];
+
+		foreach ($articles as $article) {
+			/**
+			 * @var Article[] $articleRecommendedArticles
+			 */
+			$articleRecommendedArticles =
+				$this->getArticleProvider()->getLatestArticlesByAuthor($article->getAuthor()->getSlug(), 0, 5)
+					 ->getArticles();
+			foreach ($articleRecommendedArticles as $key => $recommendedArticle) {
+				if ($recommendedArticle->getSlug() == $article->getSlug()) {
+					unset($articleRecommendedArticles[$key]);
+				}
+			}
+			if (count($articleRecommendedArticles) == 5) {
+				array_pop($articleRecommendedArticles);
+			}
+			$recommendedArticles[$article->getSlug()] = $articleRecommendedArticles;
+		}
+
 		return [
-			'articles'   => $response->getArticles(),
-			'request'    => $this->getRequest()
+			'articles'   => $articles,
+			'request'    => $this->getRequest(),
+			'articleRecommendedArticles' => $articleRecommendedArticles
 		];
 	}
 }

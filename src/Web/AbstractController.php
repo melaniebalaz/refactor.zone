@@ -3,6 +3,7 @@
 namespace Opsbears\Refactor\Web;
 
 use Opsbears\Refactor\Boundary\ArticleProvider;
+use Opsbears\Refactor\Templating\StaticUrlFunction;
 use Piccolo\Web\Processor\Controller\DataObjects\HTTPRequestResponseContainer;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -34,12 +35,17 @@ abstract class AbstractController {
 		ArticleProvider        $articleProvider,
 		ServerRequestInterface $request,
 		ResponseInterface      $response,
-		HTTPRequestResponseContainer $requestResponseContainer
+		HTTPRequestResponseContainer $requestResponseContainer,
+		StaticUrlFunction $staticUrlFunction
 	) {
 		$this->request         = $request;
 		$this->response        = $response;
 		$this->articleProvider = $articleProvider;
 		$this->requestResponseContainer = $requestResponseContainer;
+
+		$this->setResponse(
+			$this->getResponse()->withAddedHeader('Link', '<' . $staticUrlFunction->execute('/css/site.min.css') . '>' .
+				'; rel="preload"; as="style"'));
 	}
 
 	protected function getArticleProvider(): ArticleProvider {
