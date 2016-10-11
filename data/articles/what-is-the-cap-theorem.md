@@ -20,7 +20,7 @@ separate machine, but at some point you can't help but notice that you need to s
 one server.
 
 Being the cautious person you are, you hopefully start to read up on this topic. After all, if you have two servers, 
-which one is &ldquo;the source of truth&rdquo;? What if you update the same information on both servers at the same 
+which one is “the source of truth”? What if you update the same information on both servers at the same 
 time? Granted, these don't seem like big issues at first, but if you don't pay attention to them, they will come back
 and haunt you.
 

@@ -154,7 +154,8 @@ class ArticleIndexer {
 				$article->getDecor(),
 				$article->getDecor2x(),
 				new CategoryList($newCategoryList),
-				($article->getSeries()?$series[$article->getSeries()->getSlug()]:null)
+				($article->getSeries()?$series[$article->getSeries()->getSlug()]:null),
+				$article->getSubtitle()
 			);
 		}
 

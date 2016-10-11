@@ -101,8 +101,10 @@
 						     srcset="{{ staticUrl(article.decor) }} 1x, {{ staticUrl(article.decor2x) }} 2x" /></a>
 					<div class="annotation">
 						<h2 itemprop="name"><a itemprop="url" href="/{{ article.slug }}"><span itemprop="headline">
-								{% if article.series %}{{ article.series.name }}: {% endif %}{{ article.title }}
-							</span></a></h2>
+								{% if article.series %}{{ article.series.name }}: {% endif %}{{ article.title }}</span>{%
+								if article.subtitle %}, <span itemprop="alternativeHeadline">{{ article.subtitle }}</span>
+							{%	endif %}
+							</a></h2>
 						<div class="author-meta" itemprop="author" itemscope="itemscope"
 							 itemtype="https://schema.org/Person">
 							by <a href="/author/{{ article.author.slug }}" itemprop="url">
@@ -154,7 +156,7 @@
 
 	{% for article in articles %}
 	<entry>
-		<title>{{ article.fullTitle }}</title>
+		<title>{{ article.fullTitle }}{% if article.subtitle %}, {{ article.subtitle }}{% endif %}</title>
 		<link href="https://refactor.zone/{{ article.slug }}"/>
 		<id>https://refactor.zone/{{ article.slug }}</id>
 		<published>{{ article.published.format('c') }}</published>
@@ -188,7 +190,7 @@
 		{% for article in articles %}
 			{% set recommendedArticles = articleRecommendedArticles[article.slug] %}
 			<item>
-				<title>{{ article.fullTitle }}</title>
+				<title>{{ article.fullTitle }}{% if article.subtitle %}, {{ article.subtitle }}{% endif %}</title>
 				<author>{{ article.author.name }}</author>
 				<link>https://refactor.zone/{{ article.slug }}</link>
 				<guid>https://refactor.zone/{{ article.slug }}</guid>

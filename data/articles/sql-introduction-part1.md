@@ -1,12 +1,13 @@
-Title:      An introduction to SQL databases
+Title:      Introduction to SQL databases
+Subtitle:   Part 1
 Author:     janoszen
-Published:  0000-00-00
+Published:  2016-10-11
 Categories: basics
 Excerpt:    Whether you are running a webapp, a financial system or a game, you need some method of storing your data.
             SQL allows you to query most traditional databases, like MySQL or PostgreSQL. Let's take a look.
-Social:     /images/sql-introduction/social.png
-Decor:      /images/sql-introduction/decor.png
-Decor2x:    /images/sql-introduction/decor-2x.png
+Social:     /images/sql-introduction-part1/social.png
+Decor:      /images/sql-introduction-part1/decor.png
+Decor2x:    /images/sql-introduction-part1/decor-2x.png
 
 Whether you are running a webapp, a financial system or a game, you need some method of storing your data. SQL allows
 you to query most traditional databases, like MySQL or PostgreSQL. Let's take a look.
@@ -18,6 +19,22 @@ what you want to ask a database.
 If you want to try out the code here, you will need some sort of SQL database. You can either install
 [MySQL](https://www.mysql.com/), [PostgreSQL](https://www.postgresql.org/) or any other database server on your 
 computer, or you can just go to [sqlfiddle.com](http://sqlfiddle.com/) and play around there.
+
+> **Tip** Database servers usually implement their own flavor of SQL. The syntax may vary slightly, check your 
+> server's documentation for details.
+
+## Why SQL?
+
+SQL is a very old language and it is very widely adopted. Using SQL databases was still the defacto standard of 
+storing data. In fact, it still is, although several NoSQL variants have gained a foothold, mostly in web application
+and cloud computing.
+
+SQL databases, also referred to as RDBMS (relational database management system) provide an easy way of creating a 
+strict data structure, and also allows for querying said data. It also provides a method of connecting related data 
+together, thus creating a valuable tool for people working with complex business cases.
+
+In general, the vast majority of computer systems use SQL databases, no matter if we are talking about an Android 
+app, or a banking system, so it's worthwhile putting some effort into.
 
 ## Organizing data
 
@@ -279,18 +296,18 @@ SELECT
   students.student_name
 FROM
   classes
-  INNER JOIN classes_students ON
-    classes_students.class_id =
+  INNER JOIN students_classes ON
+    students_classes.class_id =
         classes.class_id
   INNER JOIN students ON
     students.student_id =
-        classes_students.student_id
+        students_classes.student_id
 WHERE
   class_name = 'math'
 ```
 
 Wow, that's a lot of code. Let's break it down a bit. So we have your average select from one table, namedly 
-`classes`. You then instruct the database server to look for matching rows in `classes_students`, where the 
+`classes`. You then instruct the database server to look for matching rows in `students_classes`, where the 
 `class_id` in both tables matches. Then we do the same for the students, where we instruct the match to be on the two
 `student_id` columns.
 
@@ -318,11 +335,13 @@ Here's the result:
 | Suzie        | astronomy  |
 
 Now *that* may not be obvious. When dealing with a join, SQL databases will return **duplicate rows** if there are 
-multiple values in *either* table of the join. I'll just let that sink in for a bit.
+multiple values in *either* table of the join.
+
+I'll just let that sink in for a bit.
 
 > **Tip** You don't necessarily have to prefix your column names with the tables, but having duplicate column names in
-> results leads to confusion. Instead of using prefixed column names, you can also use aliases like this: `SELECT 
-> student.name AS student_name FROM students;`
+> results leads to confusion. Instead of using prefixed column names, you can also use aliases like this:
+> `SELECT student.name AS student_name FROM students;`
 
 ## Join types
 
@@ -332,9 +351,105 @@ that have matches in both tables. Let's look at an overview:
 
 | Join type    | Explanation |
 | ------------ | ----------- |
-| `INNER JOIN` | Only selects rows that are present in both tables. |
+| `INNER JOIN` or `CROSS JOIN` | Only selects rows that are present in both tables. |
 | `LEFT JOIN`  | Selects all rows from the *left* table. If data from he *right* table is missing, it is substituted with `NULL`. Will still create row duplications if there is more than rown in the right. |
 | `RIGHT JOIN` | Just like `LEFT JOIN`, but will take all rows from the *right* table. |
-| `CROSS JOIN` | Will select all rows from both tables, and replace missing values in the other table with `NULL`. |
+| `FULL JOIN`  | Will select all rows from both tables, and replace missing values in the other table with `NULL`. |
 
+> **Tip** You can also use the word `JOIN` instead of `INNER JOIN`, but it is better if you explicitly state which 
+> join you want to use.
 
+> **Explanation** `NULL` means “has no value”. It does not mean numeric zero.
+
+> **Explanation** In `LEFT JOIN` and `RIGHT JOIN` the left part always means the first, the right means the second 
+> table. When there is more than one join, the left part always means the already joined parts, the right means the 
+> newly joined table. 
+
+I realize it may be confusing when to use which, so let's go through them, with examples. To do that, we are going to
+work with the following simple dataset.
+
+Table a:
+
+| id |
+| -- |
+| 1  |
+| 2  |
+| 3  |
+| 4  |
+
+Table b:
+
+| id |
+| -- |
+| 1  |
+| 2  |
+| 4  |
+| 5  |
+
+### INNER JOIN
+
+As discussed before, when using `INNER JOIN`, the only rows that will appear in the output will be the rows that have
+matches in both tables.
+
+```sql
+SELECT
+  a.id,
+  b.id
+FROM
+  a
+  INNER JOIN b
+    ON a.id=b.id
+```
+
+And the result will be:
+
+| a.id | b.id |
+| ---- | ---- |
+| 1    | 1    |
+| 2    | 2    |
+| 4    | 4    |
+
+See? No `NULL` values.
+
+### LEFT JOIN
+
+Left join will take all values from the left table, and then tries to find a matching row from the right table.
+
+| a.id | b.id |
+| ---- | ---- |
+| 1    | 1    |
+| 2    | 2    |
+| 3    | NULL |
+| 4    | 4    |
+
+See? We have a `NULL` value there.
+
+### RIGHT JOIN
+
+Same thing as `LEFT JOIN`, but from the right this time:
+
+| a.id | b.id |
+| ---- | ---- |
+| 1    | 1    |
+| 2    | 2    |
+| 4    | 4    |
+| NULL | 5    |
+
+### FULL JOIN
+
+Let's take a look:
+
+| a.id | b.id |
+| ---- | ---- |
+| 1    | 1    |
+| 2    | 2    |
+| 3    | NULL |
+| 4    | 4    |
+| NULL | 5    |
+
+> **Remember** Multiple values in either of the tables can result in row duplications.
+
+## In the next article
+
+You have learned to write basic queries, but that's by no means all SQL can do. Writing complex queries, sorting and 
+grouping results, and much much more are yet to come in the next installment of this series.

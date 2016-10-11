@@ -46,7 +46,11 @@ author: article.author.name
 						<h1 itemprop="name"><span itemprop="headline">
 								{% if article.series %}{{ article.series.name }} &mdash; {% endif %}
 								{{ article.title }}
-							</span></h1>
+							</span>
+							{% if article.subtitle %}
+								<span itemprop="alternativeHeadline" class="subtitle">{{ article.subtitle }}</span>
+							{% endif %}
+						</h1>
 						<span>
 							by
 							<a href="/author/{{ article.author.slug }}">{{ article.author.name }}</a>

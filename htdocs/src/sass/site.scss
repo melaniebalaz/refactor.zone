@@ -320,6 +320,11 @@ article {
 	h1 {
 		@include rhythm(0, 0, 0, 0.5, 45px);
 		@include adjust-font-size-to(45px);
+		@include establish-baseline(45px);
+		.subtitle {
+			display:block;
+			font-size:0.9em;
+		}
 	}
 
 	h2 {

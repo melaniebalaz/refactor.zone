@@ -78,6 +78,7 @@ class ArticleConverter {
 			$metadata['decor'],
 			$metadata['decor2x'],
 			new CategoryList($categories),
-			$series);
+			$series,
+			(isset($metadata['subtitle'])?$metadata['subtitle']:''));
 	}
 }
