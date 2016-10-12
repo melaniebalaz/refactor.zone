@@ -209,7 +209,7 @@ As you can see, we have given them numeric IDs to make them easier to identify. 
 identify rows by name, but by this generated number that we assign each row.
 
 So now that we have our two tables, we need to connect them somehow. Let's take the simple case. Every student can 
-only attend *one* class, but the same class can be attended by multiple students. This is called a `1:n` (one-to-n) 
+only attend *one* class, but the same class can be attended by multiple students. This is called a `1:n` (one-to-n or one-to-many) 
 relation. To accomplish that, we simply add a column to the `students` table where we indicate the class that they 
 are attending:
 
@@ -235,7 +235,7 @@ digraph students {
 ```
 
 Simple, right? Too bad we won't be using this. Our original setup stated that one student can attend multiple 
-classes, and a class can also be attended by multiple students. That is called an `n:m` (n-to-m) relation.
+classes, and a class can also be attended by multiple students. That is called an `n:m` (n-to-m or many-to-many) relation.
 
 Unfortunately this means that we need to introduce a connecting table:
 
@@ -351,7 +351,7 @@ that have matches in both tables. Let's look at an overview:
 
 | Join type    | Explanation |
 | ------------ | ----------- |
-| `INNER JOIN` or `CROSS JOIN` | Only selects rows that are present in both tables. |
+| `INNER JOIN` | Only selects rows that are present in both tables. |
 | `LEFT JOIN`  | Selects all rows from the *left* table. If data from he *right* table is missing, it is substituted with `NULL`. Will still create row duplications if there is more than rown in the right. |
 | `RIGHT JOIN` | Just like `LEFT JOIN`, but will take all rows from the *right* table. |
 | `FULL JOIN`  | Will select all rows from both tables, and replace missing values in the other table with `NULL`. |
