@@ -351,7 +351,7 @@ that have matches in both tables. Let's look at an overview:
 
 | Join type    | Explanation |
 | ------------ | ----------- |
-| `INNER JOIN` or `CROSS JOIN` | Only selects rows that are present in both tables. |
+| `INNER JOIN` | Only selects rows that are present in both tables. |
 | `LEFT JOIN`  | Selects all rows from the *left* table. If data from he *right* table is missing, it is substituted with `NULL`. Will still create row duplications if there is more than rown in the right. |
 | `RIGHT JOIN` | Just like `LEFT JOIN`, but will take all rows from the *right* table. |
 | `FULL JOIN`  | Will select all rows from both tables, and replace missing values in the other table with `NULL`. |
@@ -452,4 +452,4 @@ Let's take a look:
 ## In the next article
 
 You have learned to write basic queries, but that's by no means all SQL can do. Writing complex queries, sorting and 
-grouping results, and much much more are yet to come in the next installment of this series.
+grouping results, and much much more are yet to come [in the next installment of this series](/sql-introduction-part2).

@@ -90,7 +90,9 @@ class Article extends TextContent {
 	}
 
 	public function getFullTitle() : string {
-		return ($this->series?$this->series->getName() . ' — ':'') . $this->getTitle();
+		return ($this->series?$this->series->getName() . ' — ':'') .
+			$this->getTitle() .
+			($this->getSubtitle()?' — ' . $this->getSubtitle():'');
 	}
 
 	/**

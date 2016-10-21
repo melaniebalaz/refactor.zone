@@ -14,8 +14,8 @@ class Html extends \MarkdownExtended\OutputFormat\Html  {
 				$svgfile  = $tempfile . '.svg';
 				$pngfile  = $tempfile . '.png';
 				\file_put_contents($dotfile, \html_entity_decode($text));
-				exec('/opt/local/bin/dot -Tsvg ' . escapeshellarg($dotfile) . ' -o' . escapeshellarg($svgfile));
-				exec('/opt/local/bin/dot -Tpng ' . escapeshellarg($dotfile) . ' -o' . escapeshellarg($pngfile));
+				exec('/usr/local/bin/dot -Tsvg ' . escapeshellarg($dotfile) . ' -o' . escapeshellarg($svgfile));
+				exec('/usr/local/bin/dot -Tpng ' . escapeshellarg($dotfile) . ' -o' . escapeshellarg($pngfile));
 				$svg = \file_get_contents($svgfile);
 				$png = \file_get_contents($pngfile);
 				\unlink($pngfile);

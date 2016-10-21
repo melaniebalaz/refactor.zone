@@ -411,12 +411,10 @@ article {
 	@include establish-baseline(16px);
 	font-size: 16px;
 
-	h2 {
+	article h2 {
 		font-size:     inherit;
 		line-height:   inherit;
-		@include rhythm(0, 0.5, 0.5, 0);
-		margin-top:    0;
-		margin-bottom: 0;
+		@include rhythm(0.5, 0, 0.5, 0);
 		a {
 			color:       inherit;
 			font-weight: bold;

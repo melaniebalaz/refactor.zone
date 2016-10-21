@@ -1,6 +1,6 @@
 {
 	"name": "opsbears/refactor",
-	"license": "MIT",
+	"license": "proprietary",
 	"autoload": {
 		"psr-4": {
 			"Opsbears\\Refactor\\": "./src"
