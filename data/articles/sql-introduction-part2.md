@@ -126,7 +126,7 @@ There are a few more differences, but most of those are specific to the SQL serv
 
 > **Common misconception** A lot of university teachers would tell you that every table needs a numeric primary key. 
 > This is actually not true, you can create a primary key on a textual (`VARCHAR`) column, or you could create a 
-> primary key using multiple columns. If your students are given a textual identification for example, this can be 
+> primary key using multiple columns. If your students are given a textual identification, for example, this can be 
 > easily used to make your database mimic your business model more closely. On the other hand, having a column 
 > named `id` or `table_id` will make your database easier to understand for a lot of people.
 
@@ -136,12 +136,12 @@ Before we get into the data consistency issue, let's take a short detour. You ar
 tables, so you most likely didn't notice speed problem. If you are moving  to larger tables, you'll quickly notice 
 that your database becomes incredibly slow.
 
-As you might have guessed, that's what indexes are for. By default databases store all data in one big chunk, sorted 
+As you might have guessed, that's what indexes are for. By default, databases store all data in one big chunk, sorted 
 by the primary key (which is an index by the way). Without proper indexes, the database may need to read the full table 
 in order to get the data you need. This is called a *full table scan*.
 
 We can speed up queries to a table by adding indexes. However, while **indexes speed up reads, they slow down writes**, 
-since the indexes need to be updated. Lets do that:
+since the indexes need to be updated. Let's do that:
 
 ```sql
 CREATE INDEX i_student_id ON students_classes (student_id);
@@ -223,7 +223,7 @@ ORDER BY
 
 ### Fetching only the first X rows
 
-In addition to `ORDER BY`, you can also limit the number of rows you get. Unfortunately the syntax is different from 
+In addition to `ORDER BY`, you can also limit the number of rows you get. Unfortunately, the syntax is different from 
 database to database. The following queries will fetch 10 classes, starting at class 20.
 
 MySQL, PostgreSQL, SQLite:
@@ -305,7 +305,7 @@ will be added. Any column from our outer query can be used in the subquery.
 
 You can use subqueries as:
 
-- **Fields**: in this case your query has to return one row and one column 
+- **Fields**: in this case, your query has to return one row and one column 
 - **Tables**: your subquery results will be used as a table you can join upon
 - **Where**: The results of your subquery can be used as a condition.
 
@@ -322,7 +322,7 @@ database structure.
 
 ### SQL injections
 
-Another important security object, especially when talking about web application, are SQL injections. This can happen
+Another important security object, especially when talking about a web application, are SQL injections. This can happen
 when dealing with user input. Imagine this query in any modern web language:
 
 ```java
@@ -358,7 +358,7 @@ DATABASE`). Ouch.
 So you need to protect against SQL injection. And don't even try writing your own “defense” functions, 
 the specifics depend on the SQL server type, version and implementation details. Instead, use prepared statements.
 
-Prepared statements consist of two parts. First you prepare your query, for example:
+Prepared statements consist of two parts. First, you prepare your query, for example:
 
 ```sql
 SELECT
@@ -371,15 +371,15 @@ WHERE
   password=?
 ```
 
-And then you execute the query with the parameters that will be safely replaced into the question marks. Check your 
-programming language for details on how to properly do this.
+When you execute the query, the question marks will be safely replaced with the parameters. Check your 
+programming language for details on how to do this properly.
 
 ## Conclusion
 
 As you can see, SQL is a very powerful and complex tool. It can start off easy, but lead to mile-long queries with 
 execution times of hours, or even days.
 
-SQL is a very old standard, if you can even call that. Most SQL implementations differ from the standard and each 
+SQL is a very old standard if you can even call that. Most SQL implementations differ from the standard and each 
 other considerably, so looking at the database engine documentation is most recommended.
 
 You will also find a lot more features, like useful functions, or other language constructs like `UNION` queries and 

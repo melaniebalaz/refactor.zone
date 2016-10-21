@@ -13,7 +13,7 @@ Whether you are running a webapp, a financial system or a game, you need some me
 you to query most traditional databases, like MySQL or PostgreSQL. Let's take a look.
 
 SQL, short for Structured Query Language, is a method of querying traditional, relational databases (RDBMS). We'll 
-take a look at the relational part in a bit, but for now it's enough to know that SQL is a text language to describe 
+take a look at the relational part in a bit, but for now, it's enough to know that SQL is a text language to describe 
 what you want to ask a database.
 
 If you want to try out the code here, you will need some sort of SQL database. You can either install
@@ -29,16 +29,16 @@ SQL is a very old language and it is very widely adopted. Using SQL databases wa
 storing data. In fact, it still is, although several NoSQL variants have gained a foothold, mostly in web application
 and cloud computing.
 
-SQL databases, also referred to as RDBMS (relational database management system) provide an easy way of creating a 
+SQL databases also referred to as RDBMS (relational database management system) provide an easy way of creating a 
 strict data structure, and also allows for querying said data. It also provides a method of connecting related data 
 together, thus creating a valuable tool for people working with complex business cases.
 
 In general, the vast majority of computer systems use SQL databases, no matter if we are talking about an Android 
-app, or a banking system, so it's worthwhile putting some effort into.
+app or a banking system, so it's worthwhile putting some effort into.
 
 ## Organizing data
 
-When building a database, it's all about modelling your data. You want to have a data structure that gives you easy 
+When building a database, it's all about modeling your data. You want to have a data structure that gives you easy 
 and fast access to the data you want. So you need to organize your data into some structure. RDBMS organize data into
 *tables*. Yes, almost like Excel. Well, somewhat.
 
@@ -150,7 +150,7 @@ commands can be looked up in the respective documentations of the chosen SQL ser
 Previously we had all data in one table, with no method to use more than one table in a `SELECT`. This is error prone
 and leads to data duplication. Let me show you.
 
-Imagine this: you need to build a student database. Every student is in a table and they are free to chose classes 
+Imagine this: you need to build a student database. Every student is in a table and they are free to chose the classes 
 they want to attend. From our previous experience the solution would be something like this:
 
 ```sql
@@ -160,7 +160,7 @@ CREATE TABLE students (
 );
 ```
 
-We would then put the class names in that one `classes` column, delimited by comma. That's problematic for multiple 
+We would then put the class names in that one `classes` column, delimited by a comma. That's problematic for multiple 
 reasons. For one, you can only write 255 characters in that column. Two, selecting all students attending a class 
 is kinda ugly:
 
@@ -237,7 +237,7 @@ digraph students {
 Simple, right? Too bad we won't be using this. Our original setup stated that one student can attend multiple 
 classes, and a class can also be attended by multiple students. That is called an `n:m` (n-to-m or many-to-many) relation.
 
-Unfortunately this means that we need to introduce a connecting table:
+Unfortunately, this means that we need to introduce a connecting table:
 
 ```sql
 CREATE TABLE students_classes (
@@ -261,7 +261,7 @@ digraph students {
 }
 ```
 
-For every student attending one class we will record a row in this table. In the end, you will have as many rows as 
+For every student attending one class, we will record a row in this table. In the end, you will have as many rows as 
 there are lines on this graph:
 
 ```dotsvg
@@ -316,7 +316,7 @@ Wow, that's a lot of code. Let's break it down a bit. So we have your average se
 
 > **Tip** If you hate typing, you can alias columns like this: `SELECT S.student_name FROM students AS S`
 
-There's a few interesting bits that you might be wondering about though. What if we add the column `class_name` to 
+There are a few interesting bits that you might be wondering about, though. What if we add the column `class_name` to 
 the result? Will it appear only one time or multiple times? Let's look:
 
 | student_name | class_name |
@@ -352,7 +352,7 @@ that have matches in both tables. Let's look at an overview:
 | Join type    | Explanation |
 | ------------ | ----------- |
 | `INNER JOIN` | Only selects rows that are present in both tables. |
-| `LEFT JOIN`  | Selects all rows from the *left* table. If data from he *right* table is missing, it is substituted with `NULL`. Will still create row duplications if there is more than rown in the right. |
+| `LEFT JOIN`  | Selects all rows from the *left* table. If data from the *right* table is missing, it is substituted with `NULL`. Will still create row duplications if there is more than one row in the right table. |
 | `RIGHT JOIN` | Just like `LEFT JOIN`, but will take all rows from the *right* table. |
 | `FULL JOIN`  | Will select all rows from both tables, and replace missing values in the other table with `NULL`. |
 
