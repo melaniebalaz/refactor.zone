@@ -27,7 +27,8 @@
 		"picas/markdown-extended": "dev-master",
 		"scrivo/highlight.php": "^9.0",
 		"opsbears/piccolo-sql": "dev-master",
-		"opsbears/piccolo-sql-migrations": "dev-master"
+		"opsbears/piccolo-sql-migrations": "dev-master",
+		"leafo/scssphp": "^0.6.6"
 	},
 	"require-dev": {
 		"phing/phing": "^2.14"
