@@ -1,13 +1,13 @@
-Title:      Getting started in Object Oriented Programming
+Title:      Getting started in Object-Oriented Programming
 Author:     janoszen
 Published:  2016-11-04
 Categories: basics
-Excerpt:    So you've been programming for a while, and you are still stumped with what object oriented programming actually is? Then this may be the guide for you. We'll take a departure from traditional explanations and look at a new way of explaining OOP.
-Social:     /images/oop-basics/social.png?version=3
+Excerpt:    So you've been programming for a while, and you are still stumped with what object-oriented programming actually is? Then this may be the guide for you. We'll take a departure from traditional explanations and look at a new way of explaining OOP.
+Social:     /images/oop-basics/social.png?version=4
 Decor:      /images/oop-basics/decor.png
 Decor2x:    /images/oop-basics/decor-2x.png
 
-So you've been programming for a while, and you are still stumped with what object oriented programming actually is? 
+So you've been programming for a while, and you are still stumped with what object-oriented programming actually is? 
 Then this may be the guide for you. We'll take a departure from traditional explanations and look at a new way of 
 explaining OOP.
 
@@ -111,7 +111,7 @@ myStudent.name    = "";
 ```
 
 Fortunately, most OOP languages give us tools to disable external access to member variables and methods, called 
-visibility keywords. Usually, we distinguish these levels of visibility:
+*visibility keywords*. Usually, we distinguish these levels of visibility:
 
 * **public:** Everyone can access the method marked with this keywords. In most OOP languages this is the default.
 * **protected:** Only child classes can access the method or variable (we'll talk about this in a bit).
@@ -148,7 +148,7 @@ As a naive approach we could do something like this:
 
 ```java
 class HTMLOutputConverter {
-  private ArticleDatabaseConnector db;
+  private MySQLArticleDatabaseConnector db;
   
   public HTMLOutputConverter() {
     this.db = new MySQLArticleDatabaseConnector();
@@ -156,14 +156,13 @@ class HTMLOutputConverter {
 }
 ```
 
-As you can see, `HTMLOutputConverter` depends on `ArticleDatabaseConnector` and we create an instance of the database
-connector in the constructor of the output converter. Why is this bad?
+As you can see, `HTMLOutputConverter` depends on `MySQLArticleDatabaseConnector` and we create an instance of the database connector in the constructor of the output converter. Why is this bad?
 
 1. You can't replace `MySQLArticleDatabaseConnector` with a different class.
 2. Since the `MySQLArticleDatabaseConnector` instance is created in `HTMLOutputConverter`, that class needs to know all parameters that need to be passed to `MySQLArticleDatabaseConnector`.
 3. When looking at the class definition, the dependency isn't immediately apparent. You have to look at the code to find out there's a dependency.
 
-Let's see if we can do any better. Instead of creating an instance of `ArticleDatabaseConnector`, let's instead 
+Let's see if we can do any better. Instead of creating an instance of `MySQLArticleDatabaseConnector`, let's instead 
 request it as a parameter. Something like this:
 
 ```java
@@ -259,7 +258,7 @@ class Foo extends Bar {
 }
 ```
 
-So how many parents can a classes have? One? Two? Five? The answer is: it depends. Some languages, like C++, have solved the problem of multiple inheritance. So much so that interface language construct does not even exist in C++. Other languages, like Java or PHP, decided not to deal with this problem and invent interfaces instead. In other words, interfaces are nothing else than abstract classes with only abstract methods and no variables to circumvent having to solve multiple inheritance.
+So how many parents can a class have? One? Two? Five? The answer is: it depends. Some languages, like C++, have solved the problem of multiple inheritance. So much so that interface language construct does not even exist in C++. Other languages, like Java or PHP, decided not to deal with this problem and invent interfaces instead. In other words, interfaces are nothing else than abstract classes with only abstract methods and no variables to circumvent having to solve multiple inheritance.
 
 > **Beware of faulty abstractions!** Many OOP tutorials bring the example of a square inheriting from the rectangle. This is only true in the mathematical sense. In programming you want your child classes to behave the same as their parent classes, which is being violated since the rectangle has two independent edges, where as the square doesn't.
 
