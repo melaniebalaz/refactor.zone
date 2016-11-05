@@ -100,17 +100,19 @@
 						<img src="{{ staticUrl(article.decor) }}"
 						     srcset="{{ staticUrl(article.decor) }} 1x, {{ staticUrl(article.decor2x) }} 2x" /></a>
 					<div class="annotation">
-						<h2 itemprop="name"><a itemprop="url" href="/{{ article.slug }}"><span itemprop="headline">
+						<div class="annotation-body">
+							<h2 itemprop="name"><a itemprop="url" href="/{{ article.slug }}"><span itemprop="headline">
 								{% if article.series %}{{ article.series.name }}: {% endif %}{{ article.title }}</span>{%
 								if article.subtitle %}, <span itemprop="alternativeHeadline">{{ article.subtitle }}</span>
 							{%	endif %}
 							</a></h2>
-						<div class="author-meta" itemprop="author" itemscope="itemscope"
-							 itemtype="https://schema.org/Person">
-							by <a href="/author/{{ article.author.slug }}" itemprop="url">
+							<div class="author-meta" itemprop="author" itemscope="itemscope"
+								 itemtype="https://schema.org/Person">
+								by <a href="/author/{{ article.author.slug }}" itemprop="url">
 								<span itemprop="name">{{article.author.name}}</a>
 							</div>
-						<p>{{ article.excerpt }}</p>
+							<p>{{ article.excerpt }}</p>
+						</div>
 						<a href="/{{ article.slug }}" class="btn btn-primary">
 							Read article
 							<i class="fa fa-angle-double-right" aria-hidden="true"></i>
