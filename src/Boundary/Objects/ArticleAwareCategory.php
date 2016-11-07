@@ -14,7 +14,7 @@ class ArticleAwareCategory extends Category {
 	}
 
 	public function withAddedArticle(Article $article) : ArticleAwareCategory {
-		$articles = (array)$this->getArticles();
+		$articles = \iterator_to_array($this->getArticles());
 		$articles[] = $article;
 		return new ArticleAwareCategory(
 			$this->getSlug(),

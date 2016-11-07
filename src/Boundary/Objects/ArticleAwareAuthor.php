@@ -39,7 +39,7 @@ class ArticleAwareAuthor extends Author {
 	}
 
 	public function withAddedArticle(Article $article) : ArticleAwareAuthor {
-		$articles = (array)$this->getArticles();
+		$articles = \iterator_to_array($this->getArticles());
 		$articles[] = $article;
 		return new ArticleAwareAuthor(
 			$this->getSlug(),

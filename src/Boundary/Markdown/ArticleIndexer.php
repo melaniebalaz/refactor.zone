@@ -40,18 +40,7 @@ class ArticleIndexer {
 		if ($this->production) {
 			$cacheFile = $this->cachedir . '/db.serialized';
 			if (\file_exists($cacheFile)) {
-				$cacheValid = true;
-				/*$cacheLastUpdated  = \filemtime($cacheFile);
-				$articlesDirectory = \scandir($this->datadir . '/articles/');
-				foreach ($articlesDirectory as $article) {
-					if (\filemtime($this->datadir . '/articles/' . $article) > $cacheLastUpdated) {
-						$cacheValid = false;
-						break;
-					}
-				}*/
-				if ($cacheValid) {
-					return \unserialize(\file_get_contents($cacheFile));
-				}
+				return \unserialize(\file_get_contents($cacheFile));
 			}
 		}
 
@@ -123,7 +112,7 @@ class ArticleIndexer {
 					$series[$article->getSeries()->getSlug()]->withAddedArticle($article);
 			}
 
-			if (!isset($series[$article->getAuthor()->getSlug()])) {
+			if (!isset($authors[$article->getAuthor()->getSlug()])) {
 				$authors[$article->getAuthor()->getSlug()] = new ArticleAwareAuthor(
 					$article->getAuthor()->getSlug(),
 					$article->getAuthor()->getName(),

@@ -14,7 +14,7 @@ class ArticleAwareSeries extends Series {
 	}
 
 	public function withAddedArticle(Article $article) : ArticleAwareSeries {
-		$articles = (array)$this->getArticles();
+		$articles = \iterator_to_array($this->getArticles());
 		$articles[] = $article;
 		return new ArticleAwareSeries(
 			$this->getSlug(),
