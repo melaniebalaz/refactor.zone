@@ -46,4 +46,16 @@ class ArticleController extends AbstractController {
 			'recommendedArticles' => $recommendedArticles
 		];
 	}
+
+	public function imageAction(string $slug, int $number) {
+		$article = $this->getArticleProvider()->getArticle($slug)->getArticle();
+		$this->setLastModified($article->getModified());
+		try {
+			$image = $article->getEmbeddedImage($number);
+			$this->setResponse($this->getResponse()->withAddedHeader('Content-Type', 'image/png'));
+			return $image;
+		} catch (\OutOfBoundsException $e) {
+			throw new \Exception('', 404);
+		}
+	}
 }

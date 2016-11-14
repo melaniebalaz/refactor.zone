@@ -19,8 +19,8 @@
 	{% endif %}
 
 
-	<meta property="og:image" content="https://refactor.zone{{ author.imageUrl }}" />
-	<link rel="apple-touch-icon-precomposed" href="https://refactor.zone{{ author.imageUrl }}" />
+	<meta property="og:image" content="https://refactor.zone{{ staticUrl(author.imageUrl) }}" />
+	<link rel="apple-touch-icon-precomposed" href="https://refactor.zone{{ staticUrl(author.imageUrl) }}" />
 	<link rel="alternate" type="application/rss+xml" href="/author/{{ author.slug }}/feed"
 		  title="Latest articles by {{ author.name }} &mdash; Refactor Zone" />
 {% endblock %}

@@ -10,7 +10,7 @@
 <article>
 	<header>
 		<figure>
-			<img src="{{ staticUrl(article.decor2x) }}"/>
+			<img src="https://refactor.zone{{ staticUrl(article.decor2x) }}"/>
 		</figure>
 
 		<h1> {{ article.fullTitle }}</h1>
@@ -33,7 +33,8 @@
 			'<pre>':'<figure class="op-interactive"><iframe class="column-width"><pre style="padding-left:1em;padding-right:1em;">',
 			'</pre>':'</pre></iframe></figure>'
 		})
-	|regexp_replace('/<svg(.*?)<image src="(.*?)" \\/><\\/svg>/s','<figure><img src="$2" /></figure>')
+	|regexp_replace('/<svg(.*?)<image src="(.*?)" \\/><\\/svg>/s','<figure><img src="https://refactor.zone$2" /></figure>')
+	|regexp_replace('/href="\\//', 'href="https://refactor.zone/')
 	|regexp_replace('/<h2 id="sources">.*/s','')
 	|raw }}
 

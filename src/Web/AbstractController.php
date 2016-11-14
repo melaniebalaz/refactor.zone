@@ -7,6 +7,7 @@ use Opsbears\Refactor\Templating\StaticUrlFunction;
 use Piccolo\Web\Processor\Controller\DataObjects\HTTPRequestResponseContainer;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\UriInterface;
 
 abstract class AbstractController {
 	/**
@@ -65,8 +66,14 @@ abstract class AbstractController {
 		$this->requestResponseContainer->setResponse($response);
 	}
 
-	protected function redirectToPath($path) {
-		return $this->getResponse()->withHeader('Location', (string)$this->getRequest()->getUri()->withPath($path));
+	protected function redirectToPath($path, bool $permanent = false) {
+		return $this->redirectTo((string)$this->getRequest()->getUri()->withPath($path), $permanent);
+	}
+
+	protected function redirectTo(string $url, bool $permanent = false) {
+		return $this->getResponse()
+					->withHeader('Location', (string)$url)
+					->withStatus(($permanent?301:302));
 	}
 
 	protected function setLastModified(\DateTime $lastModified) {

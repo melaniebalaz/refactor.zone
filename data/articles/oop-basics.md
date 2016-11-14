@@ -3,7 +3,7 @@ Author:     janoszen
 Published:  2016-11-04
 Categories: basics
 Excerpt:    So you've been programming for a while, and you are still stumped with what object-oriented programming actually is? Then this may be the guide for you. We'll take a departure from traditional explanations and look at a new way of explaining OOP.
-Social:     /images/oop-basics/social.png?version=4
+Social:     /images/oop-basics/social.png
 Decor:      /images/oop-basics/decor.png
 Decor2x:    /images/oop-basics/decor-2x.png
 
@@ -304,6 +304,7 @@ class Student {
   public void setName(string name) { ... }
   
   public void save() { ... }
+}
 ```
 
 As you can see in this scenario handling student data and saving it to some sort of database would be in the same class. In reality, these are two completely separate tasks and don't have any business being in the same. While we won't go into too much detail in this article, it is recommended that you keep your classes concise and focused on a single task.

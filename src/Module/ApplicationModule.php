@@ -84,7 +84,8 @@ class ApplicationModule extends AbstractModule {
 		]);
 		$dic->setClassParameters(StaticUrlFunction::class,   [
 			'staticRoot' => __DIR__ . '/../../htdocs/',
-			'staticUrl' => 'https://refactor.zone'
+			'staticUrl' => '',
+			'version' => $moduleConfig['production']
 		]);
 	}
 }

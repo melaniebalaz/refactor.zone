@@ -3,6 +3,7 @@
 use Opsbears\Refactor\Module\ApplicationModule;
 use Opsbears\Refactor\Templating\RegexReplaceFilter;
 use Opsbears\Refactor\Templating\StaticUrlFunction;
+use Opsbears\Refactor\Web\AffiliateController;
 use Opsbears\Refactor\Web\ArticleController;
 use Opsbears\Refactor\Web\AuthorController;
 use Opsbears\Refactor\Web\CategoryController;
@@ -73,10 +74,12 @@ return \array_merge([
 			['GET', '/category/{slug:[a-zA-Z0-9\-]+}', CategoryController::class, 'categoryAction'],
 			['GET', '/category/{slug:[a-zA-Z0-9\-]+}/page/{page:[0-9]+}', CategoryController::class, 'pageAction'],
 			['GET', '/category/{slug:[a-zA-Z0-9\-]+}/feed', CategoryController::class, 'feedAction'],
+			['GET', '/book/{book:[a-zA-Z0-9\-]+}', AffiliateController::class, 'bookAction'],
 			['GET', '/sitemap.xml', SitemapController::class, 'sitemapAction'],
 			['GET', '/{slug:[a-zA-Z0-9\-]+}', ArticleController::class, 'articleAction'],
 			['GET', '/{slug:[a-zA-Z0-9\-]+}/amp', ArticleController::class, 'ampArticleAction'],
-			['GET', '/{slug:[a-zA-Z0-9\-]+}/instant', ArticleController::class, 'instantArticleAction'],
+			//['GET', '/{slug:[a-zA-Z0-9\-]+}/instant', ArticleController::class, 'instantArticleAction'],
+			['GET', '/{slug:[a-zA-Z0-9\-]+}/{number:[0-9]+}.png', ArticleController::class, 'imageAction'],
 		],
 	],
 	'templating' => [

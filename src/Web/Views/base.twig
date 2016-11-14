@@ -45,7 +45,7 @@
 	<meta name="theme-color" content="#63bc46" />
 	<meta name="msapplication-navbutton-color" content="#63bc46" />
 	<meta name="msapplication-TileColor" content="#63bc46" />
-	<meta name="msapplication-TileImage" content="{{ staticUrl('/images/social.png') }}" />
+	<meta name="msapplication-TileImage" content="https://refactor.zone{{ staticUrl('/images/social.png') }}" />
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -136,6 +136,30 @@
 		</main>
 	</div>
 {% endblock %}
+	<div class="messenger-window">
+		<div class="messenger-loading">
+			<i class="fa fa-spin fa-cog"></i>
+		</div>
+		<div class="fb-page"
+			 data-href="https://www.facebook.com/refactorzone/"
+			 data-tabs="messages"
+			 data-hide-cover="true"
+			 data-width="400"
+			 data-height="300"
+			 data-small-header="true">
+			<div class="fb-xfbml-parse-ignore">
+				<blockquote></blockquote>
+			</div>
+		</div>
+	</div>
+	<div class="messenger">
+		<div class="messenger-container">
+			<div class="messenger-text-container">
+				<span class="messenger-text">Have a question?</span>
+			</div>
+			<img src="{{ staticUrl('/images/facebook-messenger.svg')}}" height="32" width="32" class="messenger-icon" />
+		</div>
+	</div>
 	<footer class="main">
 		<div class="container">
 			<div class="row">

@@ -66,6 +66,23 @@ class ArticleConverter {
 
 		$author = $this->authorConverter->convert($metadata['author']);
 
+		$embeddedImages = [];
+
+		$html = $textContent->getHtmlBody();
+		\preg_match_all('/<image src="(?P<png>.*?)" \\/><\\/svg>/s', $html, $matches);
+		$i = 0;
+		$replace = [];
+		foreach ($matches['png'] as $match) {
+			$replace[$match] = $i;
+			$embeddedImages[$i] = \base64_decode(\str_replace('data:image/png;base64,', '', $match));
+			$i++;
+		}
+		$html = preg_replace_callback(
+			'/<image src="(?P<png>.*?)" \\/><\\/svg>/s',
+			function($matches) use ($replace, $slug) {
+				return '<image src="/' . urlencode($slug) . '/' . $replace[$matches['png']] . '.png" /></svg>';
+			}, $html);
+
 		return new Article(
 			$slug,
 			$metadata['title'],
@@ -73,12 +90,14 @@ class ArticleConverter {
 			new \DateTime($metadata['published']),
 			$modified,
 			$metadata['excerpt'],
-			$textContent->getHtmlBody(),
+			$html,
 			$metadata['social'],
 			$metadata['decor'],
 			$metadata['decor2x'],
 			new CategoryList($categories),
 			$series,
-			(isset($metadata['subtitle'])?$metadata['subtitle']:''));
+			(isset($metadata['subtitle'])?$metadata['subtitle']:''),
+			$embeddedImages
+		);
 	}
 }

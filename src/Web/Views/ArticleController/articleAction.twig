@@ -24,8 +24,8 @@ author: article.author.name
 {% endif %}
 	<meta name="twitter:description" content="{{ article.excerpt }}" />
 
-	<meta property="og:image" content="https://refactor.zone{{ article.socialImage }}" />
-	<link rel="apple-touch-icon-precomposed" href="https://refactor.zone{{ article.socialImage }}" />
+	<meta property="og:image" content="https://refactor.zone{{ staticUrl(article.socialImage) }}" />
+	<link rel="apple-touch-icon-precomposed" href="https://refactor.zone{{ staticUrl(article.socialImage) }}" />
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -73,9 +73,7 @@ author: article.author.name
 					</header>
 
 					<div itemprop="articleBody" class="articleBody">
-						{{ article.htmlBody
-						|regexp_replace('/<image src="(.*?)" \\/><\\/svg>/s','</svg>')
-						|raw }}
+						{{ article.htmlBody|raw }}
 					</div>
 				</div>
 				<div class="card meta">

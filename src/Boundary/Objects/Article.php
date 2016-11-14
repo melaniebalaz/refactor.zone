@@ -44,6 +44,10 @@ class Article extends TextContent {
 	 * @var string
 	 */
 	private $subtitle;
+	/**
+	 * @var array
+	 */
+	private $embeddedImages = [];
 
 	public function __construct(
 		string $slug,
@@ -58,7 +62,8 @@ class Article extends TextContent {
 		string $decor2x,
 		CategoryList $categories,
 		Series $series = null,
-		string $subtitle = ''
+		string $subtitle = '',
+		array $embeddedImages = []
 	) {
 		parent::__construct($slug, $name, $htmlBody);
 		$this->categories = $categories;
@@ -71,6 +76,7 @@ class Article extends TextContent {
 		$this->decor = $decor;
 		$this->decor2x = $decor2x;
 		$this->subtitle = $subtitle;
+		$this->embeddedImages = $embeddedImages;
 	}
 
 	public function getPublished(): \DateTime {
@@ -133,5 +139,30 @@ class Article extends TextContent {
 	 */
 	public function getSubtitle(): string {
 		return $this->subtitle;
+	}
+
+	/**
+	 * Array of embedded PNG images.
+	 *
+	 * @return array
+	 */
+	public function getEmbeddedImages(): array {
+		return $this->embeddedImages;
+	}
+
+	/**
+	 * Return a PNG embedded image
+	 *
+	 * @param int $number
+	 *
+	 * @return string
+	 *
+	 * @throws \OutOfBoundsException
+	 */
+	public function getEmbeddedImage(int $number) : string {
+		if (!isset($this->embeddedImages[$number])) {
+			throw new \OutOfBoundsException();
+		}
+		return $this->embeddedImages[$number];
 	}
 }

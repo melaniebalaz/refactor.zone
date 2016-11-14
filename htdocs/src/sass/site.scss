@@ -664,11 +664,86 @@ a:hover .author-image, a:hover .author-name {
 }
 
 .cookieConsent {
+	z-index:1001;
 	display:none;
 	position:fixed;
 	background:#fff;
-	box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+	box-shadow: 0 0 10px 0 rgba(0,0,0,0.3);
 	bottom: 0;
 	width:100%;
 	padding:10px;
+}
+
+.messenger-window {
+	position:fixed;
+	z-index:999;
+	bottom:62px;
+	right:10px;
+	box-shadow: 0 0 10px 0 rgba(0,0,0,0.3);
+	background:#fff;
+	display:none;
+	height:300px;
+	width:400px;
+	.messenger-loading {
+		position:absolute;
+		z-index:1000;
+		top:0;
+		left:0;
+		height:300px;
+		width:400px;
+		line-height:300px;
+		text-align:center;
+	}
+}
+
+.messenger {
+	display:none;
+	z-index:998;
+	height:52px;
+	white-space:nowrap;
+	position:fixed;
+	bottom:10px;
+	right:10px;
+	box-shadow: 0 0 10px 0 rgba(0,0,0,0.3);
+	padding:10px;
+	background:#fff;
+	width:52px;
+	max-width:52px;
+	transition: width 1s, max-width 1s;
+	overflow:hidden;
+	.messenger-container {
+		overflow:hidden;
+	}
+	.messenger-text-container {
+		margin-right:42px;
+		display:    inline-block;
+		overflow:   hidden;
+		transition: width 1s, max-width 1s;
+		width:0;
+		max-width:500px;
+		.messenger-text {
+			text-align:  right;
+			height:      32px;
+			line-height: 32px;
+		}
+	}
+	&:hover {
+		cursor:pointer;
+		width:auto;
+		max-width:500px;
+		transition: width 1s, max-width 1s;
+		.messenger-text-container{
+			transition: width 1s, max-width 1s;
+			width:auto;
+			max-width:500px;
+		}
+	}
+	img.messenger-icon {
+		background:#fff;
+		position:absolute;
+		top:10px;
+		right:10px;
+		height:32px;
+		width:32px;
+	}
 }
