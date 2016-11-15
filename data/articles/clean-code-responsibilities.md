@@ -116,6 +116,37 @@ Using this proxy solution will help you greatly because you can rewrite your cod
 need to push a huge change to your production environment. The proxy strategy can be used in almost all 
 situations when you need to split up a class.
 
+## Refactoring
+
+Let's look at a different example. Imagine a system that handles financial data. You know, the boring stuff. You will
+most probably have some sort of database, and you will have to provide some reports to the people working with it. 
+These reports will be either Excel tables or CSV files of some description.
+
+One such report could be the monthly income/expense sheet. Initially you built this sheet for the finance people so 
+they can run their fancy reporting software on the data you provide. One day, much to your surprise, the CEO comes 
+into your room and asks you to change one column of the report. She wants you to format the numbers nicely so it's 
+easier for her to read. Naturally you want to keep your CEO happy, so you oblige and change that one column.
+
+All's well, until at the end of the month the finance people try to use the report again and import it into their 
+software. All hell breaks loose. They want the report fixed. I don't know if you have met finance people, but if they
+say they want their report fixed, it means they want it fixed *now*. After all, it's the end of the month and they 
+need to deliver their own reports and nobody will give a damn if they are late because of you.
+
+What do you do? Obviously, you revert the change. Then you write an apologetic letter to the CEO, which 
+definitely won't look good on your score card the next time you want a raise. Or you could just take the time and 
+refactor your code to provide *two* separate reports instead of one and sell it to the CEO as a feature. Needless to 
+say, you have to spend some time on it, but having a dedicated CEO report is much better than having a black mark on 
+your record. Also, the next time the CEO asks you to change something, you will have the freedom to do so because you
+have made sure that one module is only responsible for one thing, only has *one reason for change*. 
+
+## Conclusion
+
+As you can see, the **single responsibility principle** outlined in this article very much aligns with business 
+interests. It is in the long term interest of a company to have you writing code that follows this idea. Squeezing in 
+the change into a class where it doesn't belong will result in larger and larger classes and cause huge maintenance
+headaches. Having convoluted code also means that any change you need to make will take months instead of days, because
+you have to untangle the mess that has *organically evolved* in your code. 
+
 ## Up next
 
 Awesome! So we have our responsibilities neatly split up, every class or module has only one thing to do. But what 

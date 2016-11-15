@@ -683,14 +683,16 @@ a:hover .author-image, a:hover .author-name {
 	background:#fff;
 	display:none;
 	height:300px;
-	width:400px;
+	width:350px;
+	max-width:95%;
 	.messenger-loading {
 		position:absolute;
 		z-index:1000;
 		top:0;
 		left:0;
 		height:300px;
-		width:400px;
+		width:350px;
+		max-width:95%;
 		line-height:300px;
 		text-align:center;
 	}
