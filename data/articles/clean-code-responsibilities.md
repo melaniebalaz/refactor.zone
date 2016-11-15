@@ -21,6 +21,8 @@ You might have noticed, I used the name “module” and not “class” or “o
 specific to object-oriented programming. You can use clean code principles with any programming paradigm you 
 like, for example, classic procedural programming.
 
+So let's get started with the first topic on our agenda: when is a good time to split up your modules? 
+
 ## Responsibilities
 
 When writing your code, you have to segment it somehow. The unit of organization can be classes or 
