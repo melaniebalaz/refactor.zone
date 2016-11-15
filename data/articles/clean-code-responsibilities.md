@@ -12,10 +12,12 @@ Decor2x:    /images/clean-code-responsibilities/decor-2x.png
 I heard you want to be a better coder. You want to use reusable pieces, and you want to have an easier time 
 maintaining older code. You may also want to work better in a team and ensure there are less bugs. 
 
-The term “clean code” was most probably coined by [Robert C. “Uncle Bob” Martin](https://cleancoders.com/), who wrote
+The desire for better code usually leads people to discover the term “clean code”. It was most probably coined by 
+[Robert C. “Uncle Bob” Martin](https://cleancoders.com/), who wrote
 [a book with the same title](/book/uncle-bob-clean-code). You might want to give it a read, although, I find it to be
 very wordy. The book covers a few underlying principles that should help you write modular code in such a way that you
-can later reuse those modules.
+can later reuse those modules. In this series we are going to cover his principles and ideas, as well as those of 
+some other authors of the clean code movement.
 
 You might have noticed, I used the name “module” and not “class” or “object”. That's because clean code is not 
 specific to object-oriented programming. You can use clean code principles with any programming paradigm you 
@@ -65,7 +67,7 @@ So now your Student class needs to know about both MySQL and Memcache. By now yo
 only supposed to give you easy access to the student data has grown to a considerable size and now presents a 
 maintenance problem. There's a lot of code which you can't even test. But hey, such is life, right?
 
-The following week, déjà Vu, your boss is at your desk again. The sysadmins are complaining again. (Can't they just 
+The following week, déjà vu, your boss is at your desk again. The sysadmins are complaining again. (Can't they just 
 buy more hardware? Come on.) Now it's your `courses` table that's causing problems. You decide to go the same route 
 and copy over the code for Memcache to your `Courses` class.
 
