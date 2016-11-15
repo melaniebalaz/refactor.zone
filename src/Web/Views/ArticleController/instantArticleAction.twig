@@ -36,6 +36,8 @@
 	|regexp_replace('/<svg(.*?)<image src="(.*?)" \\/><\\/svg>/s','<figure><img src="https://refactor.zone$2" /></figure>')
 	|regexp_replace('/href="\\//', 'href="https://refactor.zone/')
 	|regexp_replace('/<h2 id="sources">.*/s','')
+	|regexp_replace('/<span.*?>/s','')
+	|regexp_replace('/<\\/span>/s','')
 	|raw }}
 
 	<footer>
