@@ -65,7 +65,7 @@ So now your Student class needs to know about both MySQL and Memcache. By now yo
 only supposed to give you easy access to the student data has grown to a considerable size and now presents a 
 maintenance problem. There's a lot of code which you can't even test. But hey, such is life, right?
 
-The following week, Déjà Vu, your boss is at your desk again. The sysadmins are complaining again. (Can't they just 
+The following week, déjà Vu, your boss is at your desk again. The sysadmins are complaining again. (Can't they just 
 buy more hardware? Come on.) Now it's your `courses` table that's causing problems. You decide to go the same route 
 and copy over the code for Memcache to your `Courses` class.
 
