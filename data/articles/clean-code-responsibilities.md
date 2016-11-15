@@ -1,12 +1,13 @@
-Title:      Getting started with Clean Code
+Title:      Managing responsibilities
 Author:     janoszen
-Published:  0000-00-00
+Published:  2016-11-14
 Categories: basics
+Series:     clean-code
 Excerpt:    I heard you want to be a better coder. You want to use reusable pieces, and you want to have an easier time 
             maintaining older code. You may also want to work better in a team and ensure there are less bugs.
-Social:     /images/clean-code-basics/social.png
-Decor:      /images/clean-code-basics/decor.png
-Decor2x:    /images/clean-code-basics/decor-2x.png
+Social:     /images/clean-code-responsibilities/social.png
+Decor:      /images/clean-code-responsibilities/decor.png
+Decor2x:    /images/clean-code-responsibilities/decor-2x.png
 
 I heard you want to be a better coder. You want to use reusable pieces, and you want to have an easier time 
 maintaining older code. You may also want to work better in a team and ensure there are less bugs. 
@@ -26,8 +27,8 @@ When writing your code, you have to segment it somehow. The unit of organization
 modules, depending on your programming paradigm. The general idea is that one piece of code should only deal with **a 
 single responsibility**. In other words, do one thing and do it well.
 
-But what is a responsibility? Let's take a class, for example, that deals with students of a school. This class will 
-hold the data for exactly one student. Just like this:
+But what is a responsibility? Let's take a class that, for example, deals with students of a school. This class 
+will hold the data for exactly one student. Just like this:
 
 ```java
 class Student {
@@ -76,7 +77,7 @@ one responsibility into one class. The `Student` class is responsible for both h
 it to the database.
 
 In the words of the great Uncle Bob, **a class has a single responsibility if it has one and only one reason for 
-change**. The previous example is clear: there are two responsibilities, storing/retreiving the data and the data 
+change**. The previous example is clear: there are two responsibilities, storing/retrieving the data and the data 
 structure itself. These should be decoupled so we can change them independently.
 
 So how do we fix this? Remember, we said that we wanted to have one class to have only one responsibility. So let's 
@@ -96,7 +97,7 @@ class MySQLStudentStorage {
 ```
 
 Of course, this is easy when you have practically no code yet. But what do you do if you already have a ton of code 
-that relies on your save() function? Well, you're in a tough situation and there is no perfect solution.
+that relies on your save() function? Well, you're in a tough situation, and there is no perfect solution.
 
 You could, for example, proxy through calls from the `Student` class like this:
 
@@ -112,69 +113,11 @@ class Student {
 ```
 
 Using this proxy solution will help you greatly because you can rewrite your code one module at a time and you don't 
-need to push a gigantic change to your production environment. The proxy strategy can be used in almost all 
+need to push a huge change to your production environment. The proxy strategy can be used in almost all 
 situations when you need to split up a class.
 
-## Making modules replaceable
+## Up next
 
 Awesome! So we have our responsibilities neatly split up, every class or module has only one thing to do. But what 
-happens if you need to replace a module? You are still going to have code like this:
-
-```java
-public void createStudent() {
-  storage = new MySQLStudentStorage();
-  student = new Student();
-  student.setName('Joe');
-  storage.store(student);
-}
-```
-
-As you can see, our code still relies on the StudentStorage class. Having such a direct dependency is a problem, 
-because we need to change the class name in every single place. That sounds like fun! OK, maybe not.
-
-On a serious note, why is this *tight coupling* a problem? Imagine that you are building a large application, with a 
-couple modules, some of which are made by third parties. After all, you wouldn't build your own database driver, 
-would you?
-
-So you have structure like this:
-
-```dotsvg
-digraph {
-  node [style=filled, fillcolor="#63bc46",shape=box,fontname="Open Sans;sans-serif",fontsize=16]
-  edge [fontname="Open Sans;sans-serif",fontsize=14]
-
-  subgraph high {
-    label="High level modules";
-    rank="same";
-    graph [style="dotted"];
-    ui [label=<<font color="white">User interface  </font>>]
-  }
-  subgraph medium {
-    label="Medium level modules";
-    rank="same";
-    graph [style="dotted"];
-    student [label=<<font color="white">Student business logic module  </font>>]
-    teacher [label=<<font color="white">Teacher business logic module  </font>>]
-  }
-  subgraph low {
-    label="Low level modules";
-    rank="same";
-    graph [style="dotted"];
-    mysql [label=<<font color="white">MySQL connector  </font>>]
-    image [label=<<font color="white">Filesystem profile image storage  </font>>]
-    oracle [label=<<font color="white">Oracle connector  </font>>]
-  }
-  
-  ui -> student [label="calls"];
-  ui -> teacher [label="calls"];
-  teacher -> oracle [label="calls"];
-  teacher -> image [label="calls"];
-  student -> image [label="calls"];
-  student -> mysql [label="calls"];
-}
-```
-
-What happens if with a software upgrade the `Filesystem profile image storage` breaks? Not upgrading is not an option, 
-because you won't get security updates and bugfixes. You *could* switch to a different module that provides a similar 
-functionality, but that would mean you have to rewrite all your modules that are using that low level module.
-
+happens if you need to replace a module? Replacing class names gets old pretty fast, so we need a better solution. 
+But that's a topic for another day.
