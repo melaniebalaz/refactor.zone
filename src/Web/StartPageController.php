@@ -67,7 +67,7 @@ class StartPageController extends AbstractController {
 		return [
 			'articles'   => $articles,
 			'request'    => $this->getRequest(),
-			'articleRecommendedArticles' => $articleRecommendedArticles
+			'articleRecommendedArticles' => $recommendedArticles
 		];
 	}
 }
