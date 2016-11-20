@@ -1,0 +1,67 @@
+@mixin social-color($color) {
+	color: $color;
+	&:hover, a:hover & {
+		color: $color;
+		opacity: 0.8;
+	}
+	&:active, a:active &, &:visited, a:visited & {
+		color: $color;
+		opacity: 0.9;
+	}
+}
+
+.text-red {
+	@include social-color(#e00000);
+}
+
+.text-facebook {
+	@include social-color(#3b5998);
+}
+
+.text-messenger {
+	@include social-color(#0084FF);
+}
+
+.text-twitter {
+	@include social-color(#1da1f2);
+}
+
+.text-gplus {
+	@include social-color(#d34836);
+}
+
+.text-tumblr {
+	@include social-color(#304e6f);
+}
+
+.text-reddit {
+	@include social-color(#336699);
+}
+
+.text-linkedin {
+	@include social-color(#0077b5);
+}
+
+.text-wordpress {
+	@include social-color(#21759b);
+}
+
+.text-globe {
+	@include social-color(#3333A0);
+}
+
+.text-rss {
+	@include social-color(#FF6600);
+}
+
+.text-stumbleupon {
+	@include social-color(#eb4924);
+}
+
+.text-getpocket {
+	@include social-color(#ef4056);
+}
+
+.text-vkontakte {
+	@include social-color(#507299);
+}

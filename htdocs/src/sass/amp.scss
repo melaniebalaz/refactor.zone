@@ -1,48 +1,117 @@
+$fa-font-path: "../fonts/font-awesome" !default;
 $icon-font-path: "../fonts/bootstrap/";
-$font-size-base: 20px;
-$base-font-size: $font-size-base;
-$base-line-height: (1.5*$base-font-size);
-$border-radius-base: 0;
-$grid-float-breakpoint: 992px;
-$brand-primary: #63bc46;
+$OpenSansPath: "../fonts/opensans";
 
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "reset";
+@import "hljs";
+@import "social";
 
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "../../node_modules/font-awesome/scss/font-awesome";
+@import "../../node_modules/open-sans-fontface/sass/variables";
+@import "../../node_modules/open-sans-fontface/sass/mixins";
+@import "../../node_modules/open-sans-fontface/sass/Regular";
+@import "../../node_modules/open-sans-fontface/sass/Italic";
+@import "../../node_modules/open-sans-fontface/sass/Semibold";
+@import "../../node_modules/open-sans-fontface/sass/SemiboldItalic";
+/*@import "../../node_modules/open-sans-fontface/sass/Bold";
+@import "../../node_modules/open-sans-fontface/sass/BoldItalic";*/
 
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/type";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/code";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/grid";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/tables";
-//@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/forms";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+html body {
+	font-family: "Open Sans", sans-serif;
+	line-height: 1.5em;
+	font-size:   16px;
+}
 
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
-//@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/navs";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/navbar";
-//@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/breadcrumbs";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/pagination";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/pager";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/labels";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/badges";
-//@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/jumbotron";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/thumbnails";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/alerts";
-//@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/progress-bars";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/media";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/list-group";
-//@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/panels";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/responsive-embed";
-//@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/wells";
-//@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/close";
+@media (min-width: 480px) {
+	html body {
+		font-size: 12px;
+	}
+	ul {
+		margin-left:  0;
+		padding-left: 20px;
+	}
+}
 
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/utilities";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
+@media (min-width: 600px) {
+	html body {
+		font-size: 14px;
+	}
+	ul {
+		margin-left:  0;
+		padding-left: 30px;
+	}
+}
 
-@import "../../node_modules/compass-mixins/lib/compass/typography";
+@media (min-width: 690px) {
+	html body {
+		font-size: 16px;
+	}
+	ul {
+		margin-left:  0;
+		padding-left: 30px;
+	}
+}
+
+@media (min-width: 992px) {
+	html body {
+		font-size: 20px;
+	}
+	ul {
+		margin-left:  0;
+		padding-left: 30px;
+	}
+}
+
+
+pre {
+	font-family: monospace;
+}
+
+a {
+	color:           #63bc46;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+h1, h2 {
+	font-weight: normal;
+	line-height: 1.5em;
+}
+
+h1 {
+	font-size:   1.6em;
+	line-height: 1.875em;
+}
+
+h2 {
+	font-size:     1.5em;
+	margin-top:    1em;
+	margin-bottom: 0.5em;
+	line-height:   2em;
+}
+
+header {
+	text-align:    center;
+	margin-bottom: 1.5em;
+}
+
+p, pre, blockquote {
+	margin-bottom: 1.5em;
+}
+
+p, blockquote {
+	text-align:justify;
+}
+
+strong {
+	font-weight: 600;
+}
+
+article {
+	padding-left:15px;
+	padding-right:15px;
+}
+

@@ -58,7 +58,7 @@ joe.save();
 ```
 
 Easy, right? Well, not so fast. Imagine the following situation. You implement this class with MySQL in mind, which 
-is a fairly standard database engine in the web world. One faithful day, your boss comes to you and tells you that the 
+is a fairly standard database engine in the web world. One fateful day, your boss comes to you and tells you that the 
 system administrators have been complaining, the servers are overloaded. After a brief hunt you discover that your 
 `students` table is insanely large and slow, so you now decide to implement caching for your student data. The data is 
 read from MySQL and written, for example, into Memcache.
@@ -69,7 +69,7 @@ maintenance problem. There's a lot of code which you can't even test. But hey, s
 
 The following week, déjà vu, your boss is at your desk again. The sysadmins are complaining again. (Can't they just 
 buy more hardware? Come on.) Now it's your `courses` table that's causing problems. You decide to go the same route 
-and copy over the code for Memcache to your `Courses` class.
+and copy over the code for Memcache to your `Course` class.
 
 Yes, yes, I can hear you scream that you would never do that. You would always decide to refactor your code to avoid 
 duplication. But believe me, others won't. Unless you work alone, you will have to deal with people who have a higher 
