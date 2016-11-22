@@ -1,0 +1,28 @@
+{% extends "base.twig" %}
+
+{% set pagetitle = 'Confirm your subscription' %}
+
+{% block breadcrumbs %}
+	<li itemprop="itemListElement" itemscope="itemscope"
+		itemtype="https://schema.org/ListItem">
+		<a itemprop="item" href="/newsletter">
+			<span itemprop="name">Newsletter</span></a>
+		<meta itemprop="position" content="2" />
+	</li>
+	<li itemprop="itemListElement" itemscope="itemscope"
+		itemtype="https://schema.org/ListItem">
+		<a itemprop="item" href="/newsletter/unsubscribe">
+			<span itemprop="name">Unsubscribe</span></a>
+		<meta itemprop="position" content="3" />
+	</li>
+{% endblock %}
+
+{% block content %}
+	<div class="card">
+		<h1>Unsubscribed!</h1>
+
+		<p>
+			We removed your e-mail address and you will no longer receive e-mails from us.
+		</p>
+	</div>
+{% endblock %}

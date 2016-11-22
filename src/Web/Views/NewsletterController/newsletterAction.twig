@@ -1,0 +1,41 @@
+{% extends "base.twig" %}
+
+{% set pagetitle = 'Confirm your subscription' %}
+
+{% block breadcrumbs %}
+	<li itemprop="itemListElement" itemscope="itemscope"
+		itemtype="https://schema.org/ListItem">
+		<a itemprop="item" href="/newsletter">
+			<span itemprop="name">Newsletter</span></a>
+		<meta itemprop="position" content="2" />
+	</li>
+{% endblock %}
+
+{% block content %}
+	<form action="https://newsletter.opsbears.com/subscribe" method="POST" accept-charset="utf-8" class="newsletter">
+		<div class="newsletter-content-wrapper">
+			<div class="newsletter-icon">
+				<i class="fa fa-envelope-o" aria-hidden="true"></i>
+			</div>
+			<div class="newsletter-body">
+				<h1>Never miss an article again!</h1>
+				<h2>
+					Just article notifications, nothing else. No spam, no ads, not from us or anyone
+					else.
+				</h2>
+			</div>
+		</div>
+		<div class="newsletter-form-wrapper">
+			<div class="newsletter-input newsletter-input-name">
+				<input type="text" name="name" placeholder="Name" id="name" required />
+			</div>
+			<div class="newsletter-input newsletter-input-email">
+				<input type="email" name="email" placeholder="Email address" id="email" required />
+			</div>
+			<div class="newsletter-input newsletter-input-submit">
+				<input type="hidden" name="list" value="qR0wI4BJP0SsP5nzzGRr3Q"/>
+				<input type="submit" name="submit" id="submit" value="Subscribe" />
+			</div>
+		</div>
+	</form>
+{% endblock %}

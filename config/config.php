@@ -8,6 +8,7 @@ use Opsbears\Refactor\Web\ArticleController;
 use Opsbears\Refactor\Web\AuthorController;
 use Opsbears\Refactor\Web\CategoryController;
 use Opsbears\Refactor\Web\ErrorController;
+use Opsbears\Refactor\Web\NewsletterController;
 use Opsbears\Refactor\Web\SeriesController;
 use Opsbears\Refactor\Web\SitemapController;
 use Opsbears\Refactor\Web\StartPageController;
@@ -66,6 +67,10 @@ return \array_merge([
 			['GET', '/series/{slug:[a-zA-Z0-9\-]+}', SeriesController::class, 'seriesAction'],
 			['GET', '/series/{slug:[a-zA-Z0-9\-]+}/page/{page:[0-9]+}', SeriesController::class, 'pageAction'],
 			['GET', '/series/{slug:[a-zA-Z0-9\-]+}/feed', SeriesController::class, 'feedAction'],
+			['GET', '/newsletter', NewsletterController::class, 'newsletterAction'],
+			['GET', '/newsletter/confirm', NewsletterController::class, 'confirmAction'],
+			['GET', '/newsletter/thankyou', NewsletterController::class, 'thankyouAction'],
+			['GET', '/newsletter/unsubscribe', NewsletterController::class, 'unsubscribeAction'],
 			['GET', '/author', AuthorController::class, 'indexAction'],
 			['GET', '/author/{slug:[a-zA-Z0-9\-]+}', AuthorController::class, 'authorAction'],
 			['GET', '/author/{slug:[a-zA-Z0-9\-]+}/page/{page:[0-9]+}', AuthorController::class, 'pageAction'],

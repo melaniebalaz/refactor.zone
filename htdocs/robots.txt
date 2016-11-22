@@ -1,3 +1,4 @@
 User-agent: *
+Disallow: /newsletter
 Allow: /
 Sitemap: https://refactor.zone/sitemap.xml

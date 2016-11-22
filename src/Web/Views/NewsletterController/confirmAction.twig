@@ -1,0 +1,28 @@
+{% extends "base.twig" %}
+
+{% set pagetitle = 'Confirm your subscription' %}
+
+{% block breadcrumbs %}
+	<li itemprop="itemListElement" itemscope="itemscope"
+		itemtype="https://schema.org/ListItem">
+		<a itemprop="item" href="/newsletter">
+			<span itemprop="name">Newsletter</span></a>
+		<meta itemprop="position" content="1" />
+	</li>
+	<li itemprop="itemListElement" itemscope="itemscope"
+		itemtype="https://schema.org/ListItem">
+		<a itemprop="item" href="/newsletter/confirm">
+			<span itemprop="name">Confirm</span></a>
+		<meta itemprop="position" content="2" />
+	</li>
+{% endblock %}
+
+{% block content %}
+	<div class="card">
+		<h1>Check your e-mail!</h1>
+
+		<p>
+			We don't want you to receive e-mail you dont want, so we need you to click the link in the e-mail we just sent you.
+		</p>
+	</div>
+{% endblock %}

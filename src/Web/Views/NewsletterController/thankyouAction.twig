@@ -1,0 +1,28 @@
+{% extends "base.twig" %}
+
+{% set pagetitle = 'Confirm your subscription' %}
+
+{% block breadcrumbs %}
+	<li itemprop="itemListElement" itemscope="itemscope"
+		itemtype="https://schema.org/ListItem">
+		<a itemprop="item" href="/newsletter">
+			<span itemprop="name">Newsletter</span></a>
+		<meta itemprop="position" content="2" />
+	</li>
+	<li itemprop="itemListElement" itemscope="itemscope"
+		itemtype="https://schema.org/ListItem">
+		<a itemprop="item" href="/newsletter/confirm">
+			<span itemprop="name">Thankyou</span></a>
+		<meta itemprop="position" content="3" />
+	</li>
+{% endblock %}
+
+{% block content %}
+	<div class="card">
+		<h1>Cool!</h1>
+
+		<p>
+			We'll let you know when our next article goes online!
+		</p>
+	</div>
+{% endblock %}
