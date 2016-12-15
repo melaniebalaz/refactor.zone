@@ -173,6 +173,10 @@ a {
 	@include social-color(#0077b5);
 }
 
+.text-youtube {
+	@include social-color(#bb0000);
+}
+
 .text-wordpress {
 	@include social-color(#21759b);
 }
@@ -841,5 +845,33 @@ a:hover .author-image, a:hover .author-name {
 		text-align: center;
 		padding-right: 0;
 		padding-bottom: 10px;
+	}
+}
+
+.difftext {
+	del {
+		&.showchange {
+			&.changeset-block {
+				display:block;
+			}
+			display:inline;
+			background-color: #a00000;
+			color:#ffffff;
+			text-decoration: line-through;
+		}
+		display:none;
+	}
+
+	ins {
+		&.showchange {
+			&.changeset-block {
+				display:block;
+			}
+			display:inline;
+			background-color: #00a000;
+			color:#ffffff;
+			text-decoration: none;
+		}
+		text-decoration: none;
 	}
 }

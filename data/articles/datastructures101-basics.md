@@ -1,6 +1,6 @@
 Title:      Basics
 Author:     janoszen
-Published:  0000-00-00
+Published:  2016-11-23
 Categories: basics
 Series:     datastructures101
 Excerpt:    Why would you learn data structures? You won't need it unless you are a programmer, database engineer or 
@@ -37,11 +37,12 @@ This kind of limiting behavior is usually described with the
 [Big O notation](https://en.wikipedia.org/wiki/Big_O_notation). Bear with me; we are going to do a tiny bit of math 
 here.
 
-Let's imagine an algorithm that for any `n` input length needs `4n³ + 10n² + n + 5` operations to complete. In the 
-Big O notation, we would describe this algorithm as being `O(n³)`. So we take the most significant factor of growth in
-the execution time and use it to describe the algorithm. The reason for doing this is that with a sufficiently large 
-data set the worst case is going to be the case most of the time. (You can breathe out now, that's all the math we 
-are going to do today.)
+Let's imagine an algorithm that for any <code>n</code> input length needs <code>4n³ + 10n² + n + 5</code> operations to 
+complete. In the Big O notation, we would describe this algorithm as being <code>O(n³)</code>. If we take a large 
+enough data set, the most significant factor of n will dominate the execution time. This means that we can use that to
+classify the algorithm's estimated speed on large databases. That is the Big O notation:
+<code>O(n<sup>largest_factor</sup></code>). In this example it's <code>O(n³)</code>. (You can breathe out now, that's
+all the math we are going to do today.) If you want to read more on the Big O, I would recommend <a href="http://web.mit.edu/16.070/www/lecture/big_o.pdf">this paper</a> 
 
 So our data storage above could be described as `O(n)` for searching by name. If you are building a database system 
 with this kind of data storage, you will need a *full table scan* to find a given record. While this is something you
