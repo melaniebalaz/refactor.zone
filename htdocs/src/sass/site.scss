@@ -131,11 +131,22 @@ a {
 
 @mixin social-color($color) {
 	color: $color;
-	&:hover, a:hover & {
+	&:hover,
+	a:hover &,
+	.navbar-default .navbar-nav>li>&:hover,
+	.navbar-default .navbar-nav>li>a:hover & {
 		color: $color;
 		opacity: 0.8;
 	}
-	&:active, a:active &, &:visited, a:visited & {
+	.navbar-default .navbar-nav>li>&:hover {
+		border-top-color: $color;
+	}
+	&:active, a:active &, &:visited, a:visited &,
+	.navbar-default .navbar-nav>li>&:active,
+	.navbar-default .navbar-nav>li>a:active &,
+	.navbar-default .navbar-nav>li>&:visited,
+	.navbar-default .navbar-nav>li>a:visited &
+	{
 		color: $color;
 		opacity: 0.9;
 	}
@@ -199,6 +210,14 @@ a {
 
 .text-vkontakte {
 	@include social-color(#507299);
+}
+
+.text-twitch {
+	@include social-color(#6441a5);
+}
+
+.text-live {
+	@include social-color(#bd3747);
 }
 
 .nav > li > a:hover, .nav > li > a:active {
@@ -874,4 +893,13 @@ a:hover .author-image, a:hover .author-name {
 		}
 		text-decoration: none;
 	}
+}
+
+.text-margin-left {
+	display:inline-block;
+	margin-left:20px;
+}
+.text-margin-right {
+	display:inline-block;
+	margin-right:20px;
 }

@@ -8,6 +8,7 @@ use Opsbears\Refactor\Web\ArticleController;
 use Opsbears\Refactor\Web\AuthorController;
 use Opsbears\Refactor\Web\CategoryController;
 use Opsbears\Refactor\Web\ErrorController;
+use Opsbears\Refactor\Web\LiveController;
 use Opsbears\Refactor\Web\NewsletterController;
 use Opsbears\Refactor\Web\SeriesController;
 use Opsbears\Refactor\Web\SitemapController;
@@ -56,6 +57,7 @@ return \array_merge([
 		 */
 		'routes'        => [
 			['GET', '/', StartPageController::class, 'startPageAction'],
+			['GET', '/live', LiveController::class, 'liveAction'],
 			['GET', '/privacy', TextController::class, 'privacyAction'],
 			['GET', '/terms', TextController::class, 'tosAction'],
 			['GET', '/imprint', TextController::class, 'imprintAction'],

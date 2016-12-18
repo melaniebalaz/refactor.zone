@@ -1,0 +1,85 @@
+{% extends "base.twig" %}
+
+{% set pagetitle = 'Live!' %}
+
+{% block breadcrumbs %}
+	<li itemprop="itemListElement" itemscope="itemscope"
+		itemtype="https://schema.org/ListItem">
+		<a itemprop="item" href="https://refactor.zone/live">
+			<span itemprop="name">Live!</span></a>
+		<meta itemprop="position" content="2" />
+	</li>
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-xl-6 col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-push-1 col-md-push-1">
+			<article>
+				<div class="card article">
+					<header>
+						<h1><span itemprop="headline">
+								Refactor Zone Live!
+							</span></h1>
+					</header>
+
+					<div class="articleBody">
+						<p class="text-center">
+							We stream live (almost) every week, usually on Tuesdays at 7 PM UTC.
+						</p>
+
+						<div class="text-center">
+							<a href="https://www.youtube.com/channel/UCXkx8hX8Xo4lb7T0_-yZzVg"
+							   class="text-margin-left text-margin-right" title="YouTube">
+								<i class="text-youtube fa fa-youtube fa-5x"></i>
+							</a>
+							<a href="http://twitch.tv/refactorzone" class="text-margin-left text-margin-right"
+							   title="Twitch">
+								<i class="text-twitch fa fa-twitch fa-5x"></i>
+							</a>
+							<a href="https://www.livecoding.tv/refactorzone/" class="text-margin-left
+							text-margin-right" title="Livecoding.tv">
+								<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+									 viewBox="0 0 1810 1320" preserveAspectRatio="xMidYMid meet" style="top:12px;
+									 position:relative; height:5em;width:7em;">
+									<g id="layer1" fill="#161a1e" stroke="none">
+										<path d="M452 1283 c3 -32 9 -40 43 -57 31 -17 47 -35 72 -86 18 -36 33 -68 33 -72 0 -5 -125 -8 -278 -8 -278 0 -279 0 -300 -23 -22 -23 -22 -24 -22 -514 0 -462 1 -491 18 -506 17 -16 93 -17 889 -17 830 0 871 1 886 18 15 17 17 67 17 509 l0 490 -23 21 c-23 22 -29 22 -330 22 -239 0 -307 3 -307 13 0 6 15 39 33 72 24 45 43 66 75 83 37 21 42 28 42 58 l0 34 -426 0 -425 0 3 -37z m633 -115 c-19 -40 -35 -78 -35 -85 0 -10 -39 -13 -174 -13 l-174 0 -12 38 c-7 20 -23 57 -36 81 -13 24 -24 45 -24 47 0 2 110 4 245 4 l244 0 -34 -72z m645 -643 l0 -445 -825 0 -825 0 0 445 0 445 825 0 825 0 0 -445z"/>
+										<path d="M674 896 c-5 -13 313 -711 339 -743 13 -17 96 -17 103 0 3 8 -73 180 -168 383 l-173 369 -48 3 c-35 2 -49 -1 -53 -12z"/>
+										<path d="M445 666 l-230 -92 0 -49 0 -48 234 -93 c129 -51 238 -91 243 -88 13 8 9 90 -5 102 -7 6 -83 37 -170 69 l-158 59 158 58 c87 32 164 63 171 69 15 12 13 99 -3 103 -5 2 -113 -39 -240 -90z"/>
+										<path d="M1117 753 c-12 -11 -7 -90 6 -100 6 -6 83 -36 170 -68 87 -32 156 -59 155 -60 -2 -1 -73 -28 -158 -60 -85 -32 -161 -62 -167 -68 -15 -11 -18 -93 -4 -101 5 -3 114 36 243 87 l233 93 0 49 0 50 -230 92 c-248 99 -239 96 -248 86z"/>
+									</g>
+
+								</svg>
+							</a>
+						</div>
+					</div>
+				</div>
+			</article>
+			<form action="https://newsletter.opsbears.com/subscribe" method="POST" accept-charset="utf-8" class="newsletter">
+				<div class="newsletter-content-wrapper">
+					<div class="newsletter-icon">
+						<i class="fa fa-envelope-o" aria-hidden="true"></i>
+					</div>
+					<div class="newsletter-body">
+						<h1>Never miss an update again!</h1>
+						<h2>
+							Just content notifications, nothing else. No spam, no ads, not from us or anyone
+							else.
+						</h2>
+					</div>
+				</div>
+				<div class="newsletter-form-wrapper">
+					<div class="newsletter-input newsletter-input-name">
+						<input type="text" name="name" placeholder="Name" id="name" required />
+					</div>
+					<div class="newsletter-input newsletter-input-email">
+						<input type="email" name="email" placeholder="Email address" id="email" required />
+					</div>
+					<div class="newsletter-input newsletter-input-submit">
+						<input type="hidden" name="list" value="qR0wI4BJP0SsP5nzzGRr3Q"/>
+						<input type="submit" name="submit" id="submit" value="Subscribe" />
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}
